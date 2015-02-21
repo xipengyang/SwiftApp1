@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let predicate = NSPredicate(format: "id = \(personId)")
         
-        var newRecord: Person = cdh.fetchOrNewEntityByPredicate("Person", predicate: predicate ) as Person
+        var newRecord: Person = cdh.getOrNewEntityByPredicate("Person", predicate: predicate ) as Person
         
         newRecord.setValue(contact.id.toInt(), forKey: "id")
         newRecord.setValue(contact.name, forKey: "name")
@@ -85,6 +85,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cdh.saveContext()
     }
     
+    func getPersonByIdAction(identifier: String) -> [Person] {
+         println("get person for id \(identifier) action")
+   
+        let predicate: NSPredicate = NSPredicate(format: "id == \(identifier)")!
+        
+        return cdh.getEntityByPredicate("Person", predicate: predicate) as [Person]
+        
+    }
+    
+    func saveOrderAction(order : OrderD) {
+        
+        println("save order action \(order)")
+        
+        cdh.saveContext()
+    }
+    
+    func newOrderAction() -> OrderD {
+        println("new order action")
+        
+        return cdh.newEntity("OrderD") as OrderD
+    }
+    
+    func newProductAction() -> ProductD {
+        println("new product action")
+        
+        return cdh.newEntity("ProductD") as ProductD
+    }
+    
+    func saveProductAction(product : ProductD) {
+        
+        println("save product action \(product)")
+        
+        cdh.saveContext()
+    }
     
     
     func refreshContactAction()-> [Contact]{
@@ -92,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var contacts = [Contact]()
         
-        var fetchedData = cdh.getEntitiesSorted("Person")
+        var fetchedData = cdh.getEntities("Person")
         
         if let people = fetchedData as? [Person] {
             if(people.count > 0 ) {
@@ -113,6 +147,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return contacts
         
+    }
+    
+    func refreshOrderAction()-> [OrderD] {
+        println("refresh order action")
+        
+        var fetchedData = cdh.getEntities("OrderD")
+        
+        if (fetchedData.count > 0) {
+            for order: OrderD in fetchedData as [OrderD] {
+                println(order.product)
+            }
+            println("found order data.")
+            return fetchedData as [OrderD]
+        }
+        
+        println("no order found. so return empty array")
+        return [OrderD]()
     }
 
 

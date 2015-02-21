@@ -8,42 +8,40 @@
 
 import UIKit
 
-struct Order {
-    var orderId: Int?
-    var name: String!
-    var time: NSDate!
-    var customerId: Int?
-    var supplier: Int?
-}
-
-let orderDao = OrderDao()
+var orderDao:OrderDao = OrderDao()
 
 class OrderDao: NSObject {
     
-    var orders:[Order] = [Order]()
-    var orderId: Int
+    var orders:[OrderD] = [OrderD]()
     
-    override init() {
-        self.orderId = orders.count
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    
+    func saveOrder(var pOrder: OrderD) {
+        appDel.saveOrderAction(pOrder)
     }
     
-    func saveOrder(var pOrder: Order) {
-        pOrder.orderId = self.orderId
-        orders.append(pOrder)
-        println("new order Id - \(pOrder.orderId!)")
-        self.orderId = orders.count
+    func newOrder() -> OrderD {
+        return appDel.newOrderAction()
+    }
+    
+    func load() {
+        orders = appDel.refreshOrderAction()
     }
     
     // return all orders for a customer
-    func getOrderForCustomer(customerId : Int) -> [Order] {
-        var result:[Order] = [Order]()
+    func getOrderForCustomer(customerId : Int) -> [OrderD] {
+        var result:[OrderD] = [OrderD]()
         for order in orders {
-            if(customerId == order.customerId) {
+            if(customerId == order.customer.id) {
                 result.append(order)
             }
         }
         return result
     }
     
+    func getOrders() -> [OrderD] {
+        return orders
+    }
    
 }

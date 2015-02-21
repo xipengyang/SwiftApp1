@@ -8,9 +8,28 @@
 
 import UIKit
 
-struct Product {
-    var name: String?
-    var quantity: Int?
-    var unitPrice: Double?
+
+var productDao:ProductDao = ProductDao()
+
+class ProductDao: NSObject {
+    
+    var products:[ProductD] = [ProductD]()
+    
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    
+    func saveProduct(var pProduct: ProductD) {
+        appDel.saveProductAction(pProduct)
+    }
+    
+    func newProduct() -> ProductD {
+        return appDel.newProductAction()
+    }
+    
+    
+    func getProducts() -> [ProductD] {
+        return products
+    }
+    
 }
 

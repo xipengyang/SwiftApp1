@@ -14,9 +14,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     var filterdContacts = [Contact]()
     
-    var products = [Product]()
-    
     var customer: Contact? = nil
+    
+    var order: OrderD?
+    
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     @IBOutlet weak var productTblView: UITableView!
     
@@ -42,7 +44,16 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.setupContact()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if(order == nil) {
+            order = appDel.newOrderAction()
+        }
+        
+         self.setupContact()
     }
     
     func setupContact() {
@@ -59,17 +70,25 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func productAddButtonAction(sender: AnyObject) {
         
-        var _quantity = productQuantity.text != nil ? productQuantity.text.toInt() : 0
+        var _name = productName.text
+        var _quantity = productQuantity.text
+        var _unitPrice = productUnitPrice.text
         
-        var _unitPrice = productUnitPrice.text != nil ? (productUnitPrice.text as NSString).doubleValue : 0.0
+        var _products = self.mutableSetValueForKey("products")
         
-        products.append(Product(name: productName.text, quantity: _quantity, unitPrice: _unitPrice))
+        var product: ProductD = appDel.newProductAction()
+        product.setValue(_quantity, forKey: "quantity")
+        product.setValue(_unitPrice, forKey: "price")
+        product.setValue(_name, forKey: "productName")
+        product.setValue(self.order, forKey: "order")
+        
         
         resetProductFields()
         
         productTblView.reloadData()
         
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,7 +99,10 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if tableView == self.searchDisplayController!.searchResultsTableView {
             return self.filterdContacts.count
         } else if tableView == self.productTblView {
-            return self.products.count
+            if let products = self.order?.product {
+                return products.count
+            }
+            return 0
         } else {
             return self.contacts.count
         }
@@ -98,11 +120,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "product")
             }
             
-            var product: Product
+            if let orderProduct = self.order?.product {
+                var _products = orderProduct.allObjects as [ProductD]
+                cell?.textLabel?.text = _products[indexPath.row].productName
+            }
             
-            product  = products[indexPath.row]
-            
-            cell?.textLabel?.text = product.name
             
             return cell!
             
@@ -116,7 +138,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             }
             
             var customer : Contact
-            // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
+
             if tableView == self.searchDisplayController!.searchResultsTableView {
                 customer = filterdContacts[indexPath.row]
             } else {
@@ -148,6 +170,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             let selected = filterdContacts[indexPath.row]
             customerName.text = selected.name
             addressField.text = selected.address
+            var customerD = appDel.getPersonByIdAction(selected.id).last
+            self.order?.setValue(customerD, forKey: "customer")
             self.searchDisplayController!.setActive(false, animated: true)
             
         }
@@ -157,7 +181,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete &&  tableView == self.productTblView {
             // Delete the row from the data source
-            products.removeAtIndex(indexPath.row)
+            if let orderProducts = self.order?.product {
+                var _products = orderProducts.allObjects as [ProductD]
+                _products.removeAtIndex(indexPath.row)
+            }
+            
             tableView.reloadData()
         }
     }

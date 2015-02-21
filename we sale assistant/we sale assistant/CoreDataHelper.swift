@@ -75,14 +75,12 @@ class CoreDataHelper: NSObject {
     }
     
     
-    func getEntitiesSorted(name : String ) -> [AnyObject] {
+    func getEntities(name : String ) -> [AnyObject] {
         
-        let sort = NSSortDescriptor(key: "id", ascending: true)
         var request = NSFetchRequest(entityName: name)
         
         request.returnsObjectsAsFaults = false
         request.predicate = nil
-        request.sortDescriptors = [sort]
         
         var e: NSError?
         
@@ -121,7 +119,7 @@ class CoreDataHelper: NSObject {
 
     }
     
-    func fetchOrNewEntityByPredicate(name: String, predicate: NSPredicate?) -> AnyObject {
+    func getOrNewEntityByPredicate(name: String, predicate: NSPredicate?) -> AnyObject {
         
         var entities = self.getEntityByPredicate(name, predicate: predicate)
         
@@ -129,6 +127,12 @@ class CoreDataHelper: NSObject {
         if entities.count > 0 {
             return entities.last!
         }
+        
+        return NSEntityDescription.insertNewObjectForEntityForName(name, inManagedObjectContext: self.managedObjectContext!)
+        
+    }
+    
+    func newEntity(name: String) -> AnyObject {
         
         return NSEntityDescription.insertNewObjectForEntityForName(name, inManagedObjectContext: self.managedObjectContext!)
         

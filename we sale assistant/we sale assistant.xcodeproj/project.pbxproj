@@ -22,7 +22,9 @@
 		3F4EE6D61A84A31200636386 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6D41A84A31200636386 /* LaunchScreen.xib */; };
 		3F4EE6E21A84A31200636386 /* we_sale_assistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6E11A84A31200636386 /* we_sale_assistantTests.swift */; };
 		3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6EB1A84B93200636386 /* PersonDao.swift */; };
-		3FE7B48D1A8F6643005F42D4 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B48C1A8F6643005F42D4 /* Person.swift */; };
+		3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19C1A98764E004AC946 /* ProductD.swift */; };
+		3F77E19F1A98764F004AC946 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19E1A98764F004AC946 /* Person.swift */; };
+		3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E1A01A98764F004AC946 /* OrderD.swift */; };
 		3FE7B48F1A90813E005F42D4 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B48E1A90813E005F42D4 /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +58,9 @@
 		3F4EE6E01A84A31200636386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4EE6E11A84A31200636386 /* we_sale_assistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = we_sale_assistantTests.swift; sourceTree = "<group>"; };
 		3F4EE6EB1A84B93200636386 /* PersonDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDao.swift; sourceTree = "<group>"; };
-		3FE7B48C1A8F6643005F42D4 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3F77E19C1A98764E004AC946 /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
+		3F77E19E1A98764F004AC946 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3F77E1A01A98764F004AC946 /* OrderD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
 		3FE7B48E1A90813E005F42D4 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +85,9 @@
 		3F120AC91A8C9DEE005C4DA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3FE7B48C1A8F6643005F42D4 /* Person.swift */,
+				3F77E1A01A98764F004AC946 /* OrderD.swift */,
+				3F77E19E1A98764F004AC946 /* Person.swift */,
+				3F77E19C1A98764E004AC946 /* ProductD.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -267,10 +273,12 @@
 				3F24CBB81A86224A00902C39 /* AddOrderViewController.swift in Sources */,
 				3F24CBB41A85F4B100902C39 /* PersonDetailViewController.swift in Sources */,
 				3F120AC61A89F03E005C4DA2 /* we_sale_assistant.xcdatamodeld in Sources */,
-				3FE7B48D1A8F6643005F42D4 /* Person.swift in Sources */,
 				3F24CBBC1A870EAC00902C39 /* CustomerSearchController.swift in Sources */,
+				3F77E19F1A98764F004AC946 /* Person.swift in Sources */,
 				3FE7B48F1A90813E005F42D4 /* CoreDataHelper.swift in Sources */,
+				3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */,
 				3F4EE6CA1A84A31200636386 /* AppDelegate.swift in Sources */,
+				3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */,
 				3F4EE6CC1A84A31200636386 /* FirstViewController.swift in Sources */,
 				3F24CBBA1A86FF3600902C39 /* ProductDao.swift in Sources */,
 				3F24CBB21A85904E00902C39 /* AddPersonViewController.swift in Sources */,

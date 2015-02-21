@@ -15,6 +15,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
+        orderDao.load()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -24,7 +25,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return orderDao.getOrders().count
     }
     
     
@@ -36,9 +37,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
         }
         
-        let order = orderDao.orders[indexPath.row]
+        let order = orderDao.getOrders()[indexPath.row]
         
-        cell!.textLabel?.text = order.name
+        cell!.textLabel?.text = order.customer.name
         
         return cell!
     }

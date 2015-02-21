@@ -12,7 +12,6 @@ struct Contact {
     var address:String?
     var phone:String?
     var weChatId:String?
-    //var notes:String?
     var personType:String?
     
 }
@@ -26,7 +25,7 @@ class PersonDao: NSObject {
     
     private var contacts = [Contact]()
     
-    var appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
     
     override init() {
