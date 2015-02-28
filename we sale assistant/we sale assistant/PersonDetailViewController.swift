@@ -8,18 +8,15 @@
 
 import UIKit
 
-class PersonDetailViewController: UIViewController {
+class PersonDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBOutlet weak var nameInput: UITextField!
-    
     @IBOutlet weak var phoneInput: UITextField!
-    
     @IBOutlet weak var wechatInput: UITextField!
-    
     @IBOutlet weak var addressInput: UITextView!
-    
     @IBOutlet weak var isSupplier: UISwitch!
+    @IBOutlet weak var orderHistoryTableView: UITableView!
     
     
     var name:String?
@@ -27,11 +24,9 @@ class PersonDetailViewController: UIViewController {
     var phone:String?
     var weChatId:String?
     var notes:String?
+    var id:String!
+    var orders: [OrderD]?
     
-    @IBAction func DoneButtonAction(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,11 +42,54 @@ class PersonDetailViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let unwrapped = orders {
+            return unwrapped.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
+        cell = self.orderHistoryTableView.dequeueReusableCellWithIdentifier("orderHistoryCell") as? UITableViewCell
+        
+        if(cell == nil) {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
+        }
+        
+        if( orders != nil) {
+            let orderAtRow = orders![indexPath.row]
+            let products: [ProductD] = orderAtRow.product.allObjects as [ProductD]
+            var bodyText = ""
+            for product in products {
+                bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")
+            }
+            cell!.detailTextLabel?.text = bodyText
+            cell!.textLabel?.text = orderAtRow.orderDate
+        }
+        
+        return cell!
+
+    }
+    
+    
+    @IBAction func saveButtonClicked(sender: AnyObject) {
+        personDao.savePerson(id, name: self.nameInput.text, address: self.addressInput.text, phone: self.phoneInput.text, weChatId: self.wechatInput.text, personType: "customer")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
 }
 

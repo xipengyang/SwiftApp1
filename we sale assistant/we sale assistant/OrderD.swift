@@ -11,8 +11,8 @@ import CoreData
 
 class OrderD: NSManagedObject {
 
-    @NSManaged var orderDate: String
-    @NSManaged var customer: we_sale_assistant.Person
+    @NSManaged var orderDate: String?
+    @NSManaged var customer: we_sale_assistant.Person?
     @NSManaged var product: NSSet
 
 }

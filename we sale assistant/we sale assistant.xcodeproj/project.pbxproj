@@ -22,6 +22,8 @@
 		3F4EE6D61A84A31200636386 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6D41A84A31200636386 /* LaunchScreen.xib */; };
 		3F4EE6E21A84A31200636386 /* we_sale_assistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6E11A84A31200636386 /* we_sale_assistantTests.swift */; };
 		3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6EB1A84B93200636386 /* PersonDao.swift */; };
+		3F724EE01A99B08D00CF77BF /* OrderProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F724EDF1A99B08D00CF77BF /* OrderProductCell.swift */; };
+		3F724EE21A99C04900CF77BF /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F724EE11A99C04900CF77BF /* OrderCell.swift */; };
 		3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19C1A98764E004AC946 /* ProductD.swift */; };
 		3F77E19F1A98764F004AC946 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19E1A98764F004AC946 /* Person.swift */; };
 		3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E1A01A98764F004AC946 /* OrderD.swift */; };
@@ -58,6 +60,8 @@
 		3F4EE6E01A84A31200636386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4EE6E11A84A31200636386 /* we_sale_assistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = we_sale_assistantTests.swift; sourceTree = "<group>"; };
 		3F4EE6EB1A84B93200636386 /* PersonDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDao.swift; sourceTree = "<group>"; };
+		3F724EDF1A99B08D00CF77BF /* OrderProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderProductCell.swift; sourceTree = "<group>"; };
+		3F724EE11A99C04900CF77BF /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		3F77E19C1A98764E004AC946 /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
 		3F77E19E1A98764F004AC946 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3F77E1A01A98764F004AC946 /* OrderD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		3F4EE6C61A84A31200636386 /* we sale assistant */ = {
 			isa = PBXGroup;
 			children = (
+				3FCEAB411A99ACFF007F327C /* Cell */,
 				3FC052331A8F220700042DB1 /* ViewControllers */,
 				3F120AC91A8C9DEE005C4DA2 /* Model */,
 				3F4EE6C91A84A31200636386 /* AppDelegate.swift */,
@@ -165,6 +170,15 @@
 				3F24CBB31A85F4B100902C39 /* PersonDetailViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3FCEAB411A99ACFF007F327C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3F724EE11A99C04900CF77BF /* OrderCell.swift */,
+				3F724EDF1A99B08D00CF77BF /* OrderProductCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +295,9 @@
 				3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */,
 				3F4EE6CC1A84A31200636386 /* FirstViewController.swift in Sources */,
 				3F24CBBA1A86FF3600902C39 /* ProductDao.swift in Sources */,
+				3F724EE01A99B08D00CF77BF /* OrderProductCell.swift in Sources */,
 				3F24CBB21A85904E00902C39 /* AddPersonViewController.swift in Sources */,
+				3F724EE21A99C04900CF77BF /* OrderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

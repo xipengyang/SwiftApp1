@@ -74,6 +74,13 @@ class CoreDataHelper: NSObject {
         }
     }
     
+    func rollbackContext () {
+        if let moc = self.managedObjectContext {
+            if moc.hasChanges {
+                moc.rollback()
+        }
+        }
+    }
     
     func getEntities(name : String ) -> [AnyObject] {
         
@@ -136,6 +143,10 @@ class CoreDataHelper: NSObject {
         
         return NSEntityDescription.insertNewObjectForEntityForName(name, inManagedObjectContext: self.managedObjectContext!)
         
+    }
+    
+    func deleteObject( obj : NSManagedObject) {
+        managedObjectContext?.delete(obj)
     }
     
 

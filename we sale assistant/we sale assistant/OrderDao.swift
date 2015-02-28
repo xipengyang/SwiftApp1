@@ -26,6 +26,7 @@ class OrderDao: NSObject {
     }
     
     func load() {
+        orders.removeAll(keepCapacity: true)
         orders = appDel.refreshOrderAction()
     }
     
@@ -33,7 +34,7 @@ class OrderDao: NSObject {
     func getOrderForCustomer(customerId : Int) -> [OrderD] {
         var result:[OrderD] = [OrderD]()
         for order in orders {
-            if(customerId == order.customer.id) {
+            if(customerId == order.customer!.id) {
                 result.append(order)
             }
         }
@@ -43,5 +44,6 @@ class OrderDao: NSObject {
     func getOrders() -> [OrderD] {
         return orders
     }
+    
    
 }

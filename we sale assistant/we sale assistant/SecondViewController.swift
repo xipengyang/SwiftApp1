@@ -14,9 +14,14 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.reloadData()
-        orderDao.load()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        orderDao.load()
+        self.tableView.reloadData()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,19 +35,51 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
-        cell = self.tableView.dequeueReusableCellWithIdentifier("order") as? UITableViewCell
+        var cell: OrderCell?
+        cell = self.tableView.dequeueReusableCellWithIdentifier("order") as? OrderCell
         
         if(cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
+            cell = OrderCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
         }
         
         let order = orderDao.getOrders()[indexPath.row]
         
-        cell!.textLabel?.text = order.customer.name
+        var customer: Person? = order.customer
+        
+        if customer != nil {
+            cell!.topLeftLabel?.text = customer!.name
+        }
+        
+        let products: [ProductD] = order.product.allObjects as [ProductD]
+        
+        var bodyText = ""
+        for product in products {
+                bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")
+        }
+        cell!.bodyLabel?.text = bodyText
+        
+        cell!.topRightLabel?.text = order.orderDate
         
         return cell!
     }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let order = orderDao.getOrders()[indexPath.row]
+        
+        
+        var destViewController: AddOrderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddOrderViewController") as AddOrderViewController
+        
+        if(indexPath.row >= 0) {
+            destViewController.order = order
+        }
+        
+        
+        self.presentViewController(destViewController, animated: true, nil)
+        
+    }    
+
 
 
 }

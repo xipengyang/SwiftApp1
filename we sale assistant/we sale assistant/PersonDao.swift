@@ -28,11 +28,9 @@ class PersonDao: NSObject {
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
     
-    override init() {
-        super.init()
+    func refreshContacts() {
         contacts = appDel.refreshContactAction()
     }
-    
     
     func addPerson(name: String!, address: String? ,phone: String? ,weChatId: String? ,personType: String?) {
         
@@ -46,12 +44,12 @@ class PersonDao: NSObject {
         
     }
     
-    func editPerson(id: String!, name: String!, address: String? ,phone: String? ,weChatId: String? ,personType: String?) {
+    func savePerson(id: String!, name: String!, address: String? ,phone: String? ,weChatId: String? ,personType: String?) {
         
         
         let contact: Contact = Contact(id: id, name: name, address: address,phone: phone, weChatId: weChatId, personType: personType)
         
-        let index = id.toInt()!
+        let index = id.toInt()! - 1
         
         contacts[index] = contact
         
@@ -64,8 +62,8 @@ class PersonDao: NSObject {
     }
     
     
-    func gerPersonAtIndex(index: Int) ->Contact {
-        return contacts[index]
+    func getPersonAtIndex(identifier: Int) ->Person? {
+        return appDel.getPersonByIdAction(identifier).last
     }
     
     func getContacts() ->[Contact] {

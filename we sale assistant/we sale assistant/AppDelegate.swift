@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cdh.saveContext()
     }
     
-    func getPersonByIdAction(identifier: String) -> [Person] {
+    func getPersonByIdAction(identifier: Int) -> [Person] {
          println("get person for id \(identifier) action")
    
         let predicate: NSPredicate = NSPredicate(format: "id == \(identifier)")!
@@ -156,14 +156,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (fetchedData.count > 0) {
             for order: OrderD in fetchedData as [OrderD] {
-                println(order.product)
+                println("found order data \(order) ")
             }
-            println("found order data.")
             return fetchedData as [OrderD]
         }
         
         println("no order found. so return empty array")
         return [OrderD]()
+    }
+    
+    func rollbackAction() {
+        println("rollback context action")
+        cdh.rollbackContext()
+        
     }
 
 

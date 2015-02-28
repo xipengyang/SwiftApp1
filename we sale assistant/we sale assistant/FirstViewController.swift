@@ -15,11 +15,17 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewTable.reloadData()
+        personDao.refreshContacts()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        personDao.refreshContacts()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,19 +66,20 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var destViewController: PersonDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PersonDetailController") as PersonDetailViewController
         
         if(indexPath.row >= 0) {
-            let contact: Contact  = personDao.getContacts()[indexPath.row]
             
-            destViewController.name = contact.name
+            if let person: Person  = personDao.getPersonAtIndex(contact.id.toInt()!) {
             
-            destViewController.phone = contact.phone
-
-            destViewController.weChatId = contact.weChatId
+            destViewController.id = person.id.stringValue
+            destViewController.name = person.name
+            destViewController.phone = person.phone
+            destViewController.weChatId = person.weChat_id
+            destViewController.address = person.address
+            destViewController.orders =  person.order.allObjects as? [OrderD]
             
-            destViewController.address = contact.address
-        }
-
+            self.presentViewController(destViewController, animated: true, nil)
+            }
         
-        self.presentViewController(destViewController, animated: true, nil)
+        }
         
     }    
     

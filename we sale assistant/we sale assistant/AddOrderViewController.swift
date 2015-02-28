@@ -51,42 +51,34 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         
         if(order == nil) {
             order = appDel.newOrderAction()
+            setOrderDateToNow()
+        } else {
+            if let customer = order?.customer {
+            self.customerName.text = customer.name
+            self.addressField.text  = customer.address
+            }
         }
         
-         self.setupContact()
+        self.setupContact()
     }
     
-    func setupContact() {
-        
+    private func setupContact() {
         contacts = personDao.getContacts()
-        
     }
     
-    func resetProductFields(){
+    private func setOrderDateToNow() {
+        let date = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString:String = dateFormatter.stringFromDate(date)
+        println("order date string - \(dateString)")
+        self.order?.setValue(dateString, forKey: "orderDate")
+    }
+    
+    private func resetProductFields(){
         productName.text = ""
         productQuantity.text = ""
         productUnitPrice.text = ""
-    }
-    
-    @IBAction func productAddButtonAction(sender: AnyObject) {
-        
-        var _name = productName.text
-        var _quantity = productQuantity.text
-        var _unitPrice = productUnitPrice.text
-        
-        var _products = self.mutableSetValueForKey("products")
-        
-        var product: ProductD = appDel.newProductAction()
-        product.setValue(_quantity, forKey: "quantity")
-        product.setValue(_unitPrice, forKey: "price")
-        product.setValue(_name, forKey: "productName")
-        product.setValue(self.order, forKey: "order")
-        
-        
-        resetProductFields()
-        
-        productTblView.reloadData()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,17 +104,21 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
         
         if tableView == self.productTblView {
-            var cell: UITableViewCell?
+            var cell: OrderProductCell?
             
-            cell = self.productTblView.dequeueReusableCellWithIdentifier("product") as? UITableViewCell
+            cell = self.productTblView.dequeueReusableCellWithIdentifier("product") as? OrderProductCell
             
             if (cell == nil) {
-                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "product")
+                cell = OrderProductCell(style: UITableViewCellStyle.Default, reuseIdentifier: "product")
             }
             
             if let orderProduct = self.order?.product {
                 var _products = orderProduct.allObjects as [ProductD]
-                cell?.textLabel?.text = _products[indexPath.row].productName
+                var _product = _products[indexPath.row]
+                
+                cell?.leftLabel.text = _product.productName
+                cell?.middleLabel.text = _product.quantity
+                cell?.rightLabel.text = _product.price
             }
             
             
@@ -170,7 +166,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             let selected = filterdContacts[indexPath.row]
             customerName.text = selected.name
             addressField.text = selected.address
-            var customerD = appDel.getPersonByIdAction(selected.id).last
+            var customerD = appDel.getPersonByIdAction(selected.id.toInt()!).last
             self.order?.setValue(customerD, forKey: "customer")
             self.searchDisplayController!.setActive(false, animated: true)
             
@@ -191,10 +187,41 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    @IBAction func doneButtonAction(sender: AnyObject) {
+    
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func saveButtonClicked(sender: AnyObject) {
+        if (self.order?.customer == nil) {
+            let alertController = UIAlertController(title: "Mistake", message:
+                "Please select a customer", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }else {
+        appDel.saveOrderAction(self.order!)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
     
+    @IBAction func productAddButtonAction(sender: AnyObject) {
+        
+        var _name = productName.text
+        var _quantity = productQuantity.text
+        var _unitPrice = productUnitPrice.text
+        var _products = self.mutableSetValueForKey("products")
+        
+        var product: ProductD = appDel.newProductAction()
+        product.setValue(_quantity, forKey: "quantity")
+        product.setValue(_unitPrice, forKey: "price")
+        product.setValue(_name, forKey: "productName")
+        product.setValue(self.order, forKey: "order")
+        
+        resetProductFields()
+        productTblView.reloadData()
+        
+    }
+
     
 }
