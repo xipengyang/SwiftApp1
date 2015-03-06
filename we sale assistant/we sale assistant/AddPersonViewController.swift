@@ -43,15 +43,24 @@ class AddPersonViewController: UIViewController {
         
         let contactType: String = isSupplier.on ? "Supplier" : "Customer"
         
-        
-        personDao.addPerson(nameInput.text, address: addressInput.text,phone: phoneInput.text ,weChatId: wechatInput.text, personType: contactType)
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if (nameInput.text.isEmpty) {
+            let alertController = UIAlertController(title: "Mistake", message:
+                "Please enter a name", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }else{
+            personDao.addPerson(nameInput.text, address: addressInput.text,phone: phoneInput.text ,weChatId: wechatInput.text, personType: contactType)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     
     @IBAction func backButtonAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
     
    

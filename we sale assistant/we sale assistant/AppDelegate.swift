@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        UINavigationBar.appearance().barTintColor  = UIColor.orangeColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
         return true
     }
 
@@ -48,19 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         self.cdh.saveContext()
-    }
-    
-    
-    func saveAllContactAction() {
-        let contacts = personDao.getContacts()
-        
-        println("save all contact action")
-        
-        for contact:Contact in contacts {
-            self.savePersonAction(contact)
-        }
-        
-        cdh.saveContext()
     }
     
     func savePersonAction(contact : Contact) {
@@ -94,10 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func saveOrderAction(order : OrderD) {
-        
-        println("save order action \(order)")
-        
+    func saveContextAction() {
+        println("save context action")
         cdh.saveContext()
     }
     
@@ -118,6 +106,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("save product action \(product)")
         
         cdh.saveContext()
+    }
+    
+    func deleteObjectAction(object: NSManagedObject) {
+        println("delecte object action \(object)")
+        
+        cdh.deleteObject(object)
     }
     
     

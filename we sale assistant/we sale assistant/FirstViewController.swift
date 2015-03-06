@@ -12,18 +12,17 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var viewTable: UITableView!
     
+    @IBOutlet weak var navBar: UINavigationBar!
+    
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTable.reloadData()
         personDao.refreshContacts()
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        personDao.refreshContacts()
     }
     
 
@@ -53,15 +52,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell!
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let contact: Contact  = personDao.getContacts()[indexPath.row]
-        println(contact.name)
-        
         
         var destViewController: PersonDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PersonDetailController") as PersonDetailViewController
         
@@ -81,7 +74,19 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         }
         
-    }    
+    }
+    
+    // Override to support editing the table view.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let contact: Contact  = personDao.getContacts()[indexPath.row]
+            let person: Person = personDao.getPersonAtIndex(contact.id.toInt()!)!
+            personDao.deletePerson(person)
+            personDao.deleteContacts(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            appDel.saveContextAction()
+        }
+    }
     
 
 

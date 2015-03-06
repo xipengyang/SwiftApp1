@@ -1,0 +1,120 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "055-0o-uv3"; */
+"055-0o-uv3.title" = "Back";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "6Ra-RP-kdV"; */
+"6Ra-RP-kdV.title" = "Back";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "8LQ-vf-Qwi"; */
+"8LQ-vf-Qwi.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Address"; ObjectID = "8bQ-2Z-LWi"; */
+"8bQ-2Z-LWi.text" = "Address";
+
+/* Class = "IBUILabel"; text = "Supplier"; ObjectID = "8lb-I5-Oi2"; */
+"8lb-I5-Oi2.text" = "Supplier";
+
+/* Class = "IBUILabel"; text = "Package Sent"; ObjectID = "AgZ-mO-cOb"; */
+"AgZ-mO-cOb.text" = "Package Sent";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "BkQ-Jv-fAf"; */
+"BkQ-Jv-fAf.text" = "Title";
+
+/* Class = "IBUIButton"; normalTitle = "Save"; ObjectID = "Cii-b7-a9H"; */
+"Cii-b7-a9H.normalTitle" = "Save";
+
+/* Class = "IBUILabel"; text = "Telephone"; ObjectID = "E1K-WL-5Zy"; */
+"E1K-WL-5Zy.text" = "Telephone";
+
+/* Class = "IBUINavigationItem"; title = "Contacts"; ObjectID = "Fcg-hU-fxA"; */
+"Fcg-hU-fxA.title" = "Contacts";
+
+/* Class = "IBUINavigationItem"; title = "Contact"; ObjectID = "Iwa-KM-E46"; */
+"Iwa-KM-E46.title" = "Contact";
+
+/* Class = "IBUILabel"; text = "Telephone"; ObjectID = "KWp-pE-mKJ"; */
+"KWp-pE-mKJ.text" = "Telephone";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "L3r-MU-0AW"; */
+"L3r-MU-0AW.title" = "Back";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "Sv2-dn-vDG"; */
+"Sv2-dn-vDG.text" = "Name";
+
+/* Class = "IBUILabel"; text = "Received Money "; ObjectID = "TNX-Ht-KaD"; */
+"TNX-Ht-KaD.text" = "Received Money ";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "X5K-xS-aOg"; */
+"X5K-xS-aOg.text" = "Label";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "XVJ-7d-3b7"; */
+"XVJ-7d-3b7.title" = "Back";
+
+/* Class = "IBUINavigationItem"; title = "Orders"; ObjectID = "XY7-vR-2v1"; */
+"XY7-vR-2v1.title" = "Orders";
+
+/* Class = "IBUILabel"; text = "Product"; ObjectID = "XrB-XX-alG"; */
+"XrB-XX-alG.text" = "Product";
+
+/* Class = "IBUISearchBar"; placeholder = "Customer Name"; ObjectID = "Y7D-fJ-FUc"; */
+"Y7D-fJ-FUc.placeholder" = "Customer Name";
+
+/* Class = "IBUITabBarItem"; title = "First"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "First";
+
+/* Class = "IBUINavigationItem"; title = "Add Order"; ObjectID = "b1T-8R-OIi"; */
+"b1T-8R-OIi.title" = "Add Order";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "bfJ-BY-XyC"; */
+"bfJ-BY-XyC.text" = "Label";
+
+/* Class = "IBUITabBarItem"; title = "Second"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Second";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "cyp-Tr-qh2"; */
+"cyp-Tr-qh2.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Orders History "; ObjectID = "fsr-4x-e9q"; */
+"fsr-4x-e9q.text" = "Orders History ";
+
+/* Class = "IBUILabel"; text = "Address"; ObjectID = "g8r-Oc-feO"; */
+"g8r-Oc-feO.text" = "Address";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "hOK-D2-mIA"; */
+"hOK-D2-mIA.text" = "Name";
+
+/* Class = "IBUIViewController"; title = "PersonDetailController"; ObjectID = "htx-Ws-10P"; */
+"htx-Ws-10P.title" = "PersonDetailController";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "iNR-L8-MLr"; */
+"iNR-L8-MLr.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "liG-2j-ZEy"; */
+"liG-2j-ZEy.text" = "Date";
+
+/* Class = "IBUILabel"; text = "WeChat"; ObjectID = "lvE-DK-tdx"; */
+"lvE-DK-tdx.text" = "WeChat";
+
+/* Class = "IBUILabel"; text = "Wechat"; ObjectID = "mGh-wL-poW"; */
+"mGh-wL-poW.text" = "Wechat";
+
+/* Class = "IBUILabel"; text = "Address"; ObjectID = "mKe-1p-aFQ"; */
+"mKe-1p-aFQ.text" = "Address";
+
+/* Class = "IBUINavigationItem"; title = "Contact"; ObjectID = "p5s-kt-0f2"; */
+"p5s-kt-0f2.title" = "Contact";
+
+/* Class = "IBUILabel"; text = "Price"; ObjectID = "pjP-sv-Pm6"; */
+"pjP-sv-Pm6.text" = "Price";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "tx0-pv-t1b"; */
+"tx0-pv-t1b.text" = "Name";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "uNw-0C-cpw"; */
+"uNw-0C-cpw.text" = "Detail";
+
+/* Class = "IBUILabel"; text = "Quantity"; ObjectID = "w5j-Pm-Rj4"; */
+"w5j-Pm-Rj4.text" = "Quantity";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "xNb-qz-qyX"; */
+"xNb-qz-qyX.text" = "Name";

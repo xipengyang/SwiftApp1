@@ -61,6 +61,10 @@ class PersonDao: NSObject {
         self.contacts = contactArray
     }
     
+    func deleteContacts(index: Int) {
+        self.contacts.removeAtIndex(index)
+    }
+    
     
     func getPersonAtIndex(identifier: Int) ->Person? {
         return appDel.getPersonByIdAction(identifier).last
@@ -69,6 +73,10 @@ class PersonDao: NSObject {
     func getContacts() ->[Contact] {
         
         return contacts
+    }
+    
+    func deletePerson(var person: Person) {
+        appDel.deleteObjectAction(person)
     }
     
     

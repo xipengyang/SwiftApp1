@@ -14,6 +14,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     var filterdContacts = [Contact]()
     
+    var products = [ProductD]()
+    
     var customer: Contact? = nil
     
     var order: OrderD?
@@ -37,33 +39,25 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+        prepareData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+    }
+    
+    private func prepareData() {
         if(order == nil) {
             order = appDel.newOrderAction()
             setOrderDateToNow()
         } else {
             if let customer = order?.customer {
-            self.customerName.text = customer.name
-            self.addressField.text  = customer.address
+                self.customerName.text = customer.name
+                self.addressField.text  = customer.address
             }
         }
-        
-        self.setupContact()
-    }
-    
-    private func setupContact() {
         contacts = personDao.getContacts()
+        products = self.order?.product.allObjects as [ProductD]
     }
     
     private func setOrderDateToNow() {
@@ -91,10 +85,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if tableView == self.searchDisplayController!.searchResultsTableView {
             return self.filterdContacts.count
         } else if tableView == self.productTblView {
-            if let products = self.order?.product {
-                return products.count
-            }
-            return 0
+            return self.products.count
         } else {
             return self.contacts.count
         }
@@ -112,15 +103,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 cell = OrderProductCell(style: UITableViewCellStyle.Default, reuseIdentifier: "product")
             }
             
-            if let orderProduct = self.order?.product {
-                var _products = orderProduct.allObjects as [ProductD]
-                var _product = _products[indexPath.row]
-                
-                cell?.leftLabel.text = _product.productName
-                cell?.middleLabel.text = _product.quantity
-                cell?.rightLabel.text = _product.price
-            }
-            
+
+            let thisProduct = products[indexPath.row]
+            cell?.leftLabel.text = thisProduct.productName
+            cell?.middleLabel.text = thisProduct.quantity
+            cell?.rightLabel.text = thisProduct.price
             
             return cell!
             
@@ -176,13 +163,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     // Override to support editing the table view.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete &&  tableView == self.productTblView {
-            // Delete the row from the data source
-            if let orderProducts = self.order?.product {
-                var _products = orderProducts.allObjects as [ProductD]
-                _products.removeAtIndex(indexPath.row)
-            }
-            
-            tableView.reloadData()
+            // rollback data
+            let selectedProduct = products[indexPath.row] as ProductD
+            appDel.deleteObjectAction(selectedProduct)
+            products.removeAtIndex(indexPath.row)
+            //tableView.reloadData()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     
@@ -200,27 +186,29 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
         }else {
-        appDel.saveOrderAction(self.order!)
+        appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
     @IBAction func productAddButtonAction(sender: AnyObject) {
         
-        var _name = productName.text
-        var _quantity = productQuantity.text
-        var _unitPrice = productUnitPrice.text
-        var _products = self.mutableSetValueForKey("products")
-        
+        var name = productName.text
+        var quantity = productQuantity.text
+        var unitPrice = productUnitPrice.text
         var product: ProductD = appDel.newProductAction()
-        product.setValue(_quantity, forKey: "quantity")
-        product.setValue(_unitPrice, forKey: "price")
-        product.setValue(_name, forKey: "productName")
+        product.setValue(quantity, forKey: "quantity")
+        product.setValue(unitPrice, forKey: "price")
+        product.setValue(name, forKey: "productName")
         product.setValue(self.order, forKey: "order")
-        
+        self.products.append(product)
         resetProductFields()
         productTblView.reloadData()
         
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
 
     

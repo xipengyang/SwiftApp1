@@ -146,7 +146,7 @@ class CoreDataHelper: NSObject {
     }
     
     func deleteObject( obj : NSManagedObject) {
-        managedObjectContext?.delete(obj)
+        managedObjectContext?.deleteObject(obj)
     }
     
 

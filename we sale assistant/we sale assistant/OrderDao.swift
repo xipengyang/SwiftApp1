@@ -17,8 +17,8 @@ class OrderDao: NSObject {
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     
-    func saveOrder(var pOrder: OrderD) {
-        appDel.saveOrderAction(pOrder)
+    func deleteOrder(var pOrder: OrderD) {
+        appDel.deleteObjectAction(pOrder)
     }
     
     func newOrder() -> OrderD {

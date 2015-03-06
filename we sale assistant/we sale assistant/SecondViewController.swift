@@ -10,16 +10,19 @@ import UIKit
 
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var orders: [OrderD] = [OrderD]()
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        orderDao.load()
+        orders = orderDao.getOrders()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        orderDao.load()
         self.tableView.reloadData()
 
     }
@@ -30,7 +33,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderDao.getOrders().count
+        return orders.count
     }
     
     
@@ -42,7 +45,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell = OrderCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
         }
         
-        let order = orderDao.getOrders()[indexPath.row]
+        let order = orders[indexPath.row]
         
         var customer: Person? = order.customer
         
@@ -68,17 +71,25 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let order = orderDao.getOrders()[indexPath.row]
         
-        
         var destViewController: AddOrderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddOrderViewController") as AddOrderViewController
-        
+    
         if(indexPath.row >= 0) {
             destViewController.order = order
         }
-        
-        
         self.presentViewController(destViewController, animated: true, nil)
         
-    }    
+    }
+    
+    // Override to support editing the table view.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let selectedOrder = orders[indexPath.row] as OrderD
+            orderDao.deleteOrder(selectedOrder)
+            orders.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            appDel.saveContextAction()
+        }
+    }
 
 
 
