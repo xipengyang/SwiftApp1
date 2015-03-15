@@ -17,7 +17,7 @@ class Person: NSManagedObject {
     @NSManaged var notes: String
     @NSManaged var personType: String
     @NSManaged var phone: String
-    @NSManaged var weChat_id: String
-    @NSManaged var order: NSSet
+    @NSManaged var weChatId: String
+    @NSManaged var orders: NSSet
 
 }

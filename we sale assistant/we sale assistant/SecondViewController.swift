@@ -17,14 +17,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        orderDao.load()
-        orders = orderDao.getOrders()
+        //orderDao.load()
+        //orders = orderDao.getOrders()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        orderDao.load()
+        orders = orderDao.getOrders()
         self.tableView.reloadData()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +54,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell!.topLeftLabel?.text = customer!.name
         }
         
-        let products: [ProductD] = order.product.allObjects as [ProductD]
+        let products: [ProductD] = order.products.allObjects as [ProductD]
         
         var bodyText = ""
         for product in products {

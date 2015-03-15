@@ -10,6 +10,7 @@ import UIKit
 
 class PersonDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var phoneInput: UITextField!
@@ -26,10 +27,10 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
     var notes:String?
     var id:String!
     var orders: [OrderD]?
+    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.nameInput.text = name
         if(phone != nil) {
         self.phoneInput.text = phone
@@ -38,8 +39,6 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.wechatInput.text = weChatId
         }
         self.addressInput.text = address
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     
@@ -67,7 +66,7 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         if( orders != nil) {
             let orderAtRow = orders![indexPath.row]
-            let products: [ProductD] = orderAtRow.product.allObjects as [ProductD]
+            let products: [ProductD] = orderAtRow.products.allObjects as [ProductD]
             var bodyText = ""
             for product in products {
                 bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")
@@ -83,11 +82,16 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
         personDao.savePerson(id, name: self.nameInput.text, address: self.addressInput.text, phone: self.phoneInput.text, weChatId: self.wechatInput.text, personType: "customer")
+        person.name = self.nameInput.text
+        person.address = self.addressInput.text
+        person.phone = self.phoneInput.text
+        person.weChatId = self.wechatInput.text
+        appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func backButtonClicked(sender: AnyObject) {
-        
+        appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

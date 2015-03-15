@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        WXApi.registerApp("wx1023fe6e2606945c")
+        
         UINavigationBar.appearance().barTintColor  = UIColor.orangeColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
@@ -69,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newRecord.setValue(contact.name, forKey: "name")
         newRecord.setValue(contact.address, forKey: "address")
         newRecord.setValue(contact.phone, forKey: "phone")
-        newRecord.setValue(contact.weChatId, forKey: "weChat_id")
+        newRecord.setValue(contact.weChatId, forKey: "weChatId")
         newRecord.setValue(contact.personType, forKey: "personType")
         
         cdh.saveContext()
@@ -101,6 +103,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return cdh.newEntity("ProductD") as ProductD
     }
     
+    func newStockAction() -> StockD {
+        println("new stock action")
+        
+        return cdh.newEntity("StockD") as StockD
+    }
+    
     func saveProductAction(product : ProductD) {
         
         println("save product action \(product)")
@@ -128,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 for person: Person in people {
                     
-                    let contact  = Contact(id: person.id.stringValue, name: person.name, address: person.address, phone: person.phone, weChatId: person.weChat_id, personType: person.personType)
+                    let contact  = Contact(id: person.id.stringValue, name: person.name, address: person.address, phone: person.phone, weChatId: person.weChatId, personType: person.personType)
                     
                     println("append contact - \(contact.id) into array")
                     
@@ -138,9 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
         }
-        
         return contacts
-        
     }
     
     func refreshOrderAction()-> [OrderD] {
@@ -158,6 +164,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("no order found. so return empty array")
         return [OrderD]()
     }
+    
+    func loadProductStockAction()-> [ProductD] {
+        println("get product stock action")
+        
+        var fetchedData = cdh.getEntities("ProductD")
+        if (fetchedData.count > 0) {
+            for product: ProductD in fetchedData as [ProductD] {
+                println("found product data \(product) ")
+            }
+            return fetchedData as [ProductD]
+        }
+        
+        println("no product found. so return empty array")
+        return [ProductD]()
+    }
+    
     
     func rollbackAction() {
         println("rollback context action")

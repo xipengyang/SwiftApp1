@@ -11,15 +11,12 @@ import CoreData
 
 class AddPersonViewController: UIViewController {
     
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
     @IBOutlet weak var nameInput: UITextField!
-    
     @IBOutlet weak var phoneInput: UITextField!
-    
     @IBOutlet weak var wechatInput: UITextField!
-    
     @IBOutlet weak var addressInput: UITextView!
-
-    @IBOutlet weak var isSupplier: UISwitch!
     
     
     override func viewDidLoad() {
@@ -41,7 +38,7 @@ class AddPersonViewController: UIViewController {
         let zero: Int16 = 0
         
         
-        let contactType: String = isSupplier.on ? "Supplier" : "Customer"
+        let contactType: String = "Customer"
         
         if (nameInput.text.isEmpty) {
             let alertController = UIAlertController(title: "Mistake", message:
@@ -55,7 +52,8 @@ class AddPersonViewController: UIViewController {
     }
     
     
-    @IBAction func backButtonAction(sender: AnyObject) {
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

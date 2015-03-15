@@ -10,40 +10,31 @@ import UIKit
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
-    var contacts = [Contact]()
-    
-    var filterdContacts = [Contact]()
-    
-    var products = [ProductD]()
-    
-    var customer: Contact? = nil
-    
-    var order: OrderD?
-    
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
+    var contacts = [Contact]()
+    var filterdContacts = [Contact]()
+    var products = [ProductD]()
+    var customer: Contact? = nil
+    var order: OrderD?
+    
+    var totalAmount: Int = 0
+    
     @IBOutlet weak var productTblView: UITableView!
-    
     @IBOutlet weak var custSearchTblView: UITableView!
-    
     @IBOutlet weak var customerName: UILabel!
-    
     @IBOutlet weak var addressField: UITextView!
-    
-    @IBOutlet weak var productName: UITextField!
-    
-    @IBOutlet weak var productQuantity: UITextField!
-    
-    @IBOutlet weak var productUnitPrice: UITextField!
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        prepareData()
+        productTblView.reloadData()
     }
     
     private func prepareData() {
@@ -57,7 +48,16 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         contacts = personDao.getContacts()
-        products = self.order?.product.allObjects as [ProductD]
+        products = self.order?.products.allObjects as [ProductD]
+        var total: Int = 0
+        for product in products {
+            if(!product.price.isEmpty){
+                if let amt = product.price.toInt(){
+                    total = total + amt
+                }
+            }
+        }
+        totalAmount = total
     }
     
     private func setOrderDateToNow() {
@@ -67,12 +67,6 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         let dateString:String = dateFormatter.stringFromDate(date)
         println("order date string - \(dateString)")
         self.order?.setValue(dateString, forKey: "orderDate")
-    }
-    
-    private func resetProductFields(){
-        productName.text = ""
-        productQuantity.text = ""
-        productUnitPrice.text = ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,7 +79,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if tableView == self.searchDisplayController!.searchResultsTableView {
             return self.filterdContacts.count
         } else if tableView == self.productTblView {
-            return self.products.count
+            return self.products.count + 1
         } else {
             return self.contacts.count
         }
@@ -103,11 +97,18 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 cell = OrderProductCell(style: UITableViewCellStyle.Default, reuseIdentifier: "product")
             }
             
-
-            let thisProduct = products[indexPath.row]
-            cell?.leftLabel.text = thisProduct.productName
-            cell?.middleLabel.text = thisProduct.quantity
-            cell?.rightLabel.text = thisProduct.price
+            if(indexPath.row == products.count){
+                cell?.leftLabel.text = "TOTAL"
+                cell?.middleLabel.text = ""
+                cell?.rightLabel.text = "\(totalAmount)"
+                cell?.backgroundColor = UIColor.grayColor()
+            }else {
+                let thisProduct = products[indexPath.row]
+                cell?.leftLabel.text = thisProduct.productName
+                cell?.middleLabel.text = thisProduct.quantity
+                cell?.rightLabel.text = thisProduct.price
+                cell?.backgroundColor = UIColor.whiteColor()
+            }
             
             return cell!
             
@@ -165,6 +166,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if editingStyle == .Delete &&  tableView == self.productTblView {
             // rollback data
             let selectedProduct = products[indexPath.row] as ProductD
+            if(!selectedProduct.price.isEmpty){
+                if let price = selectedProduct.price.toInt(){
+                    self.totalAmount -= price
+                }
+            }
             appDel.deleteObjectAction(selectedProduct)
             products.removeAtIndex(indexPath.row)
             //tableView.reloadData()
@@ -172,7 +178,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "addProduct") {
+            let destViewController:AddProductViewController = segue.destinationViewController as AddProductViewController
+            destViewController.order = self.order
+        }
+    }
     
     @IBAction func backButtonClicked(sender: AnyObject) {
         appDel.rollbackAction()
@@ -191,24 +202,36 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    @IBAction func productAddButtonAction(sender: AnyObject) {
+    
+    
+    @IBAction func handleShare(sender: UIButton){
         
-        var name = productName.text
-        var quantity = productQuantity.text
-        var unitPrice = productUnitPrice.text
-        var product: ProductD = appDel.newProductAction()
-        product.setValue(quantity, forKey: "quantity")
-        product.setValue(unitPrice, forKey: "price")
-        product.setValue(name, forKey: "productName")
-        product.setValue(self.order, forKey: "order")
-        self.products.append(product)
-        resetProductFields()
-        productTblView.reloadData()
+        let image = createOrderImage()
         
+        /* it is VERY important to cast your strings to NSString
+        otherwise the controller cannot display the appropriate sharing options */
+        // look for "applicationActivities"
+        var activityView = UIActivityViewController(
+            activityItems: [image, "WeSale Assistant"],
+            applicationActivities: [WeChatSessionActivity(), WeChatMomentsActivity()])
+        
+        presentViewController(activityView,
+            animated: true,
+            completion: {
+        })
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
+    }
+    
+    func createOrderImage() -> UIImage!{
+        //Create the UIImage
+        UIGraphicsBeginImageContext(productTblView.frame.size)
+        productTblView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 
     

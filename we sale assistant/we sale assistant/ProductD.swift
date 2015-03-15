@@ -15,5 +15,6 @@ class ProductD: NSManagedObject {
     @NSManaged var quantity: String
     @NSManaged var price: String
     @NSManaged var order: OrderD
+    @NSManaged var stocks: NSSet
 
 }

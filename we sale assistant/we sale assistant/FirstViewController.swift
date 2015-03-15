@@ -65,9 +65,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             destViewController.id = person.id.stringValue
             destViewController.name = person.name
             destViewController.phone = person.phone
-            destViewController.weChatId = person.weChat_id
+            destViewController.weChatId = person.weChatId
             destViewController.address = person.address
-            destViewController.orders =  person.order.allObjects as? [OrderD]
+            destViewController.orders =  person.orders.allObjects as? [OrderD]
+            destViewController.person = person
             
             self.presentViewController(destViewController, animated: true, nil)
             }
