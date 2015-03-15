@@ -213,7 +213,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // look for "applicationActivities"
         var activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
-            applicationActivities: [WeChatSessionActivity(), WeChatMomentsActivity()])
+            applicationActivities: [WeChatSessionActivity()])
         
         presentViewController(activityView,
             animated: true,

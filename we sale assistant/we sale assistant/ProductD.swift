@@ -14,7 +14,7 @@ class ProductD: NSManagedObject {
     @NSManaged var productName: String
     @NSManaged var quantity: String
     @NSManaged var price: String
-    @NSManaged var order: OrderD
+    @NSManaged var order: we_sale_assistant.OrderD
     @NSManaged var stocks: NSSet
 
 }

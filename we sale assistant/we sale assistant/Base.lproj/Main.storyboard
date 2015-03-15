@@ -502,13 +502,6 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                 <dataDetectorType key="dataDetectorTypes" address="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPy-BD-xDt">
-                                <rect key="frame" x="171" y="596" width="49" height="22"/>
-                                <state key="normal" title="Share"/>
-                                <connections>
-                                    <action selector="handleShare:" destination="UJs-iE-iSF" eventType="touchUpInside" id="yDF-vs-VNe"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3tv-0u-52i">
                                 <rect key="frame" x="0.0" y="244" width="375" height="344"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -554,6 +547,13 @@
                                     <outlet property="delegate" destination="UJs-iE-iSF" id="jJ4-0g-gJm"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPy-BD-xDt">
+                                <rect key="frame" x="95" y="596" width="184" height="14"/>
+                                <state key="normal" title="Send to Wechat"/>
+                                <connections>
+                                    <action selector="handleShare:" destination="UJs-iE-iSF" eventType="touchUpInside" id="yDF-vs-VNe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -608,7 +608,18 @@
                                     <constraint firstAttribute="height" constant="66" id="ehG-q0-jWO"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="b9a-Jc-IFu"/>
+                                    <navigationItem title="Title" id="b9a-Jc-IFu">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NxO-sa-dSO">
+                                            <connections>
+                                                <action selector="backButtonClicked:" destination="nxq-by-kD6" id="IRE-Jn-elW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gXK-E8-qQQ">
+                                            <connections>
+                                                <action selector="saveButtonClicked:" destination="nxq-by-kD6" id="T9c-l1-BiU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrB-XX-alG">
@@ -617,11 +628,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bls-us-MQs">
-                                <rect key="frame" x="105" y="86" width="244" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5j-Pm-Rj4">
                                 <rect key="frame" x="16" y="136" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -653,6 +659,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bls-us-MQs">
+                                <rect key="frame" x="105" y="86" width="244" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -663,7 +674,10 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="navBar" destination="b9a-Jc-IFu" id="z9z-4a-Mv8"/>
+                        <outlet property="navBar" destination="G1e-zl-NJU" id="Gpt-s5-TiJ"/>
+                        <outlet property="productAmount" destination="vH7-eE-2jP" id="DBA-uW-eoC"/>
+                        <outlet property="productName" destination="Bls-us-MQs" id="5wg-P5-yCV"/>
+                        <outlet property="productQuantity" destination="tHR-xz-wzR" id="UU6-zu-77m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFH-0z-Hvv" userLabel="First Responder" sceneMemberID="firstResponder"/>

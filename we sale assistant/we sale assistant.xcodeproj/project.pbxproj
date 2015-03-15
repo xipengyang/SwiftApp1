@@ -16,7 +16,6 @@
 		3F0DB1B11AB53D09006C43A3 /* WeChatActivityGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1A01AB53D09006C43A3 /* WeChatActivityGeneral.swift */; };
 		3F0DB1B21AB53D09006C43A3 /* WeChatMomentsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1A11AB53D09006C43A3 /* WeChatMomentsActivity.swift */; };
 		3F0DB1B31AB53D09006C43A3 /* WeChatSessionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1A21AB53D09006C43A3 /* WeChatSessionActivity.swift */; };
-		3F0DB1BB1AB54919006C43A3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0DB1BA1AB54919006C43A3 /* libWeChatSDK.a */; };
 		3F120AC61A89F03E005C4DA2 /* we_sale_assistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F120AC41A89F03E005C4DA2 /* we_sale_assistant.xcdatamodeld */; };
 		3F24CBB21A85904E00902C39 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBB11A85904E00902C39 /* AddPersonViewController.swift */; };
 		3F24CBB41A85F4B100902C39 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBB31A85F4B100902C39 /* PersonDetailViewController.swift */; };
@@ -37,6 +36,8 @@
 		3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19C1A98764E004AC946 /* ProductD.swift */; };
 		3F77E19F1A98764F004AC946 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19E1A98764F004AC946 /* Person.swift */; };
 		3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E1A01A98764F004AC946 /* OrderD.swift */; };
+		3FC450461AB563E500838E8F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC4502F1AB563D600838E8F /* libWeChatSDK.a */; };
+		3FC450481AB5732800838E8F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450471AB5732700838E8F /* String.swift */; };
 		3FE7B48F1A90813E005F42D4 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B48E1A90813E005F42D4 /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,42 @@
 		3F77E19C1A98764E004AC946 /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
 		3F77E19E1A98764F004AC946 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3F77E1A01A98764F004AC946 /* OrderD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
+		3FC4501F1AB563D600838E8F /* AddOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderViewController.swift; sourceTree = "<group>"; };
+		3FC450201AB563D600838E8F /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
+		3FC450211AB563D600838E8F /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
+		3FC450221AB563D600838E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3FC450241AB563D600838E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3FC450261AB563D600838E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3FC450271AB563D600838E8F /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		3FC450281AB563D600838E8F /* CustomerSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSearchController.swift; sourceTree = "<group>"; };
+		3FC450291AB563D600838E8F /* EditStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockViewController.swift; sourceTree = "<group>"; };
+		3FC4502B1AB563D600838E8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		3FC4502C1AB563D600838E8F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		3FC4502D1AB563D600838E8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3FC4502E1AB563D600838E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FC4502F1AB563D600838E8F /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		3FC450301AB563D600838E8F /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		3FC450311AB563D600838E8F /* OrderD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
+		3FC450321AB563D600838E8F /* OrderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDao.swift; sourceTree = "<group>"; };
+		3FC450331AB563D600838E8F /* OrderProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductCell.swift; sourceTree = "<group>"; };
+		3FC450341AB563D600838E8F /* OrderProductCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductCellTableViewCell.swift; sourceTree = "<group>"; };
+		3FC450351AB563D600838E8F /* OrderProductTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductTableCell.swift; sourceTree = "<group>"; };
+		3FC450361AB563D600838E8F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3FC450371AB563D600838E8F /* PersonDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDao.swift; sourceTree = "<group>"; };
+		3FC450381AB563D600838E8F /* PersonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
+		3FC450391AB563D600838E8F /* ProductD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
+		3FC4503A1AB563D600838E8F /* ProductDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDao.swift; sourceTree = "<group>"; };
+		3FC4503B1AB563D600838E8F /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		3FC4503C1AB563D600838E8F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		3FC4503D1AB563D600838E8F /* StockD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockD.swift; sourceTree = "<group>"; };
+		3FC4503E1AB563D600838E8F /* we sale assistant-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "we sale assistant-Bridging-Header.h"; sourceTree = "<group>"; };
+		3FC450401AB563D600838E8F /* we_sale_assistant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = we_sale_assistant.xcdatamodel; sourceTree = "<group>"; };
+		3FC450411AB563D600838E8F /* WeChatActivityGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatActivityGeneral.swift; sourceTree = "<group>"; };
+		3FC450421AB563D600838E8F /* WeChatMomentsActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatMomentsActivity.swift; sourceTree = "<group>"; };
+		3FC450431AB563D600838E8F /* WeChatSessionActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatSessionActivity.swift; sourceTree = "<group>"; };
+		3FC450441AB563D600838E8F /* WXApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		3FC450451AB563D600838E8F /* WXApiObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		3FC450471AB5732700838E8F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3FE7B48E1A90813E005F42D4 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F0DB1BB1AB54919006C43A3 /* libWeChatSDK.a in Frameworks */,
+				3FC450461AB563E500838E8F /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +161,7 @@
 		3F4EE6BB1A84A31200636386 = {
 			isa = PBXGroup;
 			children = (
+				3FC4501E1AB563D600838E8F /* we sale assistant */,
 				3F4EE6C61A84A31200636386 /* we sale assistant */,
 				3F4EE6DE1A84A31200636386 /* we sale assistantTests */,
 				3F4EE6C51A84A31200636386 /* Products */,
@@ -204,6 +242,89 @@
 				3F24CBB31A85F4B100902C39 /* PersonDetailViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3FC4501E1AB563D600838E8F /* we sale assistant */ = {
+			isa = PBXGroup;
+			children = (
+				3FC4504D1AB575A400838E8F /* Util */,
+				3FC4504C1AB5754300838E8F /* Model */,
+				3FC4504B1AB5752000838E8F /* Wechat */,
+				3FC4504A1AB574F500838E8F /* Cell */,
+				3FC450491AB574DB00838E8F /* Controller */,
+				3FC450221AB563D600838E8F /* AppDelegate.swift */,
+				3FC450231AB563D600838E8F /* LaunchScreen.xib */,
+				3FC450251AB563D600838E8F /* Main.storyboard */,
+				3FC4502A1AB563D600838E8F /* Main.strings */,
+				3FC4502D1AB563D600838E8F /* Images.xcassets */,
+				3FC4502E1AB563D600838E8F /* Info.plist */,
+				3FC450321AB563D600838E8F /* OrderDao.swift */,
+				3FC450371AB563D600838E8F /* PersonDao.swift */,
+				3FC4503A1AB563D600838E8F /* ProductDao.swift */,
+				3FC4503E1AB563D600838E8F /* we sale assistant-Bridging-Header.h */,
+				3FC4503F1AB563D600838E8F /* we_sale_assistant.xcdatamodeld */,
+			);
+			path = "we sale assistant";
+			sourceTree = "<group>";
+		};
+		3FC450491AB574DB00838E8F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3FC4502C1AB563D600838E8F /* FirstViewController.swift */,
+				3FC4503B1AB563D600838E8F /* ProductViewController.swift */,
+				3FC4503C1AB563D600838E8F /* SecondViewController.swift */,
+				3FC450381AB563D600838E8F /* PersonDetailViewController.swift */,
+				3FC450291AB563D600838E8F /* EditStockViewController.swift */,
+				3FC450281AB563D600838E8F /* CustomerSearchController.swift */,
+				3FC4501F1AB563D600838E8F /* AddOrderViewController.swift */,
+				3FC450201AB563D600838E8F /* AddPersonViewController.swift */,
+				3FC450211AB563D600838E8F /* AddProductViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3FC4504A1AB574F500838E8F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3FC450301AB563D600838E8F /* OrderCell.swift */,
+				3FC450341AB563D600838E8F /* OrderProductCellTableViewCell.swift */,
+				3FC450351AB563D600838E8F /* OrderProductTableCell.swift */,
+				3FC450331AB563D600838E8F /* OrderProductCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		3FC4504B1AB5752000838E8F /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				3FC4502F1AB563D600838E8F /* libWeChatSDK.a */,
+				3FC450411AB563D600838E8F /* WeChatActivityGeneral.swift */,
+				3FC450421AB563D600838E8F /* WeChatMomentsActivity.swift */,
+				3FC450431AB563D600838E8F /* WeChatSessionActivity.swift */,
+				3FC450441AB563D600838E8F /* WXApi.h */,
+				3FC450451AB563D600838E8F /* WXApiObject.h */,
+			);
+			name = Wechat;
+			sourceTree = "<group>";
+		};
+		3FC4504C1AB5754300838E8F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FC450391AB563D600838E8F /* ProductD.swift */,
+				3FC4503D1AB563D600838E8F /* StockD.swift */,
+				3FC450361AB563D600838E8F /* Person.swift */,
+				3FC450311AB563D600838E8F /* OrderD.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3FC4504D1AB575A400838E8F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3FC450471AB5732700838E8F /* String.swift */,
+				3FC450271AB563D600838E8F /* CoreDataHelper.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		3FCEAB411A99ACFF007F327C /* Cell */ = {
@@ -321,6 +442,7 @@
 				3F0DB1AF1AB53D09006C43A3 /* StockD.swift in Sources */,
 				3F4EE6CE1A84A31200636386 /* SecondViewController.swift in Sources */,
 				3F0DB1B31AB53D09006C43A3 /* WeChatSessionActivity.swift in Sources */,
+				3FC450481AB5732800838E8F /* String.swift in Sources */,
 				3F0DB1B21AB53D09006C43A3 /* WeChatMomentsActivity.swift in Sources */,
 				3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */,
 				3F24CBB61A86194600902C39 /* OrderDao.swift in Sources */,
@@ -380,6 +502,30 @@
 				3F4EE6D51A84A31200636386 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		3FC450231AB563D600838E8F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC450241AB563D600838E8F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		3FC450251AB563D600838E8F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC450261AB563D600838E8F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3FC4502A1AB563D600838E8F /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC4502B1AB563D600838E8F /* en */,
+			);
+			name = Main.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -472,6 +618,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/",
 					"$(PROJECT_DIR)/we",
 					sale,
 					assistant,
@@ -492,6 +639,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/",
 					"$(PROJECT_DIR)/we",
 					sale,
 					assistant,
@@ -574,6 +722,16 @@
 				3F120AC51A89F03E005C4DA2 /* we_sale_assistant.xcdatamodel */,
 			);
 			currentVersion = 3F120AC51A89F03E005C4DA2 /* we_sale_assistant.xcdatamodel */;
+			path = we_sale_assistant.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		3FC4503F1AB563D600838E8F /* we_sale_assistant.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3FC450401AB563D600838E8F /* we_sale_assistant.xcdatamodel */,
+			);
+			currentVersion = 3FC450401AB563D600838E8F /* we_sale_assistant.xcdatamodel */;
 			path = we_sale_assistant.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

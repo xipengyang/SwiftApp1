@@ -45,8 +45,8 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "productStockCell")
         }
-        let product = products[indexPath.row]
-        let need  = product.quantity
+        let product:ProductD = products[indexPath.row]
+        let need  = product.quantity as String
         let stocks = product.stocks.allObjects as [StockD]
         var totalStock = 0
         for stock in stocks {
@@ -55,7 +55,7 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         cell?.textLabel?.text = product.productName
-        cell?.detailTextLabel?.text = " Need \(need) Actual \(totalStock)"
+        cell?.detailTextLabel?.text = " Need \(need) Stock \(totalStock)"
         return cell!
     }
     
