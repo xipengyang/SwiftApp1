@@ -44,7 +44,17 @@ class AddProductViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
-        validateInput()
+        if(!validateInput()){
+                let alertController = UIAlertController(title: nil,
+                    message: "Please enter a valid information",
+                    preferredStyle: .Alert)
+                
+                alertController.addAction(
+                    UIAlertAction(title: "OK", style: .Default, handler: nil))
+                
+                presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
         var name = productName.text
         var quantity = productQuantity.text
         var unitPrice = productAmount.text
@@ -56,30 +66,22 @@ class AddProductViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    private func validateInput(){
+    private func validateInput() -> Bool{
         var message: String = ""
+        var valid: Bool = true
         if (productName.text.isEmpty || productQuantity.text.isEmpty || productAmount.text.isEmpty){
+            valid = false
             message = "Please enter a text"
         }
-        
-        if (productQuantity.text.toInt() == nil) {
+        else if (productQuantity.text.toInt() == nil) {
+            valid = false
             message = "Please enter a quantity"
         }
-        
-        if(productAmount.text.toDouble() == nil) {
+        else if(productAmount.text.toDouble() == nil) {
+            valid = false
             message = "Please enter an amount"
         }
-        
-        let alertController = UIAlertController(title: nil,
-            message: message,
-            preferredStyle: .Alert)
-        
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: .Default, handler: nil))
-        
-        presentViewController(alertController, animated: true, completion: nil)
-        
-        return
+        return valid
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

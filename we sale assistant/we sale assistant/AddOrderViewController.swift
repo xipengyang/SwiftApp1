@@ -100,13 +100,13 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             if(indexPath.row == products.count){
                 cell?.leftLabel.text = "TOTAL"
                 cell?.middleLabel.text = ""
-                cell?.rightLabel.text = "\(totalAmount)"
+                cell?.rightLabel.text = "$ \(totalAmount)"
                 cell?.backgroundColor = UIColor.grayColor()
             }else {
                 let thisProduct = products[indexPath.row]
                 cell?.leftLabel.text = thisProduct.productName
                 cell?.middleLabel.text = thisProduct.quantity
-                cell?.rightLabel.text = thisProduct.price
+                cell?.rightLabel.text = "$ \(thisProduct.price)"
                 cell?.backgroundColor = UIColor.whiteColor()
             }
             
@@ -191,15 +191,15 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
-        if (self.order?.customer == nil) {
-            let alertController = UIAlertController(title: "Mistake", message:
-                "Please select a customer", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }else {
+//        if (self.order?.customer == nil) {
+//            let alertController = UIAlertController(title: "Mistake", message:
+//                "Please select a customer", preferredStyle: UIAlertControllerStyle.Alert)
+//            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+//            self.presentViewController(alertController, animated: true, completion: nil)
+//        }else {
         appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        //}
     }
     
     
