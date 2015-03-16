@@ -24,7 +24,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var custSearchTblView: UITableView!
     @IBOutlet weak var customerName: UILabel!
     @IBOutlet weak var addressField: UITextView!
-
+    @IBOutlet weak var addProductBtn: MKButton!
     
     
     override func viewDidLoad() {
@@ -213,7 +213,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // look for "applicationActivities"
         var activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
-            applicationActivities: [WeChatSessionActivity()])
+            //applicationActivities: [WeChatSessionActivity()])
+            applicationActivities: nil)
         
         presentViewController(activityView,
             animated: true,

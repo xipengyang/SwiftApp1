@@ -466,7 +466,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-b7-a9H">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-b7-a9H" customClass="MKButton" customModule="we_sale_assistant" customModuleProvider="target">
                                 <rect key="frame" x="236" y="217" width="134" height="30"/>
                                 <state key="normal" title="Add Product">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -567,6 +567,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="addProductBtn" destination="Cii-b7-a9H" id="c9D-sY-Jcl"/>
                         <outlet property="addressField" destination="K5k-mm-4CH" id="HPb-gz-ozp"/>
                         <outlet property="custSearchTblView" destination="FZs-eF-AW6" id="h3z-bA-qrw"/>
                         <outlet property="customerName" destination="chS-1B-cyd" id="4jf-88-KpW"/>
