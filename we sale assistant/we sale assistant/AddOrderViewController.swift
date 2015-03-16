@@ -29,6 +29,9 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addProductBtn.maskEnabled = true
+        addProductBtn.rippleLocation = .TapLocation
+        addProductBtn.layer.shadowColor = UIColor.grayColor().CGColor
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -48,12 +51,14 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         contacts = personDao.getContacts()
-        products = self.order?.products.allObjects as [ProductD]
         var total: Int = 0
-        for product in products {
-            if(!product.price.isEmpty){
-                if let amt = product.price.toInt(){
-                    total = total + amt
+        if let set = self.order?.products {
+            let products = set.allObjects as [ProductD]
+            for product in products {
+                if(!product.price.isEmpty){
+                    if let amt = product.price.toInt(){
+                        total = total + amt
+                    }
                 }
             }
         }
@@ -213,8 +218,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // look for "applicationActivities"
         var activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
-            //applicationActivities: [WeChatSessionActivity()])
-            applicationActivities: nil)
+            applicationActivities: [WeChatSessionActivity()])
+            //applicationActivities: nil)
         
         presentViewController(activityView,
             animated: true,

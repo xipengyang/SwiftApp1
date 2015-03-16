@@ -12,14 +12,33 @@ class AddProductViewController: UIViewController {
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var product: ProductD?
     var order: OrderD?
-    @IBOutlet weak var productName: UITextField!
-    @IBOutlet weak var productQuantity: UITextField!
-    @IBOutlet weak var productAmount: UITextField!
+    @IBOutlet weak var productName: MKTextField!
+    @IBOutlet weak var productQuantity: MKTextField!
+    @IBOutlet weak var productAmount: MKTextField!
     @IBOutlet weak var navBar: UINavigationBar!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        productName.layer.borderColor = UIColor.clearColor().CGColor
+        productName.floatingPlaceholderEnabled = true
+        productName.placeholder = "Product Name"
+        productName.tintColor = UIColor.MKColor.Blue
+        productName.rippleLocation = .TapLocation
+        productName.cornerRadius = 0
+        productName.bottomBorderEnabled = true
+        productQuantity.layer.borderColor = UIColor.clearColor().CGColor
+        productQuantity.placeholder = "How Many"
+        productQuantity.tintColor = UIColor.MKColor.Blue
+        productQuantity.rippleLocation = .TapLocation
+        productQuantity.cornerRadius = 0
+        productQuantity.bottomBorderEnabled = true
+        productAmount.layer.borderColor = UIColor.clearColor().CGColor
+        productAmount.placeholder = "How Much"
+        productAmount.tintColor = UIColor.MKColor.Blue
+        productAmount.rippleLocation = .TapLocation
+        productAmount.cornerRadius = 0
+        productAmount.bottomBorderEnabled = true
         //self. = "Add Product"
 //        self.setupNavigationItems()
     }
