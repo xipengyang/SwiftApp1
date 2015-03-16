@@ -12,14 +12,18 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    var contacts = [Contact]()
-    var filterdContacts = [Contact]()
-    var products = [ProductD]()
+    lazy var contacts = [Contact]()
+    lazy var filterdContacts = [Contact]()
     var customer: Contact? = nil
-    var order: OrderD?
-    
+    lazy var order: OrderD? = {
+        [unowned self] in
+        return self.appDel.newOrderAction()
+    }()
+    lazy var products: [ProductD] = {
+        [unowned self] in
+        return self.order!.products.allObjects as [ProductD]
+     }()
     var totalAmount: Int = 0
-    
     @IBOutlet weak var productTblView: UITableView!
     @IBOutlet weak var custSearchTblView: UITableView!
     @IBOutlet weak var customerName: UILabel!
@@ -41,14 +45,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func prepareData() {
-        if(order == nil) {
-            order = appDel.newOrderAction()
+        if(order?.orderDate == nil) {
             setOrderDateToNow()
-        } else {
-            if let customer = order?.customer {
+        }
+        if let customer = order?.customer {
                 self.customerName.text = customer.name
                 self.addressField.text  = customer.address
-            }
         }
         contacts = personDao.getContacts()
         var total: Int = 0
@@ -218,8 +220,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // look for "applicationActivities"
         var activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
-            applicationActivities: [WeChatSessionActivity()])
-            //applicationActivities: nil)
+            //applicationActivities: [WeChatSessionActivity()])
+            applicationActivities: nil)
         
         presentViewController(activityView,
             animated: true,

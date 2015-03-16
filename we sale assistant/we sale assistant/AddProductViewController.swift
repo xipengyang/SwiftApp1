@@ -10,7 +10,12 @@ import UIKit
 
 class AddProductViewController: UIViewController {
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    var product: ProductD?
+    
+    lazy var product: ProductD? = {
+        var newProduct = self.appDel.newProductAction()
+        return newProduct
+    }()
+    
     var order: OrderD?
     @IBOutlet weak var productName: MKTextField!
     @IBOutlet weak var productQuantity: MKTextField!
@@ -43,18 +48,9 @@ class AddProductViewController: UIViewController {
 //        self.setupNavigationItems()
     }
     
-//    private func setupNavigationItems(){
-//        var rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "saveButtonClicked")
-//        self.navigationItem.rightBarButtonItem = rightButton
-//        var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "backButtonClicked")
-//        self.navigationItem.leftBarButtonItem = leftButton
-//    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if(product == nil) {
-            product = appDel.newProductAction()
-        }
     }
     
     @IBAction func backButtonClicked(sender: AnyObject) {

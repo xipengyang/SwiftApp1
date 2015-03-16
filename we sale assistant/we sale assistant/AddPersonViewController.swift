@@ -21,7 +21,15 @@ class AddPersonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //setup()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func setup() {
+        let redLayer = CALayer()
+        redLayer.frame = CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 50)
+        redLayer.backgroundColor = UIColor.redColor().CGColor
+        self.view.layer.insertSublayer(redLayer, atIndex: 0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,10 +42,7 @@ class AddPersonViewController: UIViewController {
         
         var phoneNumber: Int16
         var weChatId: Int16
-        
         let zero: Int16 = 0
-        
-        
         let contactType: String = "Customer"
         
         if (nameInput.text.isEmpty) {
