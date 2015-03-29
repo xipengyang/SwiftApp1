@@ -99,8 +99,8 @@ public class MKTextField : UITextField {
 
     private func setupLayer() {
         cornerRadius = 2.5
-        layer.borderWidth = 1.0
-        borderStyle = .None
+        //layer.borderWidth = 0.0
+        borderStyle = UITextBorderStyle.None
         mkLayer.ripplePercent = 1.0
         mkLayer.setBackgroundLayerColor(backgroundLayerColor)
         mkLayer.setCircleLayerColor(rippleLayerColor)

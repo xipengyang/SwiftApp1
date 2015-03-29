@@ -27,15 +27,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var productTblView: UITableView!
     @IBOutlet weak var custSearchTblView: UITableView!
     @IBOutlet weak var customerName: UILabel!
-    @IBOutlet weak var addressField: UITextView!
+    //@IBOutlet weak var addressField: UITextView!
     @IBOutlet weak var addProductBtn: MKButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addProductBtn.maskEnabled = true
-        addProductBtn.rippleLocation = .TapLocation
-        addProductBtn.layer.shadowColor = UIColor.grayColor().CGColor
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -50,7 +47,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
         if let customer = order?.customer {
                 self.customerName.text = customer.name
-                self.addressField.text  = customer.address
+                //self.addressField.text  = customer.address
         }
         contacts = personDao.getContacts()
         var total: Int = 0
@@ -108,12 +105,15 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 cell?.leftLabel.text = "TOTAL"
                 cell?.middleLabel.text = ""
                 cell?.rightLabel.text = "$ \(totalAmount)"
-                cell?.backgroundColor = UIColor.grayColor()
+                cell?.backgroundColor = UIColor.redColor()
             }else {
                 let thisProduct = products[indexPath.row]
                 cell?.leftLabel.text = thisProduct.productName
                 cell?.middleLabel.text = thisProduct.quantity
                 cell?.rightLabel.text = "$ \(thisProduct.price)"
+                if (thisProduct.image != nil) {
+                    cell?.leftImage.image = UIImage(data: thisProduct.image!)
+                }
                 cell?.backgroundColor = UIColor.whiteColor()
             }
             
@@ -160,7 +160,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if tableView == self.searchDisplayController!.searchResultsTableView {
             let selected = filterdContacts[indexPath.row]
             customerName.text = selected.name
-            addressField.text = selected.address
+            //addressField.text = selected.address
             var customerD = appDel.getPersonByIdAction(selected.id.toInt()!).last
             self.order?.setValue(customerD, forKey: "customer")
             self.searchDisplayController!.setActive(false, animated: true)

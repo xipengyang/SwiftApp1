@@ -11,6 +11,7 @@ import CoreData
 
 class ProductD: NSManagedObject {
 
+    @NSManaged var image: NSData?
     @NSManaged var productName: String
     @NSManaged var quantity: String
     @NSManaged var price: String

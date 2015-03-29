@@ -21,6 +21,7 @@ class AddPersonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameInput.borderStyle = UITextBorderStyle.None
         //setup()
         // Do any additional setup after loading the view, typically from a nib.
     }

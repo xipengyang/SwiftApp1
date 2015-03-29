@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddProductViewController: UIViewController {
+class AddProductViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     lazy var product: ProductD? = {
@@ -16,12 +16,16 @@ class AddProductViewController: UIViewController {
         return newProduct
     }()
     
+    lazy var errorMsg: String? = {
+        return "Unknown Error. Please contact support."
+    }()
+    
     var order: OrderD?
     @IBOutlet weak var productName: MKTextField!
     @IBOutlet weak var productQuantity: MKTextField!
     @IBOutlet weak var productAmount: MKTextField!
     @IBOutlet weak var navBar: UINavigationBar!
-    
+    @IBOutlet weak var pickedImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +48,6 @@ class AddProductViewController: UIViewController {
         productAmount.rippleLocation = .TapLocation
         productAmount.cornerRadius = 0
         productAmount.bottomBorderEnabled = true
-        //self. = "Add Product"
-//        self.setupNavigationItems()
     }
     
     
@@ -61,7 +63,7 @@ class AddProductViewController: UIViewController {
     @IBAction func saveButtonClicked(sender: AnyObject) {
         if(!validateInput()){
                 let alertController = UIAlertController(title: nil,
-                    message: "Please enter a valid information",
+                    message: errorMsg,
                     preferredStyle: .Alert)
                 
                 alertController.addAction(
@@ -76,25 +78,23 @@ class AddProductViewController: UIViewController {
         product!.setValue(quantity, forKey: "quantity")
         product!.setValue(unitPrice, forKey: "price")
         product!.setValue(name, forKey: "productName")
+        if let myImage = self.pickedImage.image {
+            product!.setValue(UIImageJPEGRepresentation(myImage, 1), forKey: "image")
+        }
         product!.setValue(self.order!, forKey: "order")
         appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func validateInput() -> Bool{
-        var message: String = ""
         var valid: Bool = true
         if (productName.text.isEmpty || productQuantity.text.isEmpty || productAmount.text.isEmpty){
             valid = false
-            message = "Please enter a text"
+            errorMsg = "Please enter a name, a quantity and an amount"
         }
-        else if (productQuantity.text.toInt() == nil) {
+        else if (productQuantity.text.toInt() == nil || productAmount.text.toDouble() == nil) {
             valid = false
-            message = "Please enter a quantity"
-        }
-        else if(productAmount.text.toDouble() == nil) {
-            valid = false
-            message = "Please enter an amount"
+            errorMsg = "Please enter a number"
         }
         return valid
     }
@@ -102,5 +102,19 @@ class AddProductViewController: UIViewController {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
-
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.pickedImage.image = image
+    }
+    
+    @IBAction func addImageBtnClicked(sender: AnyObject) {
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
+        var imageCtrl = UIImagePickerController()
+        imageCtrl.delegate = self
+        imageCtrl.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imageCtrl.allowsEditing = false
+        self.presentViewController(imageCtrl, animated: true, completion: nil)
+        }
+    }
 }
