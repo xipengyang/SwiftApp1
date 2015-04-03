@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 xipeng yang. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class HomeViewController: UIViewController {
     

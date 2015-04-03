@@ -51,16 +51,14 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
         contacts = personDao.getContacts()
         var total: Int = 0
-        if let set = self.order?.products {
-            let products = set.allObjects as [ProductD]
-            for product in products {
-                if(!product.price.isEmpty){
-                    if let amt = product.price.toInt(){
+        products = self.order?.products.allObjects as [ProductD]
+        for product in products {
+            if(!product.price.isEmpty){
+                 if let amt = product.price.toInt(){
                         total = total + amt
                     }
                 }
             }
-        }
         totalAmount = total
     }
     
@@ -113,6 +111,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 cell?.rightLabel.text = "$ \(thisProduct.price)"
                 if (thisProduct.image != nil) {
                     cell?.leftImage.image = UIImage(data: thisProduct.image!)
+                }else {
+                    cell?.leftImage.image = nil
                 }
                 cell?.backgroundColor = UIColor.whiteColor()
             }
@@ -180,7 +180,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             }
             appDel.deleteObjectAction(selectedProduct)
             products.removeAtIndex(indexPath.row)
-            //tableView.reloadData()
+            appDel.saveContextAction()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }

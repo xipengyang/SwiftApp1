@@ -18,6 +18,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
         personDao.refreshContacts()
     }
     

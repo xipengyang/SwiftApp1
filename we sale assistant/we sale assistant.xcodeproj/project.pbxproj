@@ -204,6 +204,7 @@
 		3FC052331A8F220700042DB1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F0DB19B1AB53D09006C43A3 /* ProductViewController.swift */,
 				3FC450651AB6D66600838E8F /* AddProductViewController.swift */,
 				3F0DB1931AB53D09006C43A3 /* EditStockViewController.swift */,
 				3F24CBB11A85904E00902C39 /* AddPersonViewController.swift */,
@@ -268,7 +269,6 @@
 				3FFF3C7A1AC7B60400526918 /* OrderProductCell.swift */,
 				3F0DB1991AB53D09006C43A3 /* OrderProductCellTableViewCell.swift */,
 				3F0DB19A1AB53D09006C43A3 /* OrderProductTableCell.swift */,
-				3F0DB19B1AB53D09006C43A3 /* ProductViewController.swift */,
 				3F724EE11A99C04900CF77BF /* OrderCell.swift */,
 			);
 			name = Cell;
@@ -541,6 +541,9 @@
 					"$(PROJECT_DIR)/we",
 					sale,
 					assistant,
+					"$(PROJECT_DIR)/we",
+					sale,
+					assistant,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "we sale assistant/we sale assistant-Bridging-Header.h";
@@ -559,6 +562,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/",
+					"$(PROJECT_DIR)/we",
+					sale,
+					assistant,
 					"$(PROJECT_DIR)/we",
 					sale,
 					assistant,

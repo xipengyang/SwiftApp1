@@ -17,8 +17,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //orderDao.load()
-        //orders = orderDao.getOrders()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
     }
     
     override func viewDidAppear(animated: Bool) {
