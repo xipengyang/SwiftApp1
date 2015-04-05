@@ -55,7 +55,7 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         cell?.textLabel?.text = product.productName
-        cell?.detailTextLabel?.text = " Need \(need) Stock \(totalStock)"
+        cell?.detailTextLabel?.text = " Sold \(need)    Bought \(totalStock)"
         return cell!
     }
     

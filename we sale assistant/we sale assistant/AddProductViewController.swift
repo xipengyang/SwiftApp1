@@ -11,10 +11,31 @@ import UIKit
 class AddProductViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    lazy var product: ProductD? = {
-        var newProduct = self.appDel.newProductAction()
-        return newProduct
-    }()
+    
+    //private var _product: ProductD?
+    
+//    var product: ProductD? {
+//        get {
+//            if self._product == nil {
+//                self._product = self.appDel.newProductAction()
+//            }
+//            return self._product
+//        }
+//        set {
+//            self._product = newValue
+//        }
+//    }
+    
+    var product: ProductD?
+//    = {
+//        var _newInstance = self.appDel.newProductAction()
+//        return _newInstance
+//    }()
+    
+    private func _initProduct() -> ProductD {
+        var _newInstance = self.appDel.newProductAction()
+        return _newInstance
+    }
     
     lazy var errorMsg: String? = {
         return "Unknown Error. Please contact support."
@@ -48,15 +69,32 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         productAmount.rippleLocation = .TapLocation
         productAmount.cornerRadius = 0
         productAmount.bottomBorderEnabled = true
+        //binds model to view
+        modelBindView()
     }
     
+    private func modelBindView() {
+        if( self.product != nil) {
+        if let nameData = self.product!.productName as String? {
+            productName.text = nameData
+        }
+        if let quantityData = self.product!.quantity as String? {
+            productQuantity.text = quantityData
+        }
+        if let amountData = self.product!.price as String? {
+            productAmount.text = amountData
+        }
+        if let imageData = self.product!.image as NSData? {
+            pickedImage.image = UIImage(data: imageData)
+        }
+        }
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
     
     @IBAction func backButtonClicked(sender: AnyObject) {
-        appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -75,13 +113,17 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         var name = productName.text
         var quantity = productQuantity.text
         var unitPrice = productAmount.text
+        self.product == nil ? self.product = _initProduct() :
         product!.setValue(quantity, forKey: "quantity")
         product!.setValue(unitPrice, forKey: "price")
         product!.setValue(name, forKey: "productName")
         if let myImage = self.pickedImage.image {
             product!.setValue(UIImageJPEGRepresentation(myImage, 1), forKey: "image")
         }
-        product!.setValue(self.order!, forKey: "order")
+        if let parentOrder = self.order as OrderD? {
+            product!.setValue(parentOrder, forKey: "order")
+        }
+        
         appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }

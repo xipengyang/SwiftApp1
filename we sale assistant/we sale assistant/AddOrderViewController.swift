@@ -12,8 +12,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    lazy var contacts = [Contact]()
-    lazy var filterdContacts = [Contact]()
+    var contacts = [Contact]()
+    var filterdContacts = [Contact]()
     var customer: Contact? = nil
     lazy var order: OrderD? = {
         [unowned self] in
@@ -21,9 +21,9 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }()
     lazy var products: [ProductD] = {
         [unowned self] in
-        return self.order!.products.allObjects as [ProductD]
+        return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as [ProductD]
      }()
-    var totalAmount: Int = 0
+    var totalAmount: Double = 0
     @IBOutlet weak var productTblView: UITableView!
     @IBOutlet weak var custSearchTblView: UITableView!
     @IBOutlet weak var customerName: UILabel!
@@ -50,16 +50,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 //self.addressField.text  = customer.address
         }
         contacts = personDao.getContacts()
-        var total: Int = 0
-        products = self.order?.products.allObjects as [ProductD]
-        for product in products {
-            if(!product.price.isEmpty){
-                 if let amt = product.price.toInt(){
-                        total = total + amt
-                    }
-                }
-            }
-        totalAmount = total
+        products = self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as [ProductD]
     }
     
     private func setOrderDateToNow() {
@@ -103,8 +94,10 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 cell?.leftLabel.text = "TOTAL"
                 cell?.middleLabel.text = ""
                 cell?.rightLabel.text = "$ \(totalAmount)"
-                cell?.backgroundColor = UIColor.redColor()
             }else {
+                if( indexPath.row == 0 ) {
+                    totalAmount = 0
+                }
                 let thisProduct = products[indexPath.row]
                 cell?.leftLabel.text = thisProduct.productName
                 cell?.middleLabel.text = thisProduct.quantity
@@ -114,6 +107,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 }else {
                     cell?.leftImage.image = nil
                 }
+                if(!thisProduct.price.isEmpty){
+                    if let amt = thisProduct.price.toDouble(){
+                        totalAmount = totalAmount + amt
+                    }
+                }
+
                 cell?.backgroundColor = UIColor.whiteColor()
             }
             
@@ -157,24 +156,48 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+//        var rowAtView = (indexPath.row, tableView)
+//        
+//        switch rowAtView {
+//        case (let rowA, self.searchDisplayController!.searchResultsTableView):
+//            let selected = filterdContacts[rowA]
+//            customerName.text = selected.name!
+//            //addressField.text = selected.address
+//            var customerD = appDel.getPersonByIdAction(selected.id.toInt()!).last
+//            self.order?.setValue(customerD, forKey: "customer")
+//            self.searchDisplayController!.setActive(false, animated: true)
+//        case (let rowB, self.productTblView):
+//            let selectedProduct = products[indexPath.row]
+//            var destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as AddProductViewController
+//            destView.product = selectedProduct
+//        case (products.count, self.productTblView):
+//            println(" product table footer selected")
+//        default:
+//            println("\(tableView) is not a valid view")
+//        }
+        
         if tableView == self.searchDisplayController!.searchResultsTableView {
             let selected = filterdContacts[indexPath.row]
-            customerName.text = selected.name
+            customerName.text = selected.name!
             //addressField.text = selected.address
             var customerD = appDel.getPersonByIdAction(selected.id.toInt()!).last
             self.order?.setValue(customerD, forKey: "customer")
             self.searchDisplayController!.setActive(false, animated: true)
-            
+        } else if(tableView == self.productTblView && indexPath.row < products.count) {
+            let selectedProduct = products[indexPath.row]
+            var destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as AddProductViewController
+            destView.product = selectedProduct
+            self.presentViewController(destView, animated: true, completion: nil)
         }
     }
     
     // Override to support editing the table view.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete &&  tableView == self.productTblView {
+        if editingStyle == .Delete &&  tableView == self.productTblView && products.count > 0 {
             // rollback data
             let selectedProduct = products[indexPath.row] as ProductD
             if(!selectedProduct.price.isEmpty){
-                if let price = selectedProduct.price.toInt(){
+                if let price = selectedProduct.price.toDouble(){
                     self.totalAmount -= price
                 }
             }
@@ -198,15 +221,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
-//        if (self.order?.customer == nil) {
-//            let alertController = UIAlertController(title: "Mistake", message:
-//                "Please select a customer", preferredStyle: UIAlertControllerStyle.Alert)
-//            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-//            self.presentViewController(alertController, animated: true, completion: nil)
-//        }else {
         appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
-        //}
     }
     
     

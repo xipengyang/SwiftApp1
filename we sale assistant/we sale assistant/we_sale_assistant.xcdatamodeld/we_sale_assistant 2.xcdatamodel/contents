@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="OrderD" representedClassName="we_sale_assistant.OrderD" syncable="YES">
         <attribute name="orderDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,7 +21,7 @@
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="order" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OrderD" inverseName="products" inverseEntity="OrderD" syncable="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OrderD" inverseName="products" inverseEntity="OrderD" syncable="YES"/>
         <relationship name="stocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StockD" inverseName="product" inverseEntity="StockD" syncable="YES"/>
     </entity>
     <entity name="StockD" representedClassName="we_sale_assistant.StockD" syncable="YES">
@@ -29,12 +29,12 @@
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="supplier" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="product" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ProductD" inverseName="stocks" inverseEntity="ProductD" syncable="YES"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductD" inverseName="stocks" inverseEntity="ProductD" syncable="YES"/>
     </entity>
     <elements>
         <element name="OrderD" positionX="-342" positionY="27" width="128" height="105"/>
         <element name="Person" positionX="34" positionY="-9" width="128" height="165"/>
-        <element name="ProductD" positionX="34" positionY="206" width="128" height="135"/>
-        <element name="StockD" positionX="-153" positionY="135" width="128" height="120"/>
+        <element name="ProductD" positionX="34" positionY="206" width="128" height="133"/>
+        <element name="StockD" positionX="-153" positionY="135" width="128" height="118"/>
     </elements>
 </model>
