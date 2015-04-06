@@ -29,7 +29,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var customerName: UILabel!
     //@IBOutlet weak var addressField: UITextView!
     @IBOutlet weak var addProductBtn: MKButton!
-    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -205,6 +205,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             products.removeAtIndex(indexPath.row)
             appDel.saveContextAction()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            productTblView.reloadData()
         }
     }
     
@@ -226,6 +227,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    @IBAction func customerButtonClicked(sender: AnyObject) {
+        var current = self.searchBar.hidden
+        self.searchBar.hidden = !current
+    }
+    
     
     @IBAction func handleShare(sender: UIButton){
         
@@ -236,8 +242,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // look for "applicationActivities"
         var activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
-            //applicationActivities: [WeChatSessionActivity()])
-            applicationActivities: nil)
+            applicationActivities: [WeChatSessionActivity()])
+            //applicationActivities: nil)
         
         presentViewController(activityView,
             animated: true,

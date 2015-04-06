@@ -51,13 +51,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if customer != nil {
             cell!.topLeftLabel?.text = customer!.name
+        } else {
+            cell!.topLeftLabel?.text = "Customer"
         }
         
         let products: [ProductD] = order.products.allObjects as [ProductD]
         
         var bodyText = ""
         for product in products {
-                bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")
+                bodyText = ("\(bodyText) \(product.productName) (\(product.quantity))")
         }
         cell!.bodyLabel?.text = bodyText
         

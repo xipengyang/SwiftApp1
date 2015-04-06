@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        //WXApi.registerApp("wx1023fe6e2606945c")
+        WXApi.registerApp("wx1023fe6e2606945c")
         //UINavigationBar.appearance().barTintColor  = UIColor.orangeColor()
         //UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         return true

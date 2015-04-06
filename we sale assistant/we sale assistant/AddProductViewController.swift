@@ -113,7 +113,9 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         var name = productName.text
         var quantity = productQuantity.text
         var unitPrice = productAmount.text
-        self.product == nil ? self.product = _initProduct() :
+        if product == nil {
+            product = _initProduct()
+        }
         product!.setValue(quantity, forKey: "quantity")
         product!.setValue(unitPrice, forKey: "price")
         product!.setValue(name, forKey: "productName")

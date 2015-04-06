@@ -58,7 +58,7 @@ class WeChatActivityGeneral: UIActivity {
         }
 
         req.message.title = text
-        req.message.description = "https://itunes.apple.com/app/superboard/id951480740?mt=8"
+        req.message.description = "we sale assistant"
         
         // set the size of thumbnail image from original UIImage data
         var width = 240.0 as CGFloat
