@@ -10,7 +10,7 @@ import UIKit
 
 class EditStockViewController: UIViewController {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var productNameText: UILabel!

@@ -10,7 +10,7 @@ import UIKit
 
 class PersonDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var phoneInput: UITextField!
@@ -66,7 +66,7 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         if( orders != nil) {
             let orderAtRow = orders![indexPath.row]
-            let products: [ProductD] = orderAtRow.products.allObjects as [ProductD]
+            let products: [ProductD] = orderAtRow.products.allObjects as! [ProductD]
             var bodyText = ""
             for product in products {
                 bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")

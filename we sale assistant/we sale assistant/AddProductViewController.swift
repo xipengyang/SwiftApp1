@@ -9,28 +9,12 @@
 import UIKit
 
 class AddProductViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
-    //private var _product: ProductD?
-    
-//    var product: ProductD? {
-//        get {
-//            if self._product == nil {
-//                self._product = self.appDel.newProductAction()
-//            }
-//            return self._product
-//        }
-//        set {
-//            self._product = newValue
-//        }
-//    }
     
     var product: ProductD?
-//    = {
-//        var _newInstance = self.appDel.newProductAction()
-//        return _newInstance
-//    }()
     
     private func _initProduct() -> ProductD {
         var _newInstance = self.appDel.newProductAction()
@@ -143,11 +127,12 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         return valid
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.view.endEditing(true)
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        super.view.endEditing(true);
     }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+    
+    func imagePickerController(didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(true, completion: nil)
         self.pickedImage.image = image
     }

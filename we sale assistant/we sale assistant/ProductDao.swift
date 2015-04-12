@@ -15,7 +15,7 @@ class ProductDao: NSObject {
     
     var products:[ProductD] = [ProductD]()
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
     func saveProduct(var pProduct: ProductD) {

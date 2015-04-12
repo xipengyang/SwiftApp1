@@ -40,10 +40,6 @@
 		3FC450781AB6D77200838E8F /* MKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450711AB6D77200838E8F /* MKLayer.swift */; };
 		3FC450791AB6D77200838E8F /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450721AB6D77200838E8F /* MKTableViewCell.swift */; };
 		3FC4507A1AB6D77200838E8F /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450731AB6D77200838E8F /* MKTextField.swift */; };
-		3FC852531AD2639D00E906D4 /* WeChatSessionActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1A21AB53D09006C43A3 /* WeChatSessionActivity.swift */; };
-		3FC852541AD2639D00E906D4 /* WeChatMomentsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1A11AB53D09006C43A3 /* WeChatMomentsActivity.swift */; };
-		3FC852551AD2639D00E906D4 /* WeChatActivityGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1A01AB53D09006C43A3 /* WeChatActivityGeneral.swift */; };
-		3FC852561AD263CA00E906D4 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0DB1BA1AB54919006C43A3 /* libWeChatSDK.a */; };
 		3FE7B48F1A90813E005F42D4 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B48E1A90813E005F42D4 /* CoreDataHelper.swift */; };
 		3FFF3C7B1AC7B60400526918 /* OrderProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFF3C7A1AC7B60400526918 /* OrderProductCell.swift */; };
 		3FFF3C7D1AC7D48900526918 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFF3C7C1AC7D48800526918 /* HomeViewController.swift */; };
@@ -116,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FC852561AD263CA00E906D4 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,8 +379,6 @@
 				3FC4506B1AB6D72200838E8F /* String.swift in Sources */,
 				3FC450741AB6D77200838E8F /* MKButton.swift in Sources */,
 				3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */,
-				3FC852531AD2639D00E906D4 /* WeChatSessionActivity.swift in Sources */,
-				3FC852541AD2639D00E906D4 /* WeChatMomentsActivity.swift in Sources */,
 				3F24CBB61A86194600902C39 /* OrderDao.swift in Sources */,
 				3F24CBB81A86224A00902C39 /* AddOrderViewController.swift in Sources */,
 				3FC4507A1AB6D77200838E8F /* MKTextField.swift in Sources */,
@@ -403,7 +396,6 @@
 				3F4EE6CC1A84A31200636386 /* FirstViewController.swift in Sources */,
 				3F0DB1AE1AB53D09006C43A3 /* ProductViewController.swift in Sources */,
 				3F0DB1AC1AB53D09006C43A3 /* OrderProductCellTableViewCell.swift in Sources */,
-				3FC852551AD2639D00E906D4 /* WeChatActivityGeneral.swift in Sources */,
 				3FC450791AB6D77200838E8F /* MKTableViewCell.swift in Sources */,
 				3F24CBBA1A86FF3600902C39 /* ProductDao.swift in Sources */,
 				3F0DB1A81AB53D09006C43A3 /* EditStockViewController.swift in Sources */,

@@ -11,7 +11,7 @@ import CoreData
 
 class AddPersonViewController: UIViewController {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var phoneInput: UITextField!
@@ -63,7 +63,7 @@ class AddPersonViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 class ProductViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var products:[ProductD] = [ProductD]()
 
@@ -47,7 +47,7 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         let product:ProductD = products[indexPath.row]
         let need  = product.quantity as String
-        let stocks = product.stocks.allObjects as [StockD]
+        let stocks = product.stocks.allObjects as! [StockD]
         var totalStock = 0
         for stock in stocks {
             if let q = stock.quantity.toInt() {
@@ -62,9 +62,9 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let productAtRow = products[indexPath.row]
-        var dest: EditStockViewController = self.storyboard?.instantiateViewControllerWithIdentifier("editStockView") as EditStockViewController!
+        var dest: EditStockViewController = self.storyboard?.instantiateViewControllerWithIdentifier("editStockView") as! EditStockViewController!
         dest.product = productAtRow
-        self.presentViewController(dest, animated: true, nil)
+        self.presentViewController(dest, animated: true, completion: nil)
     }
 
     

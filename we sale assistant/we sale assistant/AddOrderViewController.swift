@@ -10,7 +10,7 @@ import UIKit
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var contacts = [Contact]()
     var filterdContacts = [Contact]()
@@ -21,7 +21,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }()
     lazy var products: [ProductD] = {
         [unowned self] in
-        return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as [ProductD]
+        return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
      }()
     var totalAmount: Double = 0
     @IBOutlet weak var productTblView: UITableView!
@@ -50,7 +50,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 //self.addressField.text  = customer.address
         }
         contacts = personDao.getContacts()
-        products = self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as [ProductD]
+        products = self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
     }
     
     private func setOrderDateToNow() {
@@ -185,7 +185,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             self.searchDisplayController!.setActive(false, animated: true)
         } else if(tableView == self.productTblView && indexPath.row < products.count) {
             let selectedProduct = products[indexPath.row]
-            var destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as AddProductViewController
+            var destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as! AddProductViewController
             destView.product = selectedProduct
             self.presentViewController(destView, animated: true, completion: nil)
         }
@@ -211,7 +211,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "addProduct") {
-            let destViewController:AddProductViewController = segue.destinationViewController as AddProductViewController
+            let destViewController:AddProductViewController = segue.destinationViewController as! AddProductViewController
             destViewController.order = self.order
         }
     }
@@ -242,8 +242,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         // look for "applicationActivities"
         var activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
-            applicationActivities: [WeChatSessionActivity()])
-            //applicationActivities: nil)
+            //applicationActivities: [WeChatSessionActivity()])
+            applicationActivities: nil)
         
         presentViewController(activityView,
             animated: true,
@@ -251,7 +251,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         })
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
     

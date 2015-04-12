@@ -5,7 +5,7 @@ public extension String {
     /**
     String length
     */
-    var length: Int { return countElements(self) }
+    var length: Int { return count(self) }
     
     /**
     self.capitalizedString shorthand
@@ -37,11 +37,11 @@ public extension String {
     :param: separator Character used to split the string
     :returns: Array of substrings
     */
-    func explode (separator: Character) -> [String] {
-        return split(self, { (element: Character) -> Bool in
-            return element == separator
-        })
-    }
+//    func explode (separator: Character) -> [String] {
+//        return split(self, { (element: Character) -> Bool in
+//            return element == separator
+//        })
+//    }
     
     
     /**

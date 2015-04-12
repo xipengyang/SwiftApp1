@@ -38,10 +38,10 @@ public class MKTableViewCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        setupLayer()
-    }
+//    override public init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setupLayer()
+//    }
 
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -55,10 +55,10 @@ public class MKTableViewCell : UITableViewCell {
         mkLayer.ripplePercent = 1.2
     }
 
-    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        super.touchesBegan(touches, withEvent: event)
+    override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        super.touchesBegan(touches as Set<NSObject>, withEvent: event)
 
-        if let firstTouch = touches.anyObject() as? UITouch {
+        if let firstTouch = touches.first as? UITouch {
             if !contentViewResized {
                 mkLayer.superLayerDidResize()
                 contentViewResized = true

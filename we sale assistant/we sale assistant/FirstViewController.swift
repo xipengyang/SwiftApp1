@@ -14,7 +14,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var navBar: UINavigationBar!
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let contact: Contact  = personDao.getContacts()[indexPath.row]
         
-        var destViewController: PersonDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PersonDetailController") as PersonDetailViewController
+        var destViewController: PersonDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PersonDetailController") as! PersonDetailViewController
         
         if(indexPath.row >= 0) {
             
@@ -71,7 +71,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             destViewController.orders =  person.orders.allObjects as? [OrderD]
             destViewController.person = person
             
-            self.presentViewController(destViewController, animated: true, nil)
+            self.presentViewController(destViewController, animated: true, completion: nil)
             }
         
         }

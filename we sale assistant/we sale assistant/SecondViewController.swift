@@ -11,7 +11,7 @@ import UIKit
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var orders: [OrderD] = [OrderD]()
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,7 +55,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell!.topLeftLabel?.text = "Customer"
         }
         
-        let products: [ProductD] = order.products.allObjects as [ProductD]
+        let products: [ProductD] = order.products.allObjects as! [ProductD]
         
         var bodyText = ""
         for product in products {
@@ -73,12 +73,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let order = orderDao.getOrders()[indexPath.row]
         
-        var destViewController: AddOrderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddOrderViewController") as AddOrderViewController
+        var destViewController: AddOrderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddOrderViewController") as! AddOrderViewController
     
         if(indexPath.row >= 0) {
             destViewController.order = order
         }
-        self.presentViewController(destViewController, animated: true, nil)
+        self.presentViewController(destViewController, animated: true, completion: nil)
         
     }
     

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        WXApi.registerApp("wx1023fe6e2606945c")
+        //WXApi.registerApp("wx1023fe6e2606945c")
         //UINavigationBar.appearance().barTintColor  = UIColor.orangeColor()
         //UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         return true
@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let predicate = NSPredicate(format: "id = \(personId)")
         
-        var newRecord: Person = cdh.getOrNewEntityByPredicate("Person", predicate: predicate ) as Person
+        var newRecord: Person = cdh.getOrNewEntityByPredicate("Person", predicate: predicate ) as! Person
         
         newRecord.setValue(contact.id.toInt(), forKey: "id")
         newRecord.setValue(contact.name, forKey: "name")
@@ -77,9 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getPersonByIdAction(identifier: Int) -> [Person] {
          println("get person for id \(identifier) action")
    
-        let predicate: NSPredicate = NSPredicate(format: "id == \(identifier)")!
+        let predicate: NSPredicate = NSPredicate(format: "id == \(identifier)")
         
-        return cdh.getEntityByPredicate("Person", predicate: predicate) as [Person]
+        return cdh.getEntityByPredicate("Person", predicate: predicate) as! [Person]
         
     }
     
@@ -91,19 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func newOrderAction() -> OrderD {
         println("new order action")
         
-        return cdh.newEntity("OrderD") as OrderD
+        return cdh.newEntity("OrderD") as! OrderD
     }
     
     func newProductAction() -> ProductD {
         println("new product action")
         
-        return cdh.newEntity("ProductD") as ProductD
+        return cdh.newEntity("ProductD") as! ProductD
     }
     
     func newStockAction() -> StockD {
         println("new stock action")
         
-        return cdh.newEntity("StockD") as StockD
+        return cdh.newEntity("StockD") as! StockD
     }
     
     func saveProductAction(product : ProductD) {
@@ -152,10 +152,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var fetchedData = cdh.getEntities("OrderD")
         
         if (fetchedData.count > 0) {
-            for order: OrderD in fetchedData as [OrderD] {
+            for order: OrderD in fetchedData as! [OrderD] {
                 println("found order data \(order) ")
             }
-            return fetchedData as [OrderD]
+            return fetchedData as! [OrderD]
         }
         
         println("no order found. so return empty array")
@@ -167,10 +167,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var fetchedData = cdh.getEntities("ProductD")
         if (fetchedData.count > 0) {
-            for product: ProductD in fetchedData as [ProductD] {
+            for product: ProductD in fetchedData as! [ProductD] {
                 println("found product data \(product) ")
             }
-            return fetchedData as [ProductD]
+            return fetchedData as! [ProductD]
         }
         
         println("no product found. so return empty array")
