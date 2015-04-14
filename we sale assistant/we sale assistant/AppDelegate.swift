@@ -130,17 +130,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let people = fetchedData as? [Person] {
             if(people.count > 0 ) {
                 println("data found. begin loading data...")
-                
                 for person: Person in people {
-                    
                     let contact  = Contact(id: person.id.stringValue, name: person.name, address: person.address, phone: person.phone, weChatId: person.weChatId, personType: person.personType)
-                    
                     println("append contact - \(contact.id) into array")
-                    
                     contacts.append(contact)
-                    
                 }
-                
             }
         }
         return contacts

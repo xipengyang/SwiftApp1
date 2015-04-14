@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -469,9 +469,9 @@
                                                 <constraint firstItem="cyp-Tr-qh2" firstAttribute="leading" secondItem="JFW-ng-DPE" secondAttribute="trailing" constant="8" id="Qy9-07-VE3"/>
                                                 <constraint firstItem="bfJ-BY-XyC" firstAttribute="leading" secondItem="cyp-Tr-qh2" secondAttribute="leading" id="Xc9-Kz-Xgj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8LQ-vf-Qwi" secondAttribute="trailing" constant="24" id="cF4-LK-STL"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8LQ-vf-Qwi" secondAttribute="bottom" constant="-3" id="e4t-vq-3MI"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bfJ-BY-XyC" secondAttribute="bottom" constant="-1" id="fhu-LG-b0I"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="JFW-ng-DPE" secondAttribute="bottom" constant="-6" id="mvT-X9-Etp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8LQ-vf-Qwi" secondAttribute="bottom" constant="-4" id="e4t-vq-3MI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bfJ-BY-XyC" secondAttribute="bottom" constant="-2" id="fhu-LG-b0I"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="JFW-ng-DPE" secondAttribute="bottom" constant="-7" id="mvT-X9-Etp"/>
                                                 <constraint firstItem="bfJ-BY-XyC" firstAttribute="top" secondItem="cyp-Tr-qh2" secondAttribute="bottom" constant="9" id="r3e-w5-410"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -649,7 +649,7 @@ A1Byb2R1Y3QgTmFtZQ
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vH7-eE-2jP" customClass="MKTextField" customModule="we_sale_assistant" customModuleProvider="target">
-                                <rect key="frame" x="252" y="173" width="97" height="40"/>
+                                <rect key="frame" x="16" y="253" width="155" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <userDefinedRuntimeAttributes>
@@ -657,12 +657,12 @@ A1Byb2R1Y3QgTmFtZQ
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="floatingPlaceholderEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsC-p0-hzT">
-                                <rect key="frame" x="139" y="249" width="100" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsC-p0-hzT">
+                                <rect key="frame" x="135" y="341" width="108" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="r7K-sC-5SK"/>
+                                    <constraint firstAttribute="width" constant="108" id="r7K-sC-5SK"/>
                                 </constraints>
-                                <state key="normal" title="Add Image">
+                                <state key="normal" image="camera">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -670,28 +670,36 @@ A1Byb2R1Y3QgTmFtZQ
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yNS-eg-BCC">
-                                <rect key="frame" x="67" y="295" width="240" height="240"/>
+                                <rect key="frame" x="69" y="385" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yNS-eg-BCC" secondAttribute="height" multiplier="1:1" id="c11-6b-7SG"/>
                                 </constraints>
                             </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C5R-B9-VbS">
+                                <rect key="frame" x="211" y="265" width="138" height="29"/>
+                                <segments>
+                                    <segment title="Total"/>
+                                    <segment title="Unit Price"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hsC-p0-hzT" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leading" constant="139" id="Nal-PY-bkH"/>
+                            <constraint firstItem="hsC-p0-hzT" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leading" constant="135" id="Nal-PY-bkH"/>
                             <constraint firstItem="G1e-zl-NJU" firstAttribute="top" secondItem="5eS-7V-rou" secondAttribute="topMargin" id="SCu-PJ-ilZ"/>
-                            <constraint firstItem="yNS-eg-BCC" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leadingMargin" constant="51" id="SLz-dD-Bu4"/>
+                            <constraint firstItem="yNS-eg-BCC" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leadingMargin" constant="53" id="SLz-dD-Bu4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="G1e-zl-NJU" secondAttribute="trailing" constant="-16" id="X8C-kQ-Htr"/>
                             <constraint firstItem="G1e-zl-NJU" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leadingMargin" constant="-16" id="acs-yM-OjJ"/>
-                            <constraint firstItem="yNS-eg-BCC" firstAttribute="top" secondItem="hsC-p0-hzT" secondAttribute="bottom" constant="16" id="eNN-PD-DOq"/>
-                            <constraint firstItem="yNS-eg-BCC" firstAttribute="centerX" secondItem="G1e-zl-NJU" secondAttribute="centerX" id="fPa-Ak-6ow"/>
-                            <constraint firstItem="yNS-eg-BCC" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leadingMargin" constant="51" id="frk-K2-ob7"/>
-                            <constraint firstItem="Uew-iw-HWt" firstAttribute="top" secondItem="yNS-eg-BCC" secondAttribute="bottom" constant="132" id="hAU-Gb-adZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yNS-eg-BCC" secondAttribute="trailing" constant="52" id="zeH-vl-hCu"/>
+                            <constraint firstItem="yNS-eg-BCC" firstAttribute="top" secondItem="hsC-p0-hzT" secondAttribute="bottom" constant="8" id="eNN-PD-DOq"/>
+                            <constraint firstItem="yNS-eg-BCC" firstAttribute="centerX" secondItem="G1e-zl-NJU" secondAttribute="centerX" constant="1.5" id="fPa-Ak-6ow"/>
+                            <constraint firstItem="yNS-eg-BCC" firstAttribute="leading" secondItem="5eS-7V-rou" secondAttribute="leadingMargin" constant="53" id="frk-K2-ob7"/>
+                            <constraint firstItem="Uew-iw-HWt" firstAttribute="top" secondItem="yNS-eg-BCC" secondAttribute="bottom" constant="42" id="hAU-Gb-adZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yNS-eg-BCC" secondAttribute="trailing" constant="50" id="zeH-vl-hCu"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="amountSegment" destination="C5R-B9-VbS" id="LEZ-bE-mve"/>
                         <outlet property="navBar" destination="G1e-zl-NJU" id="Gpt-s5-TiJ"/>
                         <outlet property="pickedImage" destination="yNS-eg-BCC" id="nW7-Le-4db"/>
                         <outlet property="productAmount" destination="vH7-eE-2jP" id="DBA-uW-eoC"/>
@@ -1047,6 +1055,7 @@ A1Byb2R1Y3QgTmFtZQ
     </scenes>
     <resources>
         <image name="box" width="24" height="21"/>
+        <image name="camera" width="40" height="36"/>
         <image name="list" width="25" height="26"/>
     </resources>
 </document>

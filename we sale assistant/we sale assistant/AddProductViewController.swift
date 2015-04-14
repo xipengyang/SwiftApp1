@@ -16,14 +16,33 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     
     var product: ProductD?
     
-    private func _initProduct() -> ProductD {
-        var _newInstance = self.appDel.newProductAction()
-        return _newInstance
+    // product properties
+    var amount: Double! {
+        get {
+            let value = productAmount.text.toDouble()
+            if (value != nil) {
+                return value!
+            } else {
+                return 0.0
+            }
+        }
     }
+    
+    var quantity: Int! {
+        get {
+            let value = productQuantity.text.toInt()
+            if (value != nil) {
+                return value!
+            } else {
+                return 0
+            }
+        }
+    }
+    
     
     lazy var errorMsg: String? = {
         return "Unknown Error. Please contact support."
-    }()
+        }()
     
     var order: OrderD?
     @IBOutlet weak var productName: MKTextField!
@@ -31,6 +50,7 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var productAmount: MKTextField!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var pickedImage: UIImageView!
+    @IBOutlet weak var amountSegment: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +79,18 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     
     private func modelBindView() {
         if( self.product != nil) {
-        if let nameData = self.product!.productName as String? {
-            productName.text = nameData
-        }
-        if let quantityData = self.product!.quantity as String? {
-            productQuantity.text = quantityData
-        }
-        if let amountData = self.product!.price as String? {
-            productAmount.text = amountData
-        }
-        if let imageData = self.product!.image as NSData? {
-            pickedImage.image = UIImage(data: imageData)
-        }
+            if let nameData = self.product!.productName as String? {
+                productName.text = nameData
+            }
+            if let quantityData = self.product!.quantity as String? {
+                productQuantity.text = quantityData
+            }
+            if let amountData = self.product!.price as String? {
+                productAmount.text = amountData
+            }
+            if let imageData = self.product!.image as NSData? {
+                pickedImage.image = UIImage(data: imageData)
+            }
         }
     }
     
@@ -84,25 +104,35 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
         if(!validateInput()){
-                let alertController = UIAlertController(title: nil,
-                    message: errorMsg,
-                    preferredStyle: .Alert)
-                
-                alertController.addAction(
-                    UIAlertAction(title: "OK", style: .Default, handler: nil))
-                
-                presentViewController(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: nil,
+                message: errorMsg,
+                preferredStyle: .Alert)
+            
+            alertController.addAction(
+                UIAlertAction(title: "OK", style: .Default, handler: nil))
+            
+            presentViewController(alertController, animated: true, completion: nil)
             return
         }
-        var name = productName.text
-        var quantity = productQuantity.text
-        var unitPrice = productAmount.text
+        let nameText = productName.text
+        let quantityText = productQuantity.text
+        let amountText = productAmount.text
+        
+        
         if product == nil {
             product = _initProduct()
         }
-        product!.setValue(quantity, forKey: "quantity")
-        product!.setValue(unitPrice, forKey: "price")
-        product!.setValue(name, forKey: "productName")
+        
+        
+        if(amountSegment.selectedSegmentIndex == 1 && quantity != 0) {
+            let productOf: Double = self.amount * Double(self.quantity)
+            product!.setValue(String(format: "%.1f", productOf), forKey: "price")
+        } else {
+            product!.setValue(String(format: "%.1f", self.amount), forKey: "price")
+        }
+        
+        product!.setValue(quantityText, forKey: "quantity")
+        product!.setValue(nameText, forKey: "productName")
         if let myImage = self.pickedImage.image {
             product!.setValue(UIImageJPEGRepresentation(myImage, 1), forKey: "image")
         }
@@ -131,19 +161,35 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         super.view.endEditing(true);
     }
     
-    
-    func imagePickerController(didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         self.dismissViewControllerAnimated(true, completion: nil)
         self.pickedImage.image = image
     }
     
+    
     @IBAction func addImageBtnClicked(sender: AnyObject) {
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
-        var imageCtrl = UIImagePickerController()
-        imageCtrl.delegate = self
-        imageCtrl.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        imageCtrl.allowsEditing = false
-        self.presentViewController(imageCtrl, animated: true, completion: nil)
+            let imageCtrl = UIImagePickerController()
+            imageCtrl.delegate = self
+            imageCtrl.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imageCtrl.allowsEditing = false
+            self.presentViewController(imageCtrl, animated: true, completion: nil)
+        }else {
+            let alertController = UIAlertController(title: nil,
+                message: "Please allow the app to access your photo library.",
+                preferredStyle: .Alert)
+            
+            alertController.addAction(
+                UIAlertAction(title: "OK", style: .Default, handler: nil))
+            
+            presentViewController(alertController, animated: true, completion: nil)
+            return
+            
         }
+    }
+    
+    private func _initProduct() -> ProductD {
+        var _newInstance = self.appDel.newProductAction()
+        return _newInstance
     }
 }

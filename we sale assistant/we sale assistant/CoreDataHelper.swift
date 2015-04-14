@@ -62,6 +62,10 @@ class CoreDataHelper: NSObject {
     
     // MARK: - Core Data Saving support
     
+    func getContext() -> NSManagedObjectContext! {
+        return managedObjectContext
+    }
+    
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
