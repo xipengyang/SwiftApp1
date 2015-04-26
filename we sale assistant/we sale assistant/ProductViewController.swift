@@ -10,12 +10,6 @@ import UIKit
 
 class ProductViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
-    var products:[ProductD] = [ProductD]()
-
-    @IBOutlet weak var productTblView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
@@ -67,7 +61,11 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.presentViewController(dest, animated: true, completion: nil)
     }
 
-    
+//    variables 
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var products:[ProductD] = [ProductD]()
+    @IBOutlet weak var productTblView: UITableView!
+
     
 
 }

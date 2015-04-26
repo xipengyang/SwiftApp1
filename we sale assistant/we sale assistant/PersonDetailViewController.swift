@@ -10,24 +10,12 @@ import UIKit
 
 class PersonDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var phoneInput: UITextField!
     @IBOutlet weak var wechatInput: UITextField!
     @IBOutlet weak var addressInput: UITextView!
     @IBOutlet weak var isSupplier: UISwitch!
     @IBOutlet weak var orderHistoryTableView: UITableView!
-    
-    
-    var name:String?
-    var address:String?
-    var phone:String?
-    var weChatId:String?
-    var notes:String?
-    var id:String!
-    var orders: [OrderD]?
-    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +28,6 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         self.addressInput.text = address
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,6 +80,17 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
         appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    //variables
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var name:String?
+    var address:String?
+    var phone:String?
+    var weChatId:String?
+    var notes:String?
+    var id:String!
+    var orders: [OrderD]?
+    var person: Person!
     
 }
 

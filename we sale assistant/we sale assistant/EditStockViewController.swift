@@ -9,8 +9,6 @@
 import UIKit
 
 class EditStockViewController: UIViewController {
-    
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var productNameText: UILabel!
@@ -20,8 +18,6 @@ class EditStockViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var supplierTextField: UITextField!
     @IBOutlet weak var costTextField: UITextField!
-    
-    var product:ProductD?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +55,10 @@ class EditStockViewController: UIViewController {
         appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    //variables
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var product:ProductD?
     
 
 }

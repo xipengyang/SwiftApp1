@@ -10,41 +10,6 @@ import UIKit
 
 class AddProductViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
-    
-    
-    var product: ProductD?
-    
-    // product properties
-    var amount: Double! {
-        get {
-            let value = productAmount.text.toDouble()
-            if (value != nil) {
-                return value!
-            } else {
-                return 0.0
-            }
-        }
-    }
-    
-    var quantity: Int! {
-        get {
-            let value = productQuantity.text.toInt()
-            if (value != nil) {
-                return value!
-            } else {
-                return 0
-            }
-        }
-    }
-    
-    
-    lazy var errorMsg: String? = {
-        return "Unknown Error. Please contact support."
-        }()
-    
-    var order: OrderD?
     @IBOutlet weak var productName: MKTextField!
     @IBOutlet weak var productQuantity: MKTextField!
     @IBOutlet weak var productAmount: MKTextField!
@@ -120,7 +85,7 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         
         
         if product == nil {
-            product = _initProduct()
+            product = self.appDel.newProductAction()
         }
         
         
@@ -188,8 +153,31 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         }
     }
     
-    private func _initProduct() -> ProductD {
-        var _newInstance = self.appDel.newProductAction()
-        return _newInstance
+    //variables
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var product: ProductD?
+    var amount: Double! {
+        get {
+            let value = productAmount.text.toDouble()
+            if (value != nil) {
+                return value!
+            } else {
+                return 0.0
+            }
+        }
     }
+    var quantity: Int! {
+        get {
+            let value = productQuantity.text.toInt()
+            if (value != nil) {
+                return value!
+            } else {
+                return 0
+            }
+        }
+    }
+    lazy var errorMsg: String? = {
+        return "Unknown Error. Please contact support."
+        }()
+    var order: OrderD?
 }

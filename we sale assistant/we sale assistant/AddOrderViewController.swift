@@ -10,33 +10,12 @@ import UIKit
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
-    var contacts = [Contact]()
-    var filterdContacts = [Contact]()
-    var customer: Contact? = nil
-    lazy var order: OrderD? = {
-        [unowned self] in
-        return self.appDel.newOrderAction()
-    }()
-    lazy var products: [ProductD] = {
-        [unowned self] in
-        return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
-     }()
-    var totalAmount: Double = 0
-    @IBOutlet weak var productTblView: UITableView!
-    @IBOutlet weak var custSearchTblView: UITableView!
-    @IBOutlet weak var customerName: UILabel!
-    //@IBOutlet weak var addressField: UITextView!
-    @IBOutlet weak var addProductBtn: MKButton!
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         prepareData()
         productTblView.reloadData()
     }
@@ -156,26 +135,6 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        var rowAtView = (indexPath.row, tableView)
-//        
-//        switch rowAtView {
-//        case (let rowA, self.searchDisplayController!.searchResultsTableView):
-//            let selected = filterdContacts[rowA]
-//            customerName.text = selected.name!
-//            //addressField.text = selected.address
-//            var customerD = appDel.getPersonByIdAction(selected.id.toInt()!).last
-//            self.order?.setValue(customerD, forKey: "customer")
-//            self.searchDisplayController!.setActive(false, animated: true)
-//        case (let rowB, self.productTblView):
-//            let selectedProduct = products[indexPath.row]
-//            var destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as AddProductViewController
-//            destView.product = selectedProduct
-//        case (products.count, self.productTblView):
-//            println(" product table footer selected")
-//        default:
-//            println("\(tableView) is not a valid view")
-//        }
-        
         if tableView == self.searchDisplayController!.searchResultsTableView {
             let selected = filterdContacts[indexPath.row]
             customerName.text = selected.name!
@@ -216,23 +175,54 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    func createOrderImage() -> UIImage!{
+        //Create the UIImage
+        UIGraphicsBeginImageContext(productTblView.frame.size)
+        productTblView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+
+//    Variable initialization
+    
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var contacts = [Contact]()
+    var filterdContacts = [Contact]()
+    var customer: Contact? = nil
+    
+    lazy var order: OrderD? = {
+        [unowned self] in
+        return self.appDel.newOrderAction()
+        }()
+    
+    lazy var products: [ProductD] = {
+        [unowned self] in
+        return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
+        }()
+    var totalAmount: Double = 0
+    @IBOutlet weak var productTblView: UITableView!
+    @IBOutlet weak var custSearchTblView: UITableView!
+    @IBOutlet weak var customerName: UILabel!
+    //@IBOutlet weak var addressField: UITextView!
+    @IBOutlet weak var addProductBtn: MKButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func backButtonClicked(sender: AnyObject) {
         appDel.rollbackAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     @IBAction func saveButtonClicked(sender: AnyObject) {
         appDel.saveContextAction()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
     @IBAction func customerButtonClicked(sender: AnyObject) {
         var current = self.searchBar.hidden
         self.searchBar.hidden = !current
     }
-    
-    
     @IBAction func handleShare(sender: UIButton){
         
         let image = createOrderImage()
@@ -250,19 +240,5 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             completion: {
         })
     }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
-    
-    func createOrderImage() -> UIImage!{
-        //Create the UIImage
-        UIGraphicsBeginImageContext(productTblView.frame.size)
-        productTblView.layer.renderInContext(UIGraphicsGetCurrentContext())
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-
     
 }

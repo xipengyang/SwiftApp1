@@ -10,9 +10,6 @@ import UIKit
 
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var orders: [OrderD] = [OrderD]()
-    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -92,8 +89,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             appDel.saveContextAction()
         }
     }
-
-
+    
+    //variables
+    var orders: [OrderD] = [OrderD]()
+    let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 }
 
