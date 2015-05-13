@@ -31,6 +31,8 @@
 		3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19C1A98764E004AC946 /* ProductD.swift */; };
 		3F77E19F1A98764F004AC946 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19E1A98764F004AC946 /* Person.swift */; };
 		3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E1A01A98764F004AC946 /* OrderD.swift */; };
+		3FA419B01B034A7900209D42 /* Dollar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA419AF1B034A7900209D42 /* Dollar.framework */; };
+		3FA419B11B034A7A00209D42 /* Dollar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA419AF1B034A7900209D42 /* Dollar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3FC450661AB6D66600838E8F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450651AB6D66600838E8F /* AddProductViewController.swift */; };
 		3FC4506B1AB6D72200838E8F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4506A1AB6D72200838E8F /* String.swift */; };
 		3FC450741AB6D77200838E8F /* MKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4506D1AB6D77200838E8F /* MKButton.swift */; };
@@ -54,6 +56,20 @@
 			remoteInfo = "we sale assistant";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3FA419B21B034A7A00209D42 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3FA419B11B034A7A00209D42 /* Dollar.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3F0DB1931AB53D09006C43A3 /* EditStockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStockViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +107,7 @@
 		3F77E19C1A98764E004AC946 /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
 		3F77E19E1A98764F004AC946 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3F77E1A01A98764F004AC946 /* OrderD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
+		3FA419AF1B034A7900209D42 /* Dollar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dollar.framework; path = Carthage/Build/iOS/Dollar.framework; sourceTree = "<group>"; };
 		3FC450651AB6D66600838E8F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		3FC4506A1AB6D72200838E8F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3FC4506D1AB6D77200838E8F /* MKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKButton.swift; sourceTree = "<group>"; };
@@ -112,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA419B01B034A7900209D42 /* Dollar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +157,7 @@
 		3F4EE6BB1A84A31200636386 = {
 			isa = PBXGroup;
 			children = (
+				3FA419AF1B034A7900209D42 /* Dollar.framework */,
 				3F4EE6C61A84A31200636386 /* we sale assistant */,
 				3F4EE6DE1A84A31200636386 /* we sale assistantTests */,
 				3F4EE6C51A84A31200636386 /* Products */,
@@ -284,6 +303,7 @@
 				3F4EE6C01A84A31200636386 /* Sources */,
 				3F4EE6C11A84A31200636386 /* Frameworks */,
 				3F4EE6C21A84A31200636386 /* Resources */,
+				3FA419B21B034A7A00209D42 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -529,6 +549,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "we sale assistant/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -559,6 +583,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "we sale assistant/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

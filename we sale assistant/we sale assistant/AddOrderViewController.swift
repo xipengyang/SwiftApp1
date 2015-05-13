@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Dollar
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
@@ -95,12 +96,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             if(indexPath.row == products.count){
                 cell?.leftLabel.text = "TOTAL"
                 cell?.middleLabel.text = ""
-                
-                cell?.rightLabel.text = "$ \(totalAmount)"
+                cell?.rightLabel.text = "$ \(amountSum)"
             }else {
-                if( indexPath.row == 0 ) {
-                    totalAmount = 0
-                }
                 let thisProduct = products[indexPath.row]
                 cell?.leftLabel.text = thisProduct.productName
                 cell?.middleLabel.text = thisProduct.quantity
@@ -109,11 +106,6 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                     cell?.leftImage.image = UIImage(data: thisProduct.image!)
                 }else {
                     cell?.leftImage.image = nil
-                }
-                if(!thisProduct.price.isEmpty){
-                    if let amt = thisProduct.price.toDouble(){
-                        totalAmount = totalAmount + amt
-                    }
                 }
                 cell?.backgroundColor = UIColor.whiteColor()
             }
@@ -172,11 +164,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if editingStyle == .Delete &&  tableView == self.productTblView && products.count > 0 {
             // rollback data
             let selectedProduct = products[indexPath.row] as ProductD
-            if(!selectedProduct.price.isEmpty){
-                if let price = selectedProduct.price.toDouble(){
-                    self.totalAmount -= price
-                }
-            }
+//            if(!selectedProduct.price.isEmpty){
+//                if let price = selectedProduct.price.toDouble(){
+//                    self.totalAmount -= price
+//                }
+//            }
             appDel.deleteObjectAction(selectedProduct)
             //products.removeAtIndex(indexPath.row)
             appDel.saveContextAction()
@@ -232,6 +224,18 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    var totalAmount: Double = 0
+    var amountSum: Double {
+        get{
+            return $.reduce(products, initial: 0.0) { (total, element) in
+                let product = element as ProductD
+                if(!product.price.isEmpty){
+                    if let amt = product.price.toDouble(){
+                        return total + amt
+                    }
+                }
+                return total
+            }
+        }
+    }
     
 }
