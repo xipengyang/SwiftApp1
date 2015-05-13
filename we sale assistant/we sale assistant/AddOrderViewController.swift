@@ -10,6 +10,42 @@ import UIKit
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
+    @IBOutlet weak var productTblView: UITableView!
+    @IBOutlet weak var custSearchTblView: UITableView!
+    @IBOutlet weak var customerName: UILabel!
+    //@IBOutlet weak var addressField: UITextView!
+    @IBOutlet weak var addProductBtn: MKButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        appDel.rollbackAction()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    @IBAction func saveButtonClicked(sender: AnyObject) {
+        appDel.saveContextAction()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    @IBAction func customerButtonClicked(sender: AnyObject) {
+        var current = self.searchBar.hidden
+        self.searchBar.hidden = !current
+    }
+    @IBAction func handleShare(sender: UIButton){
+        
+        let image = createOrderImage()
+        
+        /* it is VERY important to cast your strings to NSString
+        otherwise the controller cannot display the appropriate sharing options */
+        // look for "applicationActivities"
+        var activityView = UIActivityViewController(
+            activityItems: [image, "WeSale Assistant"],
+            //applicationActivities: [WeChatSessionActivity()])
+            applicationActivities: nil)
+        
+        presentViewController(activityView,
+            animated: true,
+            completion: {
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,24 +57,11 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func prepareData() {
-        if(order?.orderDate == nil) {
-            setOrderDateToNow()
-        }
-        if let customer = order?.customer {
+    if let customer = order?.customer {
                 self.customerName.text = customer.name
                 //self.addressField.text  = customer.address
-        }
-        contacts = personDao.getContacts()
-        products = self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
     }
-    
-    private func setOrderDateToNow() {
-        let date = NSDate()
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString:String = dateFormatter.stringFromDate(date)
-        println("order date string - \(dateString)")
-        self.order?.setValue(dateString, forKey: "orderDate")
+//    products = self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,6 +95,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             if(indexPath.row == products.count){
                 cell?.leftLabel.text = "TOTAL"
                 cell?.middleLabel.text = ""
+                
                 cell?.rightLabel.text = "$ \(totalAmount)"
             }else {
                 if( indexPath.row == 0 ) {
@@ -91,23 +115,16 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                         totalAmount = totalAmount + amt
                     }
                 }
-
                 cell?.backgroundColor = UIColor.whiteColor()
             }
-            
             return cell!
-            
         }else {
             var cell: UITableViewCell?
-            
             cell = tableView.dequeueReusableCellWithIdentifier("customer") as? UITableViewCell
-            
             if (cell == nil) {
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "customer")
             }
-            
             var customer : Contact
-
             if tableView == self.searchDisplayController!.searchResultsTableView {
                 customer = filterdContacts[indexPath.row]
             } else {
@@ -161,7 +178,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
             appDel.deleteObjectAction(selectedProduct)
-            products.removeAtIndex(indexPath.row)
+            //products.removeAtIndex(indexPath.row)
             appDel.saveContextAction()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             productTblView.reloadData()
@@ -191,54 +208,30 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
 //    Variable initialization
     
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    var contacts = [Contact]()
+    lazy var contacts:[Contact] = {
+        return personDao.getContacts()
+    }()
     var filterdContacts = [Contact]()
     var customer: Contact? = nil
     
     lazy var order: OrderD? = {
         [unowned self] in
-        return self.appDel.newOrderAction()
+        let newOrder = self.appDel.newOrderAction()
+        let date = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString:String = dateFormatter.stringFromDate(date)
+        newOrder.setValue(dateString, forKey: "orderDate")
+        newOrder.setValue("New", forKey:"status")
+        return newOrder
         }()
     
-    lazy var products: [ProductD] = {
-        [unowned self] in
-        return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
-        }()
+    var products: [ProductD] {
+        get{
+            return self.order!.products.sortedArrayUsingDescriptors([NSSortDescriptor(key: "productName", ascending: true, selector: "localizedStandardCompare:")]) as! [ProductD]
+        }
+    }
+    
     var totalAmount: Double = 0
-    @IBOutlet weak var productTblView: UITableView!
-    @IBOutlet weak var custSearchTblView: UITableView!
-    @IBOutlet weak var customerName: UILabel!
-    //@IBOutlet weak var addressField: UITextView!
-    @IBOutlet weak var addProductBtn: MKButton!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBAction func backButtonClicked(sender: AnyObject) {
-        appDel.rollbackAction()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    @IBAction func saveButtonClicked(sender: AnyObject) {
-        appDel.saveContextAction()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    @IBAction func customerButtonClicked(sender: AnyObject) {
-        var current = self.searchBar.hidden
-        self.searchBar.hidden = !current
-    }
-    @IBAction func handleShare(sender: UIButton){
-        
-        let image = createOrderImage()
-        
-        /* it is VERY important to cast your strings to NSString
-        otherwise the controller cannot display the appropriate sharing options */
-        // look for "applicationActivities"
-        var activityView = UIActivityViewController(
-            activityItems: [image, "WeSale Assistant"],
-            //applicationActivities: [WeChatSessionActivity()])
-            applicationActivities: nil)
-        
-        presentViewController(activityView,
-            animated: true,
-            completion: {
-        })
-    }
     
 }

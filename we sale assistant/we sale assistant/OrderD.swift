@@ -14,5 +14,6 @@ class OrderD: NSManagedObject {
     @NSManaged var orderDate: String?
     @NSManaged var customer: we_sale_assistant.Person?
     @NSManaged var products: NSSet
+    @NSManaged var status: String?
 
 }
