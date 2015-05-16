@@ -21,7 +21,7 @@
 		3F24CBBC1A870EAC00902C39 /* CustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBBB1A870EAC00902C39 /* CustomerSearchController.swift */; };
 		3F4EE6CA1A84A31200636386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6C91A84A31200636386 /* AppDelegate.swift */; };
 		3F4EE6CC1A84A31200636386 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CB1A84A31200636386 /* FirstViewController.swift */; };
-		3F4EE6CE1A84A31200636386 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CD1A84A31200636386 /* SecondViewController.swift */; };
+		3F4EE6CE1A84A31200636386 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CD1A84A31200636386 /* OrderViewController.swift */; };
 		3F4EE6D11A84A31200636386 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CF1A84A31200636386 /* Main.storyboard */; };
 		3F4EE6D31A84A31200636386 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6D21A84A31200636386 /* Images.xcassets */; };
 		3F4EE6D61A84A31200636386 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6D41A84A31200636386 /* LaunchScreen.xib */; };
@@ -95,7 +95,7 @@
 		3F4EE6C81A84A31200636386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4EE6C91A84A31200636386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F4EE6CB1A84A31200636386 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		3F4EE6CD1A84A31200636386 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		3F4EE6CD1A84A31200636386 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		3F4EE6D01A84A31200636386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F4EE6D21A84A31200636386 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3F4EE6D51A84A31200636386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 				3FC450651AB6D66600838E8F /* AddProductViewController.swift */,
 				3F0DB1931AB53D09006C43A3 /* EditStockViewController.swift */,
 				3F24CBB11A85904E00902C39 /* AddPersonViewController.swift */,
-				3F4EE6CD1A84A31200636386 /* SecondViewController.swift */,
+				3F4EE6CD1A84A31200636386 /* OrderViewController.swift */,
 				3F4EE6CB1A84A31200636386 /* FirstViewController.swift */,
 				3F24CBB71A86224A00902C39 /* AddOrderViewController.swift */,
 				3F24CBBB1A870EAC00902C39 /* CustomerSearchController.swift */,
@@ -395,7 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F0DB1AF1AB53D09006C43A3 /* StockD.swift in Sources */,
-				3F4EE6CE1A84A31200636386 /* SecondViewController.swift in Sources */,
+				3F4EE6CE1A84A31200636386 /* OrderViewController.swift in Sources */,
 				3FC4506B1AB6D72200838E8F /* String.swift in Sources */,
 				3FC450741AB6D77200838E8F /* MKButton.swift in Sources */,
 				3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */,

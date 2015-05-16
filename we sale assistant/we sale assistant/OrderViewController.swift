@@ -1,5 +1,4 @@
 //
-//  SecondViewController.swift
 //  we sale assistant
 //
 //  Created by xipeng yang on 6/02/15.
@@ -9,7 +8,7 @@
 import UIKit
 import CoreData
 
-class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -72,15 +71,18 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            let selectedOrder = fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
-            orderDao.deleteOrder(selectedOrder)
-            //orders.removeAtIndex(indexPath.row)
-            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-            appDel.saveContextAction()
+    //Override to support custom action in the order table view
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        
+        let completeAction = UITableViewRowAction(style: .Default, title: "Complete") {
+            (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            //let confirmMenu = UIAlertController(title: nil, message: "Complete this Order", preferredStyle: .ActionSheet)
+            let selectedOrder = self.fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
+            selectedOrder.status = "Completed"
+            self.appDel.saveContextAction()
+            self.tableView.reloadData()
         }
+        return [completeAction]
     }
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -100,8 +102,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             case .Insert:
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
             case .Update:
-                if let i = indexPath {
-                let cell = tableView.cellForRowAtIndexPath(i) as! OrderCell
+                if let i = indexPath, cell = tableView.cellForRowAtIndexPath(i) as? OrderCell {
                 configureCell(cell, atIndexPath: i)
                 tableView.reloadRowsAtIndexPaths([i], withRowAnimation: UITableViewRowAnimation.Automatic)
                 }
@@ -140,7 +141,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     //variables
-    //var orders: [OrderD] = [OrderD]()
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var _fetchedResultsController: NSFetchedResultsController?
@@ -154,10 +154,11 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let managedObjectContext = self.appDel.cdh.getContext()
         
         let entity = NSEntityDescription.entityForName("OrderD", inManagedObjectContext: managedObjectContext)
-        let sectionSortDescriptor = NSSortDescriptor(key: "status", ascending: true)
+        let sectionSortDescriptor = NSSortDescriptor(key: "status", ascending: false)
+        let customerNameSortDescriptor = NSSortDescriptor(key: "customer", ascending: true)
         let req = NSFetchRequest()
         req.entity = entity
-        req.sortDescriptors = [sectionSortDescriptor]
+        req.sortDescriptors = [sectionSortDescriptor, customerNameSortDescriptor]
         
         /* NSFetchedResultsController initialization
         a `nil` `sectionNameKeyPath` generates a single section */

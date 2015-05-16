@@ -164,11 +164,6 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         if editingStyle == .Delete &&  tableView == self.productTblView && products.count > 0 {
             // rollback data
             let selectedProduct = products[indexPath.row] as ProductD
-//            if(!selectedProduct.price.isEmpty){
-//                if let price = selectedProduct.price.toDouble(){
-//                    self.totalAmount -= price
-//                }
-//            }
             appDel.deleteObjectAction(selectedProduct)
             //products.removeAtIndex(indexPath.row)
             appDel.saveContextAction()
