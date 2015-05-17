@@ -18,7 +18,7 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         products.removeAll(keepCapacity: true)
-        products = appDel.loadProductStockAction()
+        products = appDel.getProductStockAction()
         productTblView.reloadData()
     }
 

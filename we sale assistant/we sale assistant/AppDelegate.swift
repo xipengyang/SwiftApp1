@@ -156,10 +156,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return [OrderD]()
     }
     
-    func loadProductStockAction()-> [ProductD] {
+    func getProductStockAction()-> [ProductD] {
         println("get product stock action")
         
-        var fetchedData = cdh.getEntities("ProductD")
+        let predicate: NSPredicate = NSPredicate(format: "order.status == 'New' ")
+        
+        var fetchedData = cdh.getEntityByPredicate("ProductD",predicate: predicate)
+        
         if (fetchedData.count > 0) {
             for product: ProductD in fetchedData as! [ProductD] {
                 println("found product data \(product) ")

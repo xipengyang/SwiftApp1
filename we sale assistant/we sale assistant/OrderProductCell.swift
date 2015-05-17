@@ -10,9 +10,9 @@ import UIKit
 
 class OrderProductCell: UITableViewCell {
 
-    @IBOutlet weak var leftLabel: UILabel!
-    @IBOutlet weak var middleLabel: UILabel!
+    @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
+    @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var leftImage: UIImageView!
     
     override func awakeFromNib() {

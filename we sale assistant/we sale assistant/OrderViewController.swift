@@ -71,16 +71,27 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // Override to support editing the table view.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if editingStyle == .Delete {
+//            let selectedOrder = fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
+//            orderDao.deleteOrder(selectedOrder)
+//            //orders.removeAtIndex(indexPath.row)
+//            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//            appDel.saveContextAction()
+//        }
+    }
+    
     //Override to support custom action in the order table view
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         
-        let completeAction = UITableViewRowAction(style: .Default, title: "Complete") {
+        let completeAction = UITableViewRowAction(style: .Normal, title: "Complete") {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             //let confirmMenu = UIAlertController(title: nil, message: "Complete this Order", preferredStyle: .ActionSheet)
             let selectedOrder = self.fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
             selectedOrder.status = "Completed"
             self.appDel.saveContextAction()
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
         return [completeAction]
     }

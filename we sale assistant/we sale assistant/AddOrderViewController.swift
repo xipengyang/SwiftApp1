@@ -94,14 +94,14 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             }
             
             if(indexPath.row == products.count){
-                cell?.leftLabel.text = "TOTAL"
-                cell?.middleLabel.text = ""
-                cell?.rightLabel.text = "$ \(amountSum)"
+                cell?.topLabel.text = ""
+                cell?.leftLabel.text = "Total $ \(amountSum)"
+                cell?.rightLabel.text = ""
             }else {
                 let thisProduct = products[indexPath.row]
-                cell?.leftLabel.text = thisProduct.productName
-                cell?.middleLabel.text = thisProduct.quantity
-                cell?.rightLabel.text = "$ \(thisProduct.price)"
+                cell?.topLabel.text = thisProduct.productName
+                cell?.rightLabel.text = thisProduct.quantity
+                cell?.leftLabel.text = "$ \(thisProduct.price)"
                 if (thisProduct.image != nil) {
                     cell?.leftImage.image = UIImage(data: thisProduct.image!)
                 }else {
