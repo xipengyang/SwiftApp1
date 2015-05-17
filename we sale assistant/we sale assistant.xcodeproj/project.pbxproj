@@ -143,6 +143,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F0331E31B0865310005881D /* MaterialIcon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MaterialIcon;
+			sourceTree = "<group>";
+		};
 		3F120AC91A8C9DEE005C4DA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +183,7 @@
 		3F4EE6C61A84A31200636386 /* we sale assistant */ = {
 			isa = PBXGroup;
 			children = (
+				3F0331E31B0865310005881D /* MaterialIcon */,
 				3FC4506C1AB6D72800838E8F /* MaterialKit */,
 				3FC450691AB6D71500838E8F /* Util */,
 				3FC450681AB6D70700838E8F /* DAO */,
