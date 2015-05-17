@@ -17,21 +17,23 @@ class AddPersonViewController: UIViewController {
     @IBOutlet weak var phoneInput: UITextField!
     @IBOutlet weak var wechatInput: UITextField!
     @IBOutlet weak var addressInput: UITextView!
-    
+    @IBOutlet weak var telephoneLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var weChatLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameInput.borderStyle = UITextBorderStyle.None
         //setup()
         // Do any additional setup after loading the view, typically from a nib.
+        telephoneLabel.text = GoogleIcon.e7e9
+        telephoneLabel.textColor = UIColor.grayColor()
+        addressLabel.text = GoogleIcon.e7e1
+        addressLabel.textColor = UIColor.grayColor()
+        weChatLabel.text = GoogleIcon.e60c
+        weChatLabel.textColor = UIColor.grayColor()
     }
     
-    func setup() {
-        let redLayer = CALayer()
-        redLayer.frame = CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 50)
-        redLayer.backgroundColor = UIColor.redColor().CGColor
-        self.view.layer.insertSublayer(redLayer, atIndex: 0)
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

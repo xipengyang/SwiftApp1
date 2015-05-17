@@ -17,6 +17,11 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var isSupplier: UISwitch!
     @IBOutlet weak var orderHistoryTableView: UITableView!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var telephoneLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var weChatLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameInput.text = name
@@ -27,6 +32,14 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.wechatInput.text = weChatId
         }
         self.addressInput.text = address
+        nameLabel.text = GoogleIcon.e60f
+        nameLabel.textColor = UIColor.grayColor()
+        telephoneLabel.text = GoogleIcon.e7e9
+        telephoneLabel.textColor = UIColor.grayColor()
+        weChatLabel.text = GoogleIcon.e60c
+        weChatLabel.textColor = UIColor.grayColor()
+        addressLabel.text = GoogleIcon.e7e1
+        addressLabel.textColor = UIColor.grayColor()
     }
     
     override func didReceiveMemoryWarning() {

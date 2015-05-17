@@ -19,12 +19,26 @@ class EditStockViewController: UIViewController {
     @IBOutlet weak var supplierTextField: UITextField!
     @IBOutlet weak var costTextField: UITextField!
     
+    @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var shopLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if (product != nil) {
             productNameText.text = product?.productName
             quantityText.text = product?.quantity
         }
+        
+        noteLabel.text = GoogleIcon.e76e
+        noteLabel.textColor = UIColor.grayColor()
+        amountLabel.text = GoogleIcon.eb78
+        amountLabel.textColor = UIColor.grayColor()
+        quantityLabel.text = GoogleIcon.eb78
+        quantityLabel.textColor = UIColor.grayColor()
+        shopLabel.text = GoogleIcon.eba2
+        shopLabel.textColor = UIColor.grayColor()
         // Do any additional setup after loading the view.
     }
 

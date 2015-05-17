@@ -16,6 +16,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var customerName: UILabel!
     //@IBOutlet weak var addressField: UITextView!
     @IBOutlet weak var addProductBtn: MKButton!
+    @IBOutlet weak var searchCustomerBtn: MKButton!
+    @IBOutlet weak var weChatBtn: MKButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func backButtonClicked(sender: AnyObject) {
         appDel.rollbackAction()
@@ -49,6 +51,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addProductBtn.titleLabel!.font = UIFont(name: GoogleIconName, size: 30.0)
+        addProductBtn.setTitle(GoogleIcon.e819, forState: UIControlState.Normal)
+        searchCustomerBtn.titleLabel!.font = UIFont(name: GoogleIconName, size: 30.0)
+        searchCustomerBtn.setTitle(GoogleIcon.e60a, forState: UIControlState.Normal)
+        weChatBtn.titleLabel!.font = UIFont(name: GoogleIconName, size: 30.0)
+        weChatBtn.setTitle(GoogleIcon.e61d, forState: UIControlState.Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
