@@ -103,13 +103,14 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             
             if(indexPath.row == products.count){
                 cell?.topLabel.text = ""
-                cell?.leftLabel.text = "Total $ \(amountSum)"
+                let total = amountSum.decimalNumberByRoundingAccordingToBehavior(roundUp)
+                cell?.leftLabel.text = "Total $ \(total)"
                 cell?.rightLabel.text = ""
             }else {
                 let thisProduct = products[indexPath.row]
                 cell?.topLabel.text = thisProduct.productName
-                cell?.rightLabel.text = thisProduct.quantity
-                cell?.leftLabel.text = "$ \(thisProduct.price)"
+                cell?.rightLabel.text = thisProduct.quantity!.stringValue
+                cell?.leftLabel.text = "$ \(thisProduct.price!)"
                 if (thisProduct.image != nil) {
                     cell?.leftImage.image = UIImage(data: thisProduct.image!)
                 }else {
@@ -211,12 +212,8 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     lazy var order: OrderD? = {
         [unowned self] in
-        let newOrder = self.appDel.newOrderAction()
-        let date = NSDate()
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString:String = dateFormatter.stringFromDate(date)
-        newOrder.setValue(dateString, forKey: "orderDate")
+        var newOrder = self.appDel.newOrderAction()
+        newOrder.orderDate = NSDate()
         newOrder.setValue("New", forKey:"status")
         return newOrder
         }()
@@ -227,18 +224,18 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    var amountSum: Double {
+    var amountSum: NSDecimalNumber {
         get{
             return $.reduce(products, initial: 0.0) { (total, element) in
                 let product = element as ProductD
-                if(!product.price.isEmpty){
-                    if let amt = product.price.toDouble(){
-                        return total + amt
+                if let amt = product.price{
+                        return total.decimalNumberByAdding(amt)
                     }
-                }
                 return total
             }
         }
     }
+    
+    var roundUp = NSDecimalNumberHandler(roundingMode: NSRoundingMode.RoundUp, scale: 2, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: true)
     
 }

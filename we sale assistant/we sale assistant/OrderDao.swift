@@ -31,15 +31,15 @@ class OrderDao: NSObject {
     }
     
     // return all orders for a customer
-    func getOrderForCustomer(customerId : Int) -> [OrderD] {
-        var result:[OrderD] = [OrderD]()
-        for order in orders {
-            if(customerId == order.customer!.id) {
-                result.append(order)
-            }
-        }
-        return result
-    }
+//    func getOrderForCustomer(customerId : Int) -> [OrderD] {
+//        var result:[OrderD] = [OrderD]()
+//        for order in orders {
+//            if let customerId = order.customer.id {
+//                result.append(order)
+//            }
+//        }
+//        return result
+//    }
     
     func getOrders() -> [OrderD] {
         return orders

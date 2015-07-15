@@ -2,7 +2,7 @@
 //  StockD.swift
 //  we sale assistant
 //
-//  Created by xipeng yang on 7/03/15.
+//  Created by xipeng yang on 6/06/15.
 //  Copyright (c) 2015 xipeng yang. All rights reserved.
 //
 
@@ -11,10 +11,10 @@ import CoreData
 
 class StockD: NSManagedObject {
 
-    @NSManaged var quantity: String
-    @NSManaged var supplier: String
-    @NSManaged var amount: String
+    @NSManaged var amount: NSDecimalNumber
     @NSManaged var desc: String
-    @NSManaged var product: we_sale_assistant.ProductD
+    @NSManaged var quantity: NSNumber?
+    @NSManaged var supplier: String
+    @NSManaged var product: ProductD
 
 }

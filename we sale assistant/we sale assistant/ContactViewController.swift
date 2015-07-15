@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ContactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var viewTable: UITableView!
     
@@ -24,6 +24,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        viewTable.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         personDao.refreshContacts()
     }
     
@@ -64,7 +69,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if let person: Person  = personDao.getPersonAtIndex(contact.id.toInt()!) {
             
-            destViewController.id = person.id.stringValue
+            destViewController.id = person.id!.stringValue
             destViewController.name = person.name
             destViewController.phone = person.phone
             destViewController.weChatId = person.weChatId

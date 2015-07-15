@@ -40,16 +40,15 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "productStockCell")
         }
         let product:ProductD = products[indexPath.row]
-        let need  = product.quantity as String
         let stocks = product.stocks.allObjects as! [StockD]
-        var totalStock = 0
+        var totalStock: Int = 0
         for stock in stocks {
-            if let q = stock.quantity.toInt() {
-                totalStock = totalStock + q
+            if let q = stock.quantity {
+                totalStock = totalStock + q.integerValue
             }
         }
         cell?.textLabel?.text = product.productName
-        cell?.detailTextLabel?.text = " Sold \(need)    Bought \(totalStock)"
+        cell?.detailTextLabel?.text = " Sold \(product.quantity)    Bought \(totalStock)"
         return cell!
     }
     

@@ -27,8 +27,9 @@ class EditStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if (product != nil) {
-            productNameText.text = product?.productName
-            quantityText.text = product?.quantity
+            productNameText.text = product!.productName
+            let productQuantity = product!.quantity ?? 0
+            quantityText.text = productQuantity.stringValue
         }
         
         noteLabel.text = GoogleIcon.e76e
@@ -55,8 +56,8 @@ class EditStockViewController: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }else {
             var stock:StockD = appDel.newStockAction()
-            stock.quantity = quantityTextField.text
-            stock.amount = amountTextField.text
+            stock.quantity = NSNumber(integer: quantityTextField.text.toInt()!)
+            stock.amount = NSDecimalNumber(integer: amountTextField.text.toInt()!)
             stock.supplier = supplierTextField.text
             stock.desc = descriptionTextField.text
             stock.product = self.product!

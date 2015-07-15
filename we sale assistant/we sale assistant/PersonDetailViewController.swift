@@ -71,7 +71,9 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
                 bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")
             }
             cell!.detailTextLabel?.text = bodyText
-            cell!.textLabel?.text = orderAtRow.orderDate
+            var formatter = NSDateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy"
+            cell!.textLabel?.text = formatter.stringFromDate(orderAtRow.orderDate)
         }
         
         return cell!
@@ -104,6 +106,10 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
     var id:String!
     var orders: [OrderD]?
     var person: Person!
-    
+    lazy var dateFormatter: NSDateFormatter = {
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter
+    }()
 }
 

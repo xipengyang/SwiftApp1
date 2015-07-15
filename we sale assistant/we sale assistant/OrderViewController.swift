@@ -19,14 +19,11 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //orderDao.load()
-        //orders = orderDao.getOrders()
-        //self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,7 +88,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let selectedOrder = self.fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
             selectedOrder.status = "Completed"
             self.appDel.saveContextAction()
-            //self.tableView.reloadData()
         }
         return [completeAction]
     }
@@ -145,16 +141,21 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let products: [ProductD] = order.products.allObjects as! [ProductD]
             var bodyText = ""
             for product in products {
-                bodyText = ("\(bodyText) \(product.productName) (\(product.quantity))")
+                bodyText = ("\(bodyText) \(product.productName) (\(product.quantity!))")
             }
             cell.bodyLabel?.text = bodyText
-            cell.topRightLabel?.text = order.orderDate
+            dateFormatter.dateFormat = dateFormat
+            cell.topRightLabel?.text = dateFormatter.stringFromDate(order.orderDate)
     }
     
     //variables
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var _fetchedResultsController: NSFetchedResultsController?
+    
+    var dateFormatter = NSDateFormatter()
+    
+    var dateFormat = "dd-MM-yyyy"
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         [unowned self] in

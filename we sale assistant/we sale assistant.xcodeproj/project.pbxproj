@@ -14,7 +14,6 @@
 		3F0DB1AC1AB53D09006C43A3 /* OrderProductCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB1991AB53D09006C43A3 /* OrderProductCellTableViewCell.swift */; };
 		3F0DB1AD1AB53D09006C43A3 /* OrderProductTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB19A1AB53D09006C43A3 /* OrderProductTableCell.swift */; };
 		3F0DB1AE1AB53D09006C43A3 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB19B1AB53D09006C43A3 /* ProductViewController.swift */; };
-		3F0DB1AF1AB53D09006C43A3 /* StockD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0DB19C1AB53D09006C43A3 /* StockD.swift */; };
 		3F120AC61A89F03E005C4DA2 /* we_sale_assistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F120AC41A89F03E005C4DA2 /* we_sale_assistant.xcdatamodeld */; };
 		3F24CBB21A85904E00902C39 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBB11A85904E00902C39 /* AddPersonViewController.swift */; };
 		3F24CBB41A85F4B100902C39 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBB31A85F4B100902C39 /* PersonDetailViewController.swift */; };
@@ -23,17 +22,18 @@
 		3F24CBBA1A86FF3600902C39 /* ProductDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBB91A86FF3600902C39 /* ProductDao.swift */; };
 		3F24CBBC1A870EAC00902C39 /* CustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F24CBBB1A870EAC00902C39 /* CustomerSearchController.swift */; };
 		3F4EE6CA1A84A31200636386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6C91A84A31200636386 /* AppDelegate.swift */; };
-		3F4EE6CC1A84A31200636386 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CB1A84A31200636386 /* FirstViewController.swift */; };
+		3F4EE6CC1A84A31200636386 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CB1A84A31200636386 /* ContactViewController.swift */; };
 		3F4EE6CE1A84A31200636386 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CD1A84A31200636386 /* OrderViewController.swift */; };
 		3F4EE6D11A84A31200636386 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6CF1A84A31200636386 /* Main.storyboard */; };
 		3F4EE6D31A84A31200636386 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6D21A84A31200636386 /* Images.xcassets */; };
 		3F4EE6D61A84A31200636386 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4EE6D41A84A31200636386 /* LaunchScreen.xib */; };
 		3F4EE6E21A84A31200636386 /* we_sale_assistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6E11A84A31200636386 /* we_sale_assistantTests.swift */; };
 		3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EE6EB1A84B93200636386 /* PersonDao.swift */; };
+		3F5E70DE1B22FB8F000C08DD /* OrderD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70DD1B22FB8F000C08DD /* OrderD.swift */; };
+		3F5E70E01B22FB90000C08DD /* StockD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70DF1B22FB90000C08DD /* StockD.swift */; };
+		3F5E70E21B22FB90000C08DD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70E11B22FB90000C08DD /* Person.swift */; };
+		3F5E70E41B22FB90000C08DD /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70E31B22FB90000C08DD /* ProductD.swift */; };
 		3F724EE21A99C04900CF77BF /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F724EE11A99C04900CF77BF /* OrderCell.swift */; };
-		3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19C1A98764E004AC946 /* ProductD.swift */; };
-		3F77E19F1A98764F004AC946 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E19E1A98764F004AC946 /* Person.swift */; };
-		3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77E1A01A98764F004AC946 /* OrderD.swift */; };
 		3FA419B01B034A7900209D42 /* Dollar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA419AF1B034A7900209D42 /* Dollar.framework */; };
 		3FA419B11B034A7A00209D42 /* Dollar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA419AF1B034A7900209D42 /* Dollar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3FC450661AB6D66600838E8F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450651AB6D66600838E8F /* AddProductViewController.swift */; };
@@ -81,7 +81,6 @@
 		3F0DB1991AB53D09006C43A3 /* OrderProductCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderProductCellTableViewCell.swift; sourceTree = "<group>"; };
 		3F0DB19A1AB53D09006C43A3 /* OrderProductTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderProductTableCell.swift; sourceTree = "<group>"; };
 		3F0DB19B1AB53D09006C43A3 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
-		3F0DB19C1AB53D09006C43A3 /* StockD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockD.swift; sourceTree = "<group>"; };
 		3F0DB1A01AB53D09006C43A3 /* WeChatActivityGeneral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatActivityGeneral.swift; sourceTree = "<group>"; };
 		3F0DB1A11AB53D09006C43A3 /* WeChatMomentsActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatMomentsActivity.swift; sourceTree = "<group>"; };
 		3F0DB1A21AB53D09006C43A3 /* WeChatSessionActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatSessionActivity.swift; sourceTree = "<group>"; };
@@ -99,7 +98,7 @@
 		3F4EE6C41A84A31200636386 /* we sale assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "we sale assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4EE6C81A84A31200636386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4EE6C91A84A31200636386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F4EE6CB1A84A31200636386 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		3F4EE6CB1A84A31200636386 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		3F4EE6CD1A84A31200636386 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		3F4EE6D01A84A31200636386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F4EE6D21A84A31200636386 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -108,10 +107,11 @@
 		3F4EE6E01A84A31200636386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4EE6E11A84A31200636386 /* we_sale_assistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = we_sale_assistantTests.swift; sourceTree = "<group>"; };
 		3F4EE6EB1A84B93200636386 /* PersonDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDao.swift; sourceTree = "<group>"; };
+		3F5E70DD1B22FB8F000C08DD /* OrderD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
+		3F5E70DF1B22FB90000C08DD /* StockD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockD.swift; sourceTree = "<group>"; };
+		3F5E70E11B22FB90000C08DD /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3F5E70E31B22FB90000C08DD /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
 		3F724EE11A99C04900CF77BF /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
-		3F77E19C1A98764E004AC946 /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
-		3F77E19E1A98764F004AC946 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		3F77E1A01A98764F004AC946 /* OrderD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderD.swift; sourceTree = "<group>"; };
 		3FA419AF1B034A7900209D42 /* Dollar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dollar.framework; path = Carthage/Build/iOS/Dollar.framework; sourceTree = "<group>"; };
 		3FC450651AB6D66600838E8F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		3FC4506A1AB6D72200838E8F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -167,10 +167,10 @@
 		3F120AC91A8C9DEE005C4DA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3F0DB19C1AB53D09006C43A3 /* StockD.swift */,
-				3F77E1A01A98764F004AC946 /* OrderD.swift */,
-				3F77E19E1A98764F004AC946 /* Person.swift */,
-				3F77E19C1A98764E004AC946 /* ProductD.swift */,
+				3F5E70E31B22FB90000C08DD /* ProductD.swift */,
+				3F5E70E11B22FB90000C08DD /* Person.swift */,
+				3F5E70DF1B22FB90000C08DD /* StockD.swift */,
+				3F5E70DD1B22FB8F000C08DD /* OrderD.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -251,7 +251,7 @@
 				3F0DB1931AB53D09006C43A3 /* EditStockViewController.swift */,
 				3F24CBB11A85904E00902C39 /* AddPersonViewController.swift */,
 				3F4EE6CD1A84A31200636386 /* OrderViewController.swift */,
-				3F4EE6CB1A84A31200636386 /* FirstViewController.swift */,
+				3F4EE6CB1A84A31200636386 /* ContactViewController.swift */,
 				3F24CBB71A86224A00902C39 /* AddOrderViewController.swift */,
 				3F24CBBB1A870EAC00902C39 /* CustomerSearchController.swift */,
 				3F24CBB31A85F4B100902C39 /* PersonDetailViewController.swift */,
@@ -417,9 +417,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F5E70DE1B22FB8F000C08DD /* OrderD.swift in Sources */,
 				3F0331E51B0868410005881D /* GoogleIcon.swift in Sources */,
-				3F0DB1AF1AB53D09006C43A3 /* StockD.swift in Sources */,
 				3F4EE6CE1A84A31200636386 /* OrderViewController.swift in Sources */,
+				3F5E70E41B22FB90000C08DD /* ProductD.swift in Sources */,
 				3FC4506B1AB6D72200838E8F /* String.swift in Sources */,
 				3FC450741AB6D77200838E8F /* MKButton.swift in Sources */,
 				3F4EE6EC1A84B93200636386 /* PersonDao.swift in Sources */,
@@ -429,14 +430,13 @@
 				3F24CBB41A85F4B100902C39 /* PersonDetailViewController.swift in Sources */,
 				3F120AC61A89F03E005C4DA2 /* we_sale_assistant.xcdatamodeld in Sources */,
 				3F24CBBC1A870EAC00902C39 /* CustomerSearchController.swift in Sources */,
-				3F77E19F1A98764F004AC946 /* Person.swift in Sources */,
 				3FC450771AB6D77200838E8F /* MKLabel.swift in Sources */,
 				3FE7B48F1A90813E005F42D4 /* CoreDataHelper.swift in Sources */,
-				3F77E1A11A98764F004AC946 /* OrderD.swift in Sources */,
 				3F4EE6CA1A84A31200636386 /* AppDelegate.swift in Sources */,
+				3F5E70E21B22FB90000C08DD /* Person.swift in Sources */,
+				3F5E70E01B22FB90000C08DD /* StockD.swift in Sources */,
 				3FFF3C7B1AC7B60400526918 /* OrderProductCell.swift in Sources */,
-				3F77E19D1A98764E004AC946 /* ProductD.swift in Sources */,
-				3F4EE6CC1A84A31200636386 /* FirstViewController.swift in Sources */,
+				3F4EE6CC1A84A31200636386 /* ContactViewController.swift in Sources */,
 				3F0DB1AE1AB53D09006C43A3 /* ProductViewController.swift in Sources */,
 				3F0DB1AC1AB53D09006C43A3 /* OrderProductCellTableViewCell.swift in Sources */,
 				3F0331EA1B08807F0005881D /* UIColor.swift in Sources */,
@@ -709,7 +709,7 @@
 				3FFF3C771AC7AF0B00526918 /* we_sale_assistant 2.xcdatamodel */,
 				3F120AC51A89F03E005C4DA2 /* we_sale_assistant.xcdatamodel */,
 			);
-			currentVersion = 3FFF3C771AC7AF0B00526918 /* we_sale_assistant 2.xcdatamodel */;
+			currentVersion = 3FFF3C7E1AC7D4BE00526918 /* we_sale_assistant 3.xcdatamodel */;
 			path = we_sale_assistant.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

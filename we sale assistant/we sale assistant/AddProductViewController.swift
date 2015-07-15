@@ -44,11 +44,11 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
             if let nameData = self.product!.productName as String? {
                 productName.text = nameData
             }
-            if let quantityData = self.product!.quantity as String? {
-                productQuantity.text = quantityData
+            if let quantityData = self.product!.quantity {
+                productQuantity.text = quantityData.stringValue
             }
-            if let amountData = self.product!.price as String? {
-                productAmount.text = amountData
+            if let amountData = self.product!.price{
+                productAmount.text = amountData.stringValue
             }
             if let imageData = self.product!.image as NSData? {
                 pickedImage.image = UIImage(data: imageData)
@@ -87,14 +87,17 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
         
         
         if(amountSegment.selectedSegmentIndex == 1 && quantity != 0) {
-            let productOf: Double = self.amount * Double(self.quantity)
-            product!.setValue(String(format: "%.1f", productOf), forKey: "price")
+            //to do - NSDecimalNumberBehaviors?
+            let productQuantity: NSDecimalNumber = NSDecimalNumber(integer: quantity)
+            product!.price = amount.decimalNumberByMultiplyingBy(productQuantity)
         } else {
-            product!.setValue(String(format: "%.1f", self.amount), forKey: "price")
+            product!.price = self.amount
         }
         
-        product!.setValue(quantityText, forKey: "quantity")
+        product!.quantity = quantity
+        
         product!.setValue(nameText, forKey: "productName")
+        
         if let myImage = self.pickedImage.image {
             product!.setValue(UIImageJPEGRepresentation(myImage, 1), forKey: "image")
         }
@@ -153,26 +156,21 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     //variables
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var product: ProductD?
-    var amount: Double! {
+    var amount: NSDecimalNumber! {
         get {
-            let value = productAmount.text.toDouble()
-            if (value != nil) {
-                return value!
-            } else {
-                return 0.0
+            if let value = productAmount.text {
+                return NSDecimalNumber(string: value)
             }
+            return NSDecimalNumber.zero()
         }
     }
+    
     var quantity: Int! {
         get {
-            let value = productQuantity.text.toInt()
-            if (value != nil) {
-                return value!
-            } else {
-                return 0
-            }
+             return productQuantity.text.toInt() ?? 0
         }
     }
+    
     lazy var errorMsg: String? = {
         return "Unknown Error. Please contact support."
         }()

@@ -1,8 +1,8 @@
 //
-//  we_sale_assistant.swift
+//  Person.swift
 //  we sale assistant
 //
-//  Created by xipeng yang on 21/02/15.
+//  Created by xipeng yang on 6/06/15.
 //  Copyright (c) 2015 xipeng yang. All rights reserved.
 //
 
@@ -11,13 +11,13 @@ import CoreData
 
 class Person: NSManagedObject {
 
-    @NSManaged var id: NSNumber
-    @NSManaged var address: String
+    @NSManaged var address: String?
+    @NSManaged var id: NSNumber?
     @NSManaged var name: String
-    @NSManaged var notes: String
-    @NSManaged var personType: String
-    @NSManaged var phone: String
-    @NSManaged var weChatId: String
+    @NSManaged var note: String?
+    @NSManaged var personType: String?
+    @NSManaged var phone: String?
+    @NSManaged var weChatId: String?
     @NSManaged var orders: NSSet
 
 }
