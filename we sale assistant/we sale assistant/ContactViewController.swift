@@ -69,6 +69,8 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             if let person: Person  = personDao.getPersonAtIndex(contact.id.toInt()!) {
             
+                
+            // TODO  - replace with builder pattern
             destViewController.id = person.id!.stringValue
             destViewController.name = person.name
             destViewController.phone = person.phone

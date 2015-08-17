@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -68,15 +68,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            let selectedOrder = fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
-//            orderDao.deleteOrder(selectedOrder)
-//            //orders.removeAtIndex(indexPath.row)
-//            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//            appDel.saveContextAction()
-//        }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
     
     //Override to support custom action in the order table view
@@ -84,62 +78,30 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let completeAction = UITableViewRowAction(style: .Normal, title: "Complete") {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            //let confirmMenu = UIAlertController(title: nil, message: "Complete this Order", preferredStyle: .ActionSheet)
             let selectedOrder = self.fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
             selectedOrder.status = "Completed"
             self.appDel.saveContextAction()
         }
+        completeAction.backgroundColor = UIColor.MKColor.LightGreen
         return [completeAction]
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.beginUpdates()
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+        }
     }
     
-    /* called:
-    - when a new model is created
-    - when an existing model is updated
-    - when an existing model is deleted */
-    func controller(controller: NSFetchedResultsController,
-        didChangeObject object: AnyObject,
-        atIndexPath indexPath: NSIndexPath?,
-        forChangeType type: NSFetchedResultsChangeType,
-        newIndexPath: NSIndexPath?) {
-            switch type {
-            case .Insert:
-                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-            case .Update:
-                if let i = indexPath, cell = tableView.cellForRowAtIndexPath(i) as? OrderCell {
-                configureCell(cell, atIndexPath: i)
-                tableView.reloadRowsAtIndexPaths([i], withRowAnimation: UITableViewRowAnimation.Automatic)
-                }
-            case .Move:
-                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-            case .Delete:
-                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
-            default:
-                return
-            }
-    }
     
-    /* called last
-    tells `UITableView` updates are complete */
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.endUpdates()
-    }
-    
-    func configureCell(cell: OrderCell,
+    private func configureCell(cell: OrderCell,
         atIndexPath indexPath: NSIndexPath) {
             let order = fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
             var customer: Person? = order.customer
-            if customer != nil {
-                cell.topLeftLabel?.text = customer!.name
-            } else {
-                cell.topLeftLabel?.text = "Customer"
-            }
+            
+            cell.topLeftLabel?.text = customer?.name ?? "Customer"
+            
             let products: [ProductD] = order.products.allObjects as! [ProductD]
-            var bodyText = ""
+            var bodyText :String = ""
             for product in products {
                 bodyText = ("\(bodyText) \(product.productName) (\(product.quantity!))")
             }
@@ -147,6 +109,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dateFormatter.dateFormat = dateFormat
             cell.topRightLabel?.text = dateFormatter.stringFromDate(order.orderDate)
     }
+    
+    
     
     //variables
     let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -187,6 +151,43 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return self._fetchedResultsController!
     }()
+    
+}
 
+extension OrderViewController: NSFetchedResultsControllerDelegate  {
+
+    func controller(controller: NSFetchedResultsController,
+        didChangeObject object: AnyObject,
+        atIndexPath indexPath: NSIndexPath?,
+        forChangeType type: NSFetchedResultsChangeType,
+        newIndexPath: NSIndexPath?) {
+            switch type {
+            case .Insert:
+                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+            case .Update:
+                if let i = indexPath, cell = tableView.cellForRowAtIndexPath(i) as? OrderCell {
+                    configureCell(cell, atIndexPath: i)
+                    tableView.reloadRowsAtIndexPaths([i], withRowAnimation: UITableViewRowAnimation.Automatic)
+                }
+            case .Move:
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+            case .Delete:
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+            default:
+                return
+            }
+    }
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    /* called last
+    tells `UITableView` updates are complete */
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
+    }
+    
 }
 
