@@ -56,8 +56,8 @@ class EditStockViewController: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }else {
             var stock:StockD = appDel.newStockAction()
-            stock.quantity = NSNumber(integer: quantityTextField.text.toInt()!)
-            stock.amount = NSDecimalNumber(integer: amountTextField.text.toInt()!)
+            stock.quantity = NSNumber(integer: Int(quantityTextField.text)!)
+            stock.amount = NSDecimalNumber(integer: Int(amountTextField.text)!)
             stock.supplier = supplierTextField.text
             stock.desc = descriptionTextField.text
             stock.product = self.product!

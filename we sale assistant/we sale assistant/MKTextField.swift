@@ -92,7 +92,7 @@ public class MKTextField : UITextField {
         setupLayer()
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupLayer()
     }
@@ -112,7 +112,7 @@ public class MKTextField : UITextField {
         addSubview(floatingLabel)
     }
 
-    override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override public func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         mkLayer.didChangeTapLocation(touch.locationInView(self))
 
         mkLayer.animateScaleForCircleLayer(0.45, toScale: 1.0, timingFunction: MKTimingFunction.Linear, duration: 0.75)

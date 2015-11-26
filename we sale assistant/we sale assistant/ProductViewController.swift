@@ -55,7 +55,7 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let productAtRow = products[indexPath.row]
-        var dest: EditStockViewController = self.storyboard?.instantiateViewControllerWithIdentifier("editStockView") as! EditStockViewController!
+        let dest: EditStockViewController = self.storyboard?.instantiateViewControllerWithIdentifier("editStockView") as! EditStockViewController!
         dest.product = productAtRow
         self.presentViewController(dest, animated: true, completion: nil)
     }

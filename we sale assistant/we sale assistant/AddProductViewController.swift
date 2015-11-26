@@ -115,14 +115,14 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
             valid = false
             errorMsg = "Please enter a name, a quantity and an amount"
         }
-        else if (productQuantity.text.toInt() == nil || productAmount.text.toDouble() == nil) {
+        else if (Int(productQuantity.text) == nil || productAmount.text.toDouble() == nil) {
             valid = false
             errorMsg = "Please enter a number"
         }
         return valid
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.view.endEditing(true);
     }
     
@@ -167,7 +167,7 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     
     var quantity: Int! {
         get {
-             return productQuantity.text.toInt() ?? 0
+             return Int(productQuantity.text) ?? 0
         }
     }
     

@@ -54,17 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func savePersonAction(contact : Contact) {
         
-        println("save person action")
+        print("save person action")
         
         let personId = contact.id
         
-        println("person to save - \(personId)")
+        print("person to save - \(personId)")
         
         let predicate = NSPredicate(format: "id = \(personId)")
         
-        var newRecord: Person = cdh.getOrNewEntityByPredicate("Person", predicate: predicate ) as! Person
+        let newRecord: Person = cdh.getOrNewEntityByPredicate("Person", predicate: predicate ) as! Person
         
-        newRecord.setValue(contact.id.toInt(), forKey: "id")
+        newRecord.setValue(Int(contact.id), forKey: "id")
         newRecord.setValue(contact.name, forKey: "name")
         newRecord.setValue(contact.address, forKey: "address")
         newRecord.setValue(contact.phone, forKey: "phone")
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getPersonByIdAction(identifier: Int) -> [Person] {
-         println("get person for id \(identifier) action")
+         print("get person for id \(identifier) action")
    
         let predicate: NSPredicate = NSPredicate(format: "id == \(identifier)")
         
@@ -84,55 +84,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func saveContextAction() {
-        println("save context action")
+        print("save context action")
         cdh.saveContext()
     }
     
     func newOrderAction() -> OrderD {
-        println("new order action")
+        print("new order action")
         
         return cdh.newEntity("OrderD") as! OrderD
     }
     
     func newProductAction() -> ProductD {
-        println("new product action")
+        print("new product action")
         
         return cdh.newEntity("ProductD") as! ProductD
     }
     
     func newStockAction() -> StockD {
-        println("new stock action")
+        print("new stock action")
         
         return cdh.newEntity("StockD") as! StockD
     }
     
     func saveProductAction(product : ProductD) {
         
-        println("save product action \(product)")
+        print("save product action \(product)")
         
         cdh.saveContext()
     }
     
     func deleteObjectAction(object: NSManagedObject) {
-        println("delecte object action \(object)")
+        print("delecte object action \(object)")
         
         cdh.deleteObject(object)
     }
     
     
     func refreshContactAction()-> [Contact]{
-        println("refresh contact action")
+        print("refresh contact action")
         
         var contacts = [Contact]()
         
-        var fetchedData = cdh.getEntities("Person")
+        let fetchedData = cdh.getEntities("Person")
         
         if let people = fetchedData as? [Person] {
             if(people.count > 0 ) {
-                println("data found. begin loading data...")
+                print("data found. begin loading data...")
                 for person: Person in people {
                     let contact  = Contact(id: person.id!.stringValue, name: person.name, address: person.address, phone: person.phone, weChatId: person.weChatId, personType: person.personType)
-                    println("append contact - \(contact.id) into array")
+                    print("append contact - \(contact.id) into array")
                     contacts.append(contact)
                 }
             }
@@ -141,42 +141,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func refreshOrderAction()-> [OrderD] {
-        println("refresh order action")
+        print("refresh order action")
         
-        var fetchedData = cdh.getEntities("OrderD")
+        let fetchedData = cdh.getEntities("OrderD")
         
         if (fetchedData.count > 0) {
             for order: OrderD in fetchedData as! [OrderD] {
-                println("found order data \(order) ")
+                print("found order data \(order) ")
             }
             return fetchedData as! [OrderD]
         }
         
-        println("no order found. so return empty array")
+        print("no order found. so return empty array")
         return [OrderD]()
     }
     
     func getProductStockAction()-> [ProductD] {
-        println("get product stock action")
+        print("get product stock action")
         
         let predicate: NSPredicate = NSPredicate(format: "order.status == 'New' ")
         
-        var fetchedData = cdh.getEntityByPredicate("ProductD",predicate: predicate)
+        let fetchedData = cdh.getEntityByPredicate("ProductD",predicate: predicate)
         
         if (fetchedData.count > 0) {
             for product: ProductD in fetchedData as! [ProductD] {
-                println("found product data \(product) ")
+                print("found product data \(product) ")
             }
             return fetchedData as! [ProductD]
         }
         
-        println("no product found. so return empty array")
+        print("no product found. so return empty array")
         return [ProductD]()
     }
     
     
     func rollbackAction() {
-        println("rollback context action")
+        print("rollback context action")
         cdh.rollbackContext()
         
     }

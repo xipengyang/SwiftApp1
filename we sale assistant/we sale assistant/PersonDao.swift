@@ -49,7 +49,7 @@ class PersonDao: NSObject {
         
         let contact: Contact = Contact(id: id, name: name, address: address,phone: phone, weChatId: weChatId, personType: personType)
         
-        let index = id.toInt()! - 1
+        let index = Int(id)! - 1
         
         contacts[index] = contact
         
@@ -75,7 +75,7 @@ class PersonDao: NSObject {
         return contacts
     }
     
-    func deletePerson(var person: Person) {
+    func deletePerson(person: Person) {
         appDel.deleteObjectAction(person)
     }
     

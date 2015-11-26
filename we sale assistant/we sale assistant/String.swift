@@ -5,7 +5,7 @@ public extension String {
     /**
     String length
     */
-    var length: Int { return count(self) }
+    var length: Int { return self.characters.count }
     
     /**
     self.capitalizedString shorthand
@@ -15,15 +15,15 @@ public extension String {
     /**
     Returns the substring in the given range
     
-    :param: range
-    :returns: Substring in range
+    - parameter range:
+    - returns: Substring in range
     */
     subscript (range: Range<Int>) -> String? {
         if range.startIndex < 0 || range.endIndex > self.length {
             return nil
         }
         
-        let range = Range(start: advance(startIndex, range.startIndex), end: advance(startIndex, range.endIndex))
+        let range = Range(start: startIndex.advancedBy(range.startIndex), end: startIndex.advancedBy(range.endIndex))
         
         return self[range]
     }
@@ -34,8 +34,8 @@ public extension String {
     /**
     Returns an array of strings, each of which is a substring of self formed by splitting it on separator.
     
-    :param: separator Character used to split the string
-    :returns: Array of substrings
+    - parameter separator: Character used to split the string
+    - returns: Array of substrings
     */
 //    func explode (separator: Character) -> [String] {
 //        return split(self, { (element: Character) -> Bool in
@@ -47,11 +47,11 @@ public extension String {
     /**
     Inserts a substring at the given index in self.
     
-    :param: index Where the new string is inserted
-    :param: string String to insert
-    :returns: String formed from self inserting string at index
+    - parameter index: Where the new string is inserted
+    - parameter string: String to insert
+    - returns: String formed from self inserting string at index
     */
-    func insert (var index: Int, _ string: String) -> String {
+    func insert (index: Int, _ string: String) -> String {
         //  Edge cases, prepend and append
         if index > length {
             return self + string
@@ -65,7 +65,7 @@ public extension String {
     /**
     Strips whitespaces from the beginning of self.
     
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func ltrimmed () -> String {
         return ltrimmed(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -74,7 +74,7 @@ public extension String {
     /**
     Strips the specified characters from the beginning of self.
     
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func ltrimmed (set: NSCharacterSet) -> String {
         if let range = rangeOfCharacterFromSet(set.invertedSet) {
@@ -87,7 +87,7 @@ public extension String {
     /**
     Strips whitespaces from the end of self.
     
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func rtrimmed () -> String {
         return rtrimmed(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -96,7 +96,7 @@ public extension String {
     /**
     Strips the specified characters from the end of self.
     
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func rtrimmed (set: NSCharacterSet) -> String {
         if let range = rangeOfCharacterFromSet(set.invertedSet, options: NSStringCompareOptions.BackwardsSearch) {
@@ -109,7 +109,7 @@ public extension String {
     /**
     Strips whitespaces from both the beginning and the end of self.
     
-    :returns: Stripped string
+    - returns: Stripped string
     */
     func trimmed () -> String {
         return ltrimmed().rtrimmed()
@@ -131,7 +131,7 @@ public extension String {
     /**
     Parses a string containing a float numerical value into an optional float if the string is a well formed number.
     
-    :returns: A float parsed from the string or nil if it cannot be parsed.
+    - returns: A float parsed from the string or nil if it cannot be parsed.
     */
     func toFloat() -> Float? {
         if let val = self.toDouble() {
@@ -144,10 +144,10 @@ public extension String {
     /**
     Parses a string containing a non-negative integer value into an optional UInt if the string is a well formed number.
     
-    :returns: A UInt parsed from the string or nil if it cannot be parsed.
+    - returns: A UInt parsed from the string or nil if it cannot be parsed.
     */
     func toUInt() -> UInt? {
-        if let val = self.trimmed().toInt() {
+        if let val = Int(self.trimmed()) {
             if val < 0 {
                 return nil
             }
@@ -161,7 +161,7 @@ public extension String {
     /**
     Parses a string containing a boolean value (true or false) into an optional Bool if the string is a well formed.
     
-    :returns: A Bool parsed from the string or nil if it cannot be parsed as a boolean.
+    - returns: A Bool parsed from the string or nil if it cannot be parsed as a boolean.
     */
     func toBool() -> Bool? {
         let text = self.trimmed().lowercaseString
@@ -176,11 +176,11 @@ public extension String {
     Parses a string containing a date into an optional NSDate if the string is a well formed.
     The default format is yyyy-MM-dd, but can be overriden.
     
-    :returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
+    - returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
     */
     func toDate(format : String? = "yyyy-MM-dd") -> NSDate? {
         let text = self.trimmed().lowercaseString
-        var dateFmt = NSDateFormatter()
+        let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
         if let fmt = format {
             dateFmt.dateFormat = fmt
@@ -192,10 +192,10 @@ public extension String {
     Parses a string containing a date and time into an optional NSDate if the string is a well formed.
     The default format is yyyy-MM-dd hh-mm-ss, but can be overriden.
     
-    :returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
+    - returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
     */
     func toDateTime(format : String? = "yyyy-MM-dd hh-mm-ss") -> NSDate? {
-        return toDate(format: format)
+        return toDate(format)
     }
     
 }

@@ -48,19 +48,19 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = fetchedResultsController.sections![section] 
         return sectionInfo.numberOfObjects
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionInfo = fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = fetchedResultsController.sections![section] 
         return sectionInfo.name
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let order = fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
-        var destViewController: AddOrderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddOrderViewController") as! AddOrderViewController
+        let destViewController: AddOrderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddOrderViewController") as! AddOrderViewController
         if(indexPath.row >= 0) {
             destViewController.order = order
         }
@@ -74,10 +74,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //Override to support custom action in the order table view
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let completeAction = UITableViewRowAction(style: .Normal, title: "Complete") {
-            (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            (action: UITableViewRowAction, indexPath: NSIndexPath) -> Void in
             let selectedOrder = self.fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
             selectedOrder.status = "Completed"
             self.appDel.saveContextAction()
@@ -96,7 +96,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private func configureCell(cell: OrderCell,
         atIndexPath indexPath: NSIndexPath) {
             let order = fetchedResultsController.objectAtIndexPath(indexPath) as! OrderD
-            var customer: Person? = order.customer
+            let customer: Person? = order.customer
             
             cell.topLeftLabel?.text = customer?.name ?? "Customer"
             
@@ -144,9 +144,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // perform initial model fetch
         var e: NSError?
-        if !self._fetchedResultsController!.performFetch(&e) {
-            println("fetch error: \(e!.localizedDescription)")
+        do {
+            try self._fetchedResultsController!.performFetch()
+        } catch var error as NSError {
+            e = error
+            print("fetch error: \(e!.localizedDescription)")
             abort();
+        } catch {
+            fatalError()
         }
         
         return self._fetchedResultsController!
@@ -157,7 +162,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
 extension OrderViewController: NSFetchedResultsControllerDelegate  {
 
     func controller(controller: NSFetchedResultsController,
-        didChangeObject object: AnyObject,
+        didChangeObject object: NSManagedObject,
         atIndexPath indexPath: NSIndexPath?,
         forChangeType type: NSFetchedResultsChangeType,
         newIndexPath: NSIndexPath?) {

@@ -63,11 +63,11 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let contact: Contact  = personDao.getContacts()[indexPath.row]
         
-        var destViewController: PersonDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PersonDetailController") as! PersonDetailViewController
+        let destViewController: PersonDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PersonDetailController") as! PersonDetailViewController
         
         if(indexPath.row >= 0) {
             
-            if let person: Person  = personDao.getPersonAtIndex(contact.id.toInt()!) {
+            if let person: Person  = personDao.getPersonAtIndex(Int(contact.id)!) {
             
                 
             // TODO  - replace with builder pattern
@@ -90,7 +90,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let contact: Contact  = personDao.getContacts()[indexPath.row]
-            let person: Person = personDao.getPersonAtIndex(contact.id.toInt()!)!
+            let person: Person = personDao.getPersonAtIndex(Int(contact.id)!)!
             personDao.deletePerson(person)
             personDao.deleteContacts(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)

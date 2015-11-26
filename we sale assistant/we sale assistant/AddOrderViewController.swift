@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Dollar
+import Cent
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
@@ -38,7 +38,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         /* it is VERY important to cast your strings to NSString
         otherwise the controller cannot display the appropriate sharing options */
         // look for "applicationActivities"
-        var activityView = UIActivityViewController(
+        let activityView = UIActivityViewController(
             activityItems: [image, "WeSale Assistant"],
             //applicationActivities: [WeChatSessionActivity()])
             applicationActivities: nil)
@@ -141,12 +141,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         self.filterdContacts = self.contacts.filter({( contact : Contact) -> Bool in
-            var stringMatch = contact.name!.rangeOfString(searchText)
+            let stringMatch = contact.name!.rangeOfString(searchText)
             return stringMatch != nil
         })
     }
     
-    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String?) -> Bool {
         self.filterContentForSearchText(searchString, scope: "ALL")
         return true
     }
@@ -157,12 +157,12 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             let selected = filterdContacts[indexPath.row]
             customerName.text = selected.name!
             //addressField.text = selected.address
-            var customerD = appDel.getPersonByIdAction(selected.id.toInt()!).last
+            let customerD = appDel.getPersonByIdAction(Int(selected.id)!).last
             self.order?.setValue(customerD, forKey: "customer")
             self.searchDisplayController!.setActive(false, animated: true)
         } else if(tableView == self.productTblView && indexPath.row < products.count) {
             let selectedProduct = products[indexPath.row]
-            var destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as! AddProductViewController
+            let destView :AddProductViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddProductViewController") as! AddProductViewController
             destView.product = selectedProduct
             self.presentViewController(destView, animated: true, completion: nil)
         }
@@ -188,7 +188,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     

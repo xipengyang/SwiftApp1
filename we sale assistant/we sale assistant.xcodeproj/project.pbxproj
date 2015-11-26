@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DDDC79E1C07B58300460FAA /* Cent in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDDC79D1C07B58300460FAA /* Cent */; };
 		3F0331E51B0868410005881D /* GoogleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0331E41B0868410005881D /* GoogleIcon.swift */; };
 		3F0331E71B08686C0005881D /* googleicon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F0331E61B08686C0005881D /* googleicon.ttf */; };
 		3F0331EA1B08807F0005881D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0331E91B08807F0005881D /* UIColor.swift */; };
@@ -34,8 +35,6 @@
 		3F5E70E21B22FB90000C08DD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70E11B22FB90000C08DD /* Person.swift */; };
 		3F5E70E41B22FB90000C08DD /* ProductD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70E31B22FB90000C08DD /* ProductD.swift */; };
 		3F724EE21A99C04900CF77BF /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F724EE11A99C04900CF77BF /* OrderCell.swift */; };
-		3FA419B01B034A7900209D42 /* Dollar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA419AF1B034A7900209D42 /* Dollar.framework */; };
-		3FA419B11B034A7A00209D42 /* Dollar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA419AF1B034A7900209D42 /* Dollar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3FC450661AB6D66600838E8F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC450651AB6D66600838E8F /* AddProductViewController.swift */; };
 		3FC4506B1AB6D72200838E8F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4506A1AB6D72200838E8F /* String.swift */; };
 		3FC450741AB6D77200838E8F /* MKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4506D1AB6D77200838E8F /* MKButton.swift */; };
@@ -60,13 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3FA419B21B034A7A00209D42 /* Embed Frameworks */ = {
+		3DDDC79C1C07B55C00460FAA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3FA419B11B034A7A00209D42 /* Dollar.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3DDDC79D1C07B58300460FAA /* Cent */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Cent; path = Carthage/Build/iOS/Cent.framework/Cent; sourceTree = "<group>"; };
 		3F0331E41B0868410005881D /* GoogleIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleIcon.swift; sourceTree = "<group>"; };
 		3F0331E61B08686C0005881D /* googleicon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = googleicon.ttf; sourceTree = "<group>"; };
 		3F0331E91B08807F0005881D /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		3F5E70E11B22FB90000C08DD /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3F5E70E31B22FB90000C08DD /* ProductD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductD.swift; sourceTree = "<group>"; };
 		3F724EE11A99C04900CF77BF /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
-		3FA419AF1B034A7900209D42 /* Dollar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dollar.framework; path = Carthage/Build/iOS/Dollar.framework; sourceTree = "<group>"; };
 		3FC450651AB6D66600838E8F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		3FC4506A1AB6D72200838E8F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		3FC4506D1AB6D77200838E8F /* MKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKButton.swift; sourceTree = "<group>"; };
@@ -133,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FA419B01B034A7900209D42 /* Dollar.framework in Frameworks */,
+				3DDDC79E1C07B58300460FAA /* Cent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +176,7 @@
 		3F4EE6BB1A84A31200636386 = {
 			isa = PBXGroup;
 			children = (
-				3FA419AF1B034A7900209D42 /* Dollar.framework */,
+				3DDDC79D1C07B58300460FAA /* Cent */,
 				3F4EE6C61A84A31200636386 /* we sale assistant */,
 				3F4EE6DE1A84A31200636386 /* we sale assistantTests */,
 				3F4EE6C51A84A31200636386 /* Products */,
@@ -333,7 +331,8 @@
 				3F4EE6C01A84A31200636386 /* Sources */,
 				3F4EE6C11A84A31200636386 /* Frameworks */,
 				3F4EE6C21A84A31200636386 /* Resources */,
-				3FA419B21B034A7A00209D42 /* Embed Frameworks */,
+				3DDDC79C1C07B55C00460FAA /* Embed Frameworks */,
+				3DDDC79F1C07B69C00460FAA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -368,6 +367,8 @@
 		3F4EE6BC1A84A31200636386 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "xipeng yang";
 				TargetAttributes = {
@@ -419,6 +420,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DDDC79F1C07B69C00460FAA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Cent.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F4EE6C01A84A31200636386 /* Sources */ = {
@@ -603,6 +621,7 @@
 					"$(PROJECT_DIR)/we",
 					sale,
 					assistant,
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Cent.framework",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "we sale assistant/we sale assistant-Bridging-Header.h";
@@ -637,6 +656,7 @@
 					"$(PROJECT_DIR)/we",
 					sale,
 					assistant,
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Cent.framework",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "we sale assistant/we sale assistant-Bridging-Header.h";
