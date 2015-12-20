@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cent
+//import Cent
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
@@ -121,7 +121,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
             return cell!
         }else {
             var cell: UITableViewCell?
-            cell = tableView.dequeueReusableCellWithIdentifier("customer") as? UITableViewCell
+            cell = tableView.dequeueReusableCellWithIdentifier("customer")! as UITableViewCell
             if (cell == nil) {
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "customer")
             }
@@ -147,7 +147,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String?) -> Bool {
-        self.filterContentForSearchText(searchString, scope: "ALL")
+        self.filterContentForSearchText(searchString!, scope: "ALL")
         return true
     }
     
@@ -195,7 +195,7 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     func createOrderImage() -> UIImage!{
         //Create the UIImage
         UIGraphicsBeginImageContext(productTblView.frame.size)
-        productTblView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        productTblView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
