@@ -34,11 +34,8 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell:UITableViewCell? = productTblView.dequeueReusableCellWithIdentifier("productStockCell") as? UITableViewCell
+        let  cell:UITableViewCell = productTblView.dequeueReusableCellWithIdentifier("productStockCell") ?? UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "productStockCell")
         
-        if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "productStockCell")
-        }
         let product:ProductD = products[indexPath.row]
         let stocks = product.stocks.allObjects as! [StockD]
         var totalStock: Int = 0
@@ -47,9 +44,9 @@ class ProductViewController: UIViewController, UITableViewDelegate, UITableViewD
                 totalStock = totalStock + q.integerValue
             }
         }
-        cell?.textLabel?.text = product.productName
-        cell?.detailTextLabel?.text = " Sold \(product.quantity)    Bought \(totalStock)"
-        return cell!
+        cell.textLabel?.text = product.productName
+        cell.detailTextLabel?.text = " Sold \(product.quantity)    Bought \(totalStock)"
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

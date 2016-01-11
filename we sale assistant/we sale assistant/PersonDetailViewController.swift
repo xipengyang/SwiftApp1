@@ -56,12 +56,8 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
-        cell = self.orderHistoryTableView.dequeueReusableCellWithIdentifier("orderHistoryCell") as? UITableViewCell
         
-        if(cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
-        }
+        let cell = self.orderHistoryTableView.dequeueReusableCellWithIdentifier("orderHistoryCell") ?? UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "order")
         
         if( orders != nil) {
             let orderAtRow = orders![indexPath.row]
@@ -70,20 +66,20 @@ class PersonDetailViewController: UIViewController, UITableViewDelegate, UITable
             for product in products {
                 bodyText = ("\(bodyText) \(product.productName)  \(product.quantity)")
             }
-            cell!.detailTextLabel?.text = bodyText
+            cell.detailTextLabel?.text = bodyText
             let formatter = NSDateFormatter()
             formatter.dateFormat = "dd-MM-yyyy"
-            cell!.textLabel?.text = formatter.stringFromDate(orderAtRow.orderDate)
+            cell.textLabel?.text = formatter.stringFromDate(orderAtRow.orderDate)
         }
         
-        return cell!
+        return cell
 
     }
     
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
         personDao.savePerson(id, name: self.nameInput.text, address: self.addressInput.text, phone: self.phoneInput.text, weChatId: self.wechatInput.text, personType: "customer")
-        person.name = self.nameInput.text
+        person.name = self.nameInput.text!
         person.address = self.addressInput.text
         person.phone = self.phoneInput.text
         person.weChatId = self.wechatInput.text

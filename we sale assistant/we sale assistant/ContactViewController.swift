@@ -44,19 +44,13 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: UITableViewCell?
-        
-        cell = tableView.dequeueReusableCellWithIdentifier("contact") as? UITableViewCell
-        
-        if( cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "contact")
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("contact") ?? UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "contact")
         
         let contact = personDao.getContacts()[indexPath.row]
         
-        cell!.textLabel?.text = contact.name
+        cell.textLabel?.text = contact.name
         
-        return cell!
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

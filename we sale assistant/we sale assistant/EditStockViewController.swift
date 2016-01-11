@@ -49,17 +49,17 @@ class EditStockViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
-        if (quantityTextField.text.isEmpty) {
+        if (quantityTextField.text!.isEmpty) {
             let alertController = UIAlertController(title: "Mistake", message:
                 "Please enter quantity", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
         }else {
             var stock:StockD = appDel.newStockAction()
-            stock.quantity = NSNumber(integer: Int(quantityTextField.text)!)
-            stock.amount = NSDecimalNumber(integer: Int(amountTextField.text)!)
-            stock.supplier = supplierTextField.text
-            stock.desc = descriptionTextField.text
+            stock.quantity = NSNumber(integer: Int(quantityTextField.text!)!)
+            stock.amount = NSDecimalNumber(integer: Int(amountTextField.text!)!)
+            stock.supplier = supplierTextField.text!
+            stock.desc = descriptionTextField.text!
             stock.product = self.product!
             appDel.saveContextAction()
             self.dismissViewControllerAnimated(true, completion: nil)
