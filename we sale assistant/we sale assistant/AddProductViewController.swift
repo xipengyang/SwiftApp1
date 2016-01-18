@@ -77,7 +77,7 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
             return
         }
         let nameText = productName.text
-        let quantityText = productQuantity.text
+        _ = productQuantity.text
         let amountText = productAmount.text
         
         
@@ -111,11 +111,11 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     
     private func validateInput() -> Bool{
         var valid: Bool = true
-        if (productName.text.isEmpty || productQuantity.text.isEmpty || productAmount.text.isEmpty){
+        if (productName.text!.isEmpty || productQuantity.text!.isEmpty || productAmount.text!.isEmpty){
             valid = false
             errorMsg = "Please enter a name, a quantity and an amount"
         }
-        else if (Int(productQuantity.text) == nil || productAmount.text.toDouble() == nil) {
+        else if (Int(productQuantity.text!) == nil || productAmount.text!.toDouble() == nil) {
             valid = false
             errorMsg = "Please enter a number"
         }
@@ -167,7 +167,7 @@ class AddProductViewController: UIViewController, UINavigationControllerDelegate
     
     var quantity: Int! {
         get {
-             return Int(productQuantity.text) ?? 0
+             return Int(productQuantity.text!) ?? 0
         }
     }
     

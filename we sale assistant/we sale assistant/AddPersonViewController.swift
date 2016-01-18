@@ -48,7 +48,7 @@ class AddPersonViewController: UIViewController {
         let zero: Int16 = 0
         let contactType: String = "Customer"
         
-        if (nameInput.text.isEmpty) {
+        if (nameInput.text!.isEmpty) {
             let alertController = UIAlertController(title: "Mistake", message:
                 "Please enter a name", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
