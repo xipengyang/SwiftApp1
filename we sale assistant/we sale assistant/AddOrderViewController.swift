@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Cent
+import Cent
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     

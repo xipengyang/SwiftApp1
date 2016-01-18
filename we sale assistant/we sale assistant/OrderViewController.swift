@@ -160,9 +160,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
 }
 
 extension OrderViewController: NSFetchedResultsControllerDelegate  {
-
+    
     func controller(controller: NSFetchedResultsController,
-        didChangeObject object: NSManagedObject,
+        didChangeObject object: AnyObject,
         atIndexPath indexPath: NSIndexPath?,
         forChangeType type: NSFetchedResultsChangeType,
         newIndexPath: NSIndexPath?) {
