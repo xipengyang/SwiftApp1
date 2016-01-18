@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DDDC79E1C07B58300460FAA /* Cent in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDDC79D1C07B58300460FAA /* Cent */; };
 		3F0331E51B0868410005881D /* GoogleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0331E41B0868410005881D /* GoogleIcon.swift */; };
 		3F0331E71B08686C0005881D /* googleicon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F0331E61B08686C0005881D /* googleicon.ttf */; };
 		3F0331EA1B08807F0005881D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0331E91B08807F0005881D /* UIColor.swift */; };
@@ -72,7 +71,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3DDDC79D1C07B58300460FAA /* Cent */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Cent; path = Carthage/Build/iOS/Cent.framework/Cent; sourceTree = "<group>"; };
 		3F0331E41B0868410005881D /* GoogleIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleIcon.swift; sourceTree = "<group>"; };
 		3F0331E61B08686C0005881D /* googleicon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = googleicon.ttf; sourceTree = "<group>"; };
 		3F0331E91B08807F0005881D /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DDDC79E1C07B58300460FAA /* Cent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +173,6 @@
 		3F4EE6BB1A84A31200636386 = {
 			isa = PBXGroup;
 			children = (
-				3DDDC79D1C07B58300460FAA /* Cent */,
 				3F4EE6C61A84A31200636386 /* we sale assistant */,
 				3F4EE6DE1A84A31200636386 /* we sale assistantTests */,
 				3F4EE6C51A84A31200636386 /* Products */,
@@ -332,7 +328,6 @@
 				3F4EE6C11A84A31200636386 /* Frameworks */,
 				3F4EE6C21A84A31200636386 /* Resources */,
 				3DDDC79C1C07B55C00460FAA /* Embed Frameworks */,
-				3DDDC79F1C07B69C00460FAA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -420,23 +415,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3DDDC79F1C07B69C00460FAA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Cent.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F4EE6C01A84A31200636386 /* Sources */ = {

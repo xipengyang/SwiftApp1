@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cent
+//import Cent
 
 class AddOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
     
@@ -226,13 +226,14 @@ class AddOrderViewController: UIViewController, UITableViewDelegate, UITableView
     
     var amountSum: NSDecimalNumber {
         get{
-            return $.reduce(products, initial: 0.0) { (total, element) in
-                let product = element as ProductD
+            //return $.reduce(products, initial: 0.0) { (total, element) in
+            var total: NSDecimalNumber = NSDecimalNumber.zero()
+            for product in products {
                 if let amt = product.price{
-                        return total.decimalNumberByAdding(amt)
+                        total = total.decimalNumberByAdding(amt)
                     }
-                return total
             }
+          return total
         }
     }
     
